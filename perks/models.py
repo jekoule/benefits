@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 
 from django.db import models
 from partners.models import Partner
+from django.urls import reverse
 
 
 class PerkCategory(models.Model):
@@ -37,6 +38,14 @@ class Perk(models.Model):
 
     def __unicode__(self):
         return self.short_description
+
+    @property
+    def thumbnail(self):
+        return self.images.first().img.url
+
+    @models.permalink
+    def get_absolute_url(self):
+        return ('perks.perk_detail', (), {'pk': self.pk})
 
 
 class PerkImage(models.Model):

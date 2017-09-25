@@ -10,7 +10,7 @@ urlpatterns = [
     url(r'^edit/', views.edit_info,
         name='members.edit_info'),
     url(r'^logout/', logout,
-        {'next_page': '/members/sign_in/'},
+        {'next_page': '/account/sign_in/'},
         name='members.logout'),
     url(r'^change_password/', views.change_password,
         name='members.change_password'),

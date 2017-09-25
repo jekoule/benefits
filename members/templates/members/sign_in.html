@@ -7,7 +7,7 @@
 
 {% block content %}
 <div class="container">
-      <form method="POST" action="" class="form-signin">
+      <form method="POST" action="" class="well form-signin">
         {% csrf_token %}
         <h2 class="form-signin-heading">Вход</h2>
         {% if error %}
@@ -16,13 +16,7 @@
         </div>
         {% endif %}
         {{ form|crispy }}
-        <div class="checkbox">
-          <label>
-            <input type="checkbox" value="remember-me"> Запомнить меня 
-          </label>
-        </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Войти</button>
       </form>
-
-    </div>
+</div>
 {% endblock %}
