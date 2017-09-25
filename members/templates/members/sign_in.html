@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static crispy_forms_tags %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/signin.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+      <form method="POST" action="" class="form-signin">
+        {% csrf_token %}
+        <h2 class="form-signin-heading">Вход</h2>
+        {% if error %}
+        <div class="alert alert-dismissible alert-danger">
+          {{ error }}
+        </div>
+        {% endif %}
+        {{ form|crispy }}
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" value="remember-me"> Запомнить меня 
+          </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Войти</button>
+      </form>
+
+    </div>
+{% endblock %}

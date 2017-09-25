@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  {% include "perks/navigation.html" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+  <div class="jumbotron">
+    <h1>Слайдер</h1>
+    <p>Здесь будут отображаться наиболее горячие предложения.</p>
+    <p><a class="btn btn-primary btn-lg">Узнать больше</a></p>
+  </div>
+
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="btn-group btn-group-justified">
+        <a href="#" class="btn btn-default">Еда и напитки</a>
+        <a href="#" class="btn btn-default">Развлечения</a>
+        <a href="#" class="btn btn-default">Спорт</a>
+        <a href="#" class="btn btn-default">Туризм</a>
+        <a href="#" class="btn btn-default">Образование</a>
+        <a href="#" class="btn btn-default">Финансы</a>
+        <a href="#" class="btn btn-default">Услуги</a>
+        <a href="#" class="btn btn-default">Товары</a>
+      </div>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="row">
+    <div class="col-md-12">
+      <strong>
+      <a class="text-info" href="#">Все предложения</a>&emsp;
+      <a class="text-muted" href="#">Самые популярные</a>&emsp;
+      <a class="text-muted" href="#">Новинки</a>&emsp;
+      </strong>
+      <form class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Поиск по предложениям">
+        </div>
+        <button type="submit" class="btn btn-primary">Найти</button>
+      </form>
+    </div>
+  </div>
+
+	<br>
+
+  <div class="row">
+    <div class="col-md-4">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <img class="img-responsive" src="http://via.placeholder.com/640x480">
+        </div>
+        <div class="panel-footer">
+          <h4>Parmigiano Group</h4>
+          <p>Скидка 15% на все меню</p>
+          <a href="#" class="btn btn-info left">Подробнее</a>	
+          <a href="#" class="btn btn-primary pull-right">Получить</a>	
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <img class="img-responsive" src="http://via.placeholder.com/640x480">
+        </div>
+        <div class="panel-footer">
+          <h4>Parmigiano Group</h4>
+          <p>Скидка 15% на все меню</p>
+          <a href="#" class="btn btn-info left">Подробнее</a>	
+          <a href="#" class="btn btn-primary pull-right">Получить</a>	
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <img class="img-responsive" src="http://via.placeholder.com/640x480">
+        </div>
+        <div class="panel-footer">
+          <h4>Parmigiano Group</h4>
+          <p>Скидка 15% на все меню</p>
+          <a href="#" class="btn btn-info left">Подробнее</a>	
+          <a href="#" class="btn btn-primary pull-right">Получить</a>	
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-md-4">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <img class="img-responsive" src="http://via.placeholder.com/640x480">
+        </div>
+        <div class="panel-footer">
+          <h4>Parmigiano Group</h4>
+          <p>Скидка 15% на все меню</p>
+          <a href="#" class="btn btn-info left">Подробнее</a>	
+          <a href="#" class="btn btn-primary pull-right">Получить</a>	
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row text-center">
+		<ul class="pagination">
+			<li class="disabled"><a href="#">&laquo;</a></li>
+			<li class="active"><a href="#">1</a></li>
+			<li><a href="#">2</a></li>
+			<li><a href="#">3</a></li>
+			<li><a href="#">4</a></li>
+			<li><a href="#">5</a></li>
+			<li><a href="#">&raquo;</a></li>
+		</ul>
+ </div>
+
+</div>
+
+{% endblock %}
+
+{% block footer %}
+<footer class="footer" style="background-color: #333333">
+	<div class="center-block">
+    <br>
+		<h5 class="text-center" style="color: #ffffff">Benefits 2017</h5>
+    <br>
+	</div>
+</footer>
+{% endblock %}
