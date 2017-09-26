@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.contrib.auth import get_user_model
 from members.models import Member
 import hashlib
@@ -26,9 +27,10 @@ def create_member(email, company):
         activation_token=activation_token)
     member.save()
     # Finally send an email to member with an invitation to activate account
+    """
     activation_link = reverse(
-        'customer.views.activate',
-        kwargs={'user_id': user.pk, 'token': activation_token}
+        'members.views.register',
+        kwargs={'pk': user.pk, 'token': activation_token}
     )
     send_mail(
         'Активация аккаунта Benefits',
@@ -36,3 +38,14 @@ def create_member(email, company):
         'noreply@benefits.kz',
         user.email
     )
+    """
+
+
+def create_members_list(list, company):
+    for email in list.split():
+        if email != '':
+            create_member(email, company)
+
+
+def create_members_file(file, company):
+    pass

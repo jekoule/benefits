@@ -38,6 +38,7 @@ class Member(models.Model):
 
     def activate(self):
         self.user.is_active = True
+        self.save()
 
     @property
     def is_active(self):
@@ -45,7 +46,4 @@ class Member(models.Model):
 
     @property
     def is_admin(self):
-        if self.company.admin == self.user:
-            return True
-        else:
-            return False
+        return self.company.admin == self.user

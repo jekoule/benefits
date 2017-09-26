@@ -66,17 +66,21 @@
   {% endfor %}
   </div>
 
+  {% if perks.paginator.num_pages > 1 %}
   <div class="row text-center">
 		<ul class="pagination">
-			<li class="disabled"><a href="#">&laquo;</a></li>
-			<li class="active"><a href="#">1</a></li>
-			<li><a href="#">2</a></li>
-			<li><a href="#">3</a></li>
-			<li><a href="#">4</a></li>
-			<li><a href="#">5</a></li>
-			<li><a href="#">&raquo;</a></li>
+      {% if perks.has_previous %}
+      <li><a href="?page={{ perks.previous_page_number }}">&laquo;</a></li>
+      {% endif %}
+      {% for page in perks.paginator.page_range %}
+        <li {% if perks.number == page %}class="active"{% endif %}><a href="#">{{ page }}</a></li>
+      {% endfor %}
+      {% if perks.has_next %}
+      <li><a href="?page={{ perks.next_page_number }}">&raquo;</a></li>
+      {% endif %}
 		</ul>
  </div>
+ {% endif %}
 
 </div>
 

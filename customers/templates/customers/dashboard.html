@@ -1,0 +1,84 @@
+{% extends 'perks/index.html' %}
+
+{% block content %}
+
+<div class="container">
+  <div class="page-header">
+    <h1>{{ company.name }} <small>&emsp;Панель управления</small></h1>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="well">
+        <h3 class="text-center">153</h3> 
+        <p class="text-center">Подарков получено</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="well">
+        <h3 class="text-center">89</h3> 
+        <p class="text-center">Активных сотрудников</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="well">
+        <h3 class="text-center">65%</h3> 
+        <p class="text-center">Используют сервис</p>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <h3>Сотрудники</h3> 
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <a href="{% url 'customers.add_members' %}" class="btn btn-primary pull-right">Добавить сотрудников</a>
+    </div>
+  </div>
+      <hr>
+  <div class="row">
+    <form action="{% url 'customers.delete_members' %}" method="POST">
+    {% csrf_token %}
+    <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th class="col-md-1">#</th>
+          <th class="col-md-3">Email</th>
+          <th class="col-md-3">Имя</th>
+          <th class="col-md-3">Фамилия</th>
+          <th class="col-md-1">Активен?</th>
+          <th class="col-md-1"></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for member in company.members.all %}
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <td>{{ member.email }}</td>
+          <td>{{ member.first_name }}</td>
+          <td>{{ member.last_name }}</td>
+          <td>
+            {% if member.is_active %}
+            <span class="label label-success">Да</span>
+            {% else %} 
+            <span class="label label-default">Нет</span>
+            {% endif %}
+          </td>
+          <td>
+            {% if member.is_admin %}
+            <span class="label label-warning">Администратор</span> 
+            {% else %}
+						<input type="checkbox" name="to_delete" value="{{ member.pk }}">
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+		<button type="submit" class="btn btn-sm btn-danger pull-right">Удалить выбранных сотрудников</button>
+		</form>
+  </div>
+  <br>
+</div>
+{% endblock %}

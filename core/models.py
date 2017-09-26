@@ -53,10 +53,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         except ObjectDoesNotExist:
             return False
         else:
-            if self.member.is_admin:
-                return True
-            else:
-                return False
+            return self.member.is_admin
 
     @property
     def is_partner(self):

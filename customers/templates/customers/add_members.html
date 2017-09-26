@@ -1,0 +1,48 @@
+{% extends 'perks/index.html' %}
+
+{% block content %}
+
+<div class="container">
+  <div class="page-header">
+    <h1>{{ request.user.member.company.name }} <small>&emsp;Добавить сотрудников</small></h1>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title">Добавить вручную</h3>
+				</div>
+				<div class="panel-body">
+          <p>
+        Заполните электронные адреса сотрудников в поле ниже (каждый новый адрес
+        необходимо добавлять с новой строки):
+          </p>
+          <form action="" method="POST" class="form-horizontal">
+            {% csrf_token %}
+            <textarea class="form-control" rows="10" name="members_list" id="members_list"></textarea>
+            <br>
+            <button type="submit" class="btn btn-primary pull-right">Добавить</button>
+          </form>
+        </div>
+			</div>
+    </div>
+    <div class="col-md-6">
+      <div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title">Импорт из CSV-файла</h3>
+				</div>
+				<div class="panel-body">
+          <p>
+            Загрузите CSV-файл с электронными адресами сотрудников:
+          </p>
+          <form action="" method="POST" class="form-horizontal">
+            {% csrf_token %}
+            <input type="file" id="members_file" name="members_file">     
+            <button type="submit" class="btn btn-primary pull-right">Импортировать</button>
+          </form>
+				</div>
+			</div>
+		</div>
+  </div>
+</div>
+{% endblock %}
