@@ -24,6 +24,7 @@ urlpatterns = [
     url(r'^account/', include('members.urls')),
     url(r'^perks/', include('perks.urls')),
     url(r'', include('cms.urls')),
+    url(r'^tinymce/', include('tinymce.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 admin.site.site_header = settings.ADMIN_SITE_HEADER
