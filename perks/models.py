@@ -1,9 +1,13 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+import string
+from django.utils.crypto import get_random_string
 from django.db import models
 from partners.models import Partner
 from tinymce.models import HTMLField
+from members.models import Member
+from django.core.exceptions import ObjectDoesNotExist
 
 
 class PerkCategory(models.Model):
@@ -74,3 +78,25 @@ class PerkImage(models.Model):
 
     def __unicode__(self):
         return self.img.url
+
+
+def generate_code():
+    allowed_chars = string.ascii_uppercase.replace("O", "") + string.digits
+    while True:
+        code = get_random_string(length=4, allowed_chars=allowed_chars)
+        try:
+            Transaction.objects.get(code=code)
+        except ObjectDoesNotExist:
+            return code
+
+
+class Transaction(models.Model):
+    member = models.ForeignKey(Member, on_delete=models.CASCADE,
+                               related_name='transcations')
+    perk = models.ForeignKey(Perk, on_delete=models.DO_NOTHING,
+                             related_name='transacctions')
+    date_created = models.DateTimeField(auto_now_add=True,
+                                        verbose_name='Дата и время')
+    code = models.CharField(max_length=4,
+                            default=generate_code,
+                            verbose_name='Код транзакции')

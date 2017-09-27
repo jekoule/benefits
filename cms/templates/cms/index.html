@@ -52,7 +52,7 @@
 					</button>
 	<!-- Light and dark logo -->
 					<a href="#intro" class="navbar-brand">
-            <a href="#"><p class="lead">Benefits</p></a>
+            <a href=""><p class="lead">Benefits</p></a>
 					</a>
 				</div>
 	<!-- Navigation links -->
@@ -67,7 +67,7 @@
                 data-20p="color: rgb(0, 0, 0);">Наши клиенты</a></li>
 						<li><a href="#team-top" data-start="color: rgb(255, 255, 255);"
                 data-20p="color: rgb(0, 0, 0);">Контакты</a></li>
-						<li><a href="#team-top" data-start="color: rgb(255, 255, 255);"
+						<li><a href="{% url 'perks.index' %}" data-start="color: rgb(255, 255, 255);"
                 data-20p="color: rgb(0, 0, 0);" class="btn btn-ghost">Вход</a></li>
 					</ul>
 				</div>
@@ -75,7 +75,7 @@
 		</div>
 	<!-- End navigation -->
 	<!-- Start intro -->
-		<section id="intro" class="parallax" data-start="background-position: 50% -10px;" data-100p="background-position: 50% 60px;">
+		<section id="intro" class="parallax" style="background-image: url({% static 'cms/img/background_top.jpeg' %});" data-start="background-position: 50% -10px;" data-100p="background-position: 50% 60px;">
 			<div class="section-overlay">
 				<div class="float-content">
 					<div class="container">
@@ -84,7 +84,7 @@
 								<div id="carousel-intro" class="carousel">
 									<div class="carousel-inner text-center">
 										<div class="active item">
-											<h5 class="smoke">Welcome to</h5>
+											<h5 class="smoke">Добро пожаловать в Benefits</h5>
 											<h1 class="text-uppercase light">Multi-purpose template</h1>
 											<a href="#services" class="btn">Get started</a>
 										</div>

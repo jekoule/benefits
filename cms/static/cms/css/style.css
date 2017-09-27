@@ -277,7 +277,6 @@ hr.title-divider {
 /* ==== 5) Intro & Sections Headers ==== */
 
 #intro {
-	background-image: url("http://placehold.it/1600x900");
 	-webkit-background-size: cover;
 	background-size: cover;
 	min-height: 445px;
