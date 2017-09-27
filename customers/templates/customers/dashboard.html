@@ -76,9 +76,45 @@
         {% endfor %}
       </tbody>
     </table>
-		<button type="submit" class="btn btn-sm btn-danger pull-right">Удалить выбранных сотрудников</button>
+		<button type="submit" class="btn btn-danger pull-right">Удалить выбранных сотрудников</button>
 		</form>
   </div>
   <br>
 </div>
+	<div id="myModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body col-md-12">
+        {% if messages %}
+          {% for message in messages %}
+          <p class="{{ message.tags }}">
+            <strong>
+            {{ message }}
+            </strong>
+          </p>
+          {% endfor %}
+        {% endif %}
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Закрыть окно</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+{% endblock %}
+
+{% block extra_js %}
+{% if messages %}
+<script type="text/javascript">
+    $(window).on('load',function(){
+        $('#myModal').modal('show');
+    });
+</script>
+{% endif %}
 {% endblock %}

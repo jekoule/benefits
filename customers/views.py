@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import user_passes_test
 from members.models import Member
 from django.http import HttpResponseRedirect
 from django.core.exceptions import ObjectDoesNotExist
-from .utils import create_members_list, create_members_file
+from .utils import create_members_from_list, create_members_from_file
 
 
 def is_admin(user):
@@ -39,8 +39,8 @@ def add_members(request):
     if request.method == 'POST':
         company = request.user.member.company
         if 'members_list' in request.POST:
-            create_members_list(request.POST.get('members_list'), company)
+            create_members_from_list(request, request.POST.get('members_list'), company)
         elif 'members_file' in request.FILES:
-            create_members_file(request.FILES.get('members_file'), company)
-        return render(request, 'customers/success.html')
+            create_members_from_file(request, request.FILES['members_file'], company)
+        return redirect('customers.dashboard')
     return render(request, 'customers/add_members.html')

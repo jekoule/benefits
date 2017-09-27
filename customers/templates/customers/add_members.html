@@ -35,7 +35,7 @@
           <p>
             Загрузите CSV-файл с электронными адресами сотрудников:
           </p>
-          <form action="" method="POST" class="form-horizontal">
+          <form action="" method="POST" enctype="multipart/form-data" class="form-horizontal">
             {% csrf_token %}
             <input type="file" id="members_file" name="members_file">     
             <button type="submit" class="btn btn-primary pull-right">Импортировать</button>
