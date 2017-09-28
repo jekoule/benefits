@@ -6,4 +6,4 @@ from django.apps import AppConfig
 
 class PerksConfig(AppConfig):
     name = 'perks'
-    verbose_name = 'Привилегии'
+    verbose_name = 'Предложения'

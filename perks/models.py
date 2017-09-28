@@ -4,10 +4,11 @@ from __future__ import unicode_literals
 import string
 from django.utils.crypto import get_random_string
 from django.db import models
+from django.core.exceptions import ObjectDoesNotExist
+
 from partners.models import Partner
 from tinymce.models import HTMLField
 from members.models import Member
-from django.core.exceptions import ObjectDoesNotExist
 
 
 class PerkCategory(models.Model):
@@ -23,7 +24,7 @@ class PerkCategory(models.Model):
 
     @models.permalink
     def get_absolute_url(self):
-        return ('perks.index', (), {'category': self.slug})
+        return ('perks:category', (), {'category': self.slug})
 
 
 class Perk(models.Model):
@@ -46,8 +47,8 @@ class Perk(models.Model):
                                         verbose_name='Дата создания')
 
     class Meta:
-        verbose_name = 'Привилегия'
-        verbose_name_plural = 'Привилегии'
+        verbose_name = 'Предложения'
+        verbose_name_plural = 'Предложения'
 
     def __unicode__(self):
         return self.short_description
@@ -58,7 +59,7 @@ class Perk(models.Model):
 
     @models.permalink
     def get_absolute_url(self):
-        return ('perks.perk_detail', (), {'pk': self.pk})
+        return ('perks:perk_detail', (), {'pk': self.pk})
 
 
 class PerkImage(models.Model):
@@ -92,11 +93,20 @@ def generate_code():
 
 class Transaction(models.Model):
     member = models.ForeignKey(Member, on_delete=models.CASCADE,
-                               related_name='transcations')
+                               related_name='transactions',
+                               verbose_name='Сотрудник')
     perk = models.ForeignKey(Perk, on_delete=models.DO_NOTHING,
-                             related_name='transacctions')
+                             related_name='transactions',
+                             verbose_name='Предложение')
     date_created = models.DateTimeField(auto_now_add=True,
                                         verbose_name='Дата и время')
     code = models.CharField(max_length=4,
                             default=generate_code,
                             verbose_name='Код транзакции')
+
+    class Meta:
+        verbose_name = 'Транзакция'
+        verbose_name_plural = 'Транзакции'
+
+    def __unicode__(self):
+        return self.code

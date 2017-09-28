@@ -5,7 +5,7 @@
   <div class="row">
     <div class="col-md-12">
       <ol class="breadcrumb">
-        <li><a href="{% url 'perks.index' %}">Все предложения</a></li>
+        <li><a href="{% url 'perks:index' %}">Все предложения</a></li>
         <li><a href="{{ perk.category.get_absolute_url }}">{{ perk.category.name }}</a></li>
           <li class="active">{{ perk.title }}</li>
       </ol>
@@ -26,8 +26,7 @@
 					<p class="lead">{{ perk.short_description }}</p>
 					<hr>
 					<div class="col-md-12">
-					<button class="btn btn-link"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Сохранить в избранное</button>
-					<button class="btn btn-info pull-right">Получить</button>
+          <button data-toggle="modal" data-target="#add_perk_modal" class="btn btn-lg btn-warning pull-right">Получить</button>
 					</div>
 				</div>
 			</div>
@@ -102,6 +101,9 @@
     </div>
 	</div>
 </div>
+
+{% include 'perks/partials/modals.html' %}
+
 {% endblock %}
 
 {% block extra_js %}

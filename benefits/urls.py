@@ -20,10 +20,11 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^dashboard/', include('customers.urls')),
-    url(r'^account/', include('members.urls')),
-    url(r'^perks/', include('perks.urls')),
-    url(r'', include('cms.urls')),
+    url(r'^dashboard/', include('customers.urls', namespace='customers')),
+    url(r'^partner/', include('partners.urls', namespace='partners')),
+    url(r'^account/', include('members.urls', namespace='members')),
+    url(r'^perks/', include('perks.urls', namespace='perks')),
+    url(r'', include('cms.urls', namespace='cms')),
     url(r'^tinymce/', include('tinymce.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

@@ -1,0 +1,73 @@
+<div id="add_perk_modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">{{ perk.title }}</h4>
+      </div>
+      <div class="modal-body">
+        <p class="lead"><strong>{{ perk.short_description }}</strong></p>
+        <p>Уникальный 4-х значный код для получения предложения придет на ваш
+        электронный адрес: <a>{{ request.user.email }}</a>.</p> 
+        <p>Если на Вашем смартфоне
+        установлено приложение Benefits, код предложения будет также доступен
+        в приложении.</p>
+      </div>
+      <div class="modal-footer">
+        <form method="POST" action="{{ perk.get_absolute_url }}" class="pull-right">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-warning">Получить</button>
+        </form>
+        <button type="button" class="btn btn-default pull-right" data-dismiss="modal">Отмена</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div id="result_modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body"> 
+        {% if messages %}
+          {% for message in messages %}
+            {% if message.level == 25 %}
+              <p>Поздравляем! Ваш код для получения скидки:</p>
+              <p class="lead"><strong>{{ message }}</strong></p>
+              <p>Код также был отправлен на Ваш электронный адрес: 
+              <a>{{ request.user.email }}</a></p>
+              <p class="lead">Спасибо что пользуетесь сервисом Benefits!</p>
+            {% elif message.level == 40 %}
+              <p class="text-danger">Произошла ошибка</p>
+              <p>Приносим свои извинения за предоставленные неудобства. Попробуйте повторить попытку позднее.</p>
+              <p>Если ошибка повторится, напишите нам на:
+              <a href="mailto:support@benefits.kz"> support@benefits.kz</a>
+              </p>
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Готово</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+{% block extra_js %}
+{% if messages %}
+<script type="text/javascript">
+    $(window).on('load',function(){
+        $('#result_modal').modal('show');
+    });
+</script>
+{% endif %}
+{% endblock %}

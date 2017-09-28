@@ -2,10 +2,12 @@
 from __future__ import unicode_literals
 
 from django.shortcuts import render, get_object_or_404
-from .models import Perk, PerkCategory
 from django.contrib.auth.decorators import login_required
-from django.views.generic import DetailView
+from django.contrib import messages
+from django.core.mail import send_mail
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
+from .models import Perk, PerkCategory, Transaction
 
 
 @login_required(login_url='/members/sign_in/')
@@ -29,6 +31,15 @@ def index(request, category=None):
                    'active_category': category})
 
 
-class perk_detail(DetailView):
-
-    model = Perk
+def perk_detail(request, pk):
+    perk = get_object_or_404(Perk, pk=pk)
+    if request.method == 'POST':
+        transaction = Transaction(member=request.user.member,
+                                  perk=perk)
+        transaction.save()
+        subject, from_email = 'Код', 'info@benefits.kz'
+        to_email = [request.user.email]
+        text = 'Ваш код транзакции: %s' % transaction.code
+        send_mail(subject, text, from_email, to_email)
+        messages.success(request, transaction.code)
+    return render(request, 'perks/perk_detail.html', {'perk': perk})

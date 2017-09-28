@@ -880,9 +880,25 @@ footer h4 {
 }
 
 .navbar .btn {
+	background-color: #00a0dc !important;
+	font-family: 'Montserrat', sans-serif;
+	color: #fff !important;
+	font-weight: 400;
+	line-height: 1;
+	border-radius: 25px !important;
+	border: 1px solid transparent;
+	text-transform: none;
+	text-decoration: none;
+	outline: none;
 	margin: 15px 0 !important;;
-	padding: 5px 15px !important;
+	padding: 10px 15px !important;
 	font-size: 13px !important;
+}
+
+.navbar .btn:hover {
+	color: #fff !important;
+	background-color: #008cc8 !important;
+
 }
 
 .navbar-brand {

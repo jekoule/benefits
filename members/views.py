@@ -92,3 +92,9 @@ def change_password(request):
     return render(request, 'members/change_password.html', {
         'form': form
     })
+
+
+def my_perks(request):
+    transactions = request.user.member.transactions.all()
+    return render(request, 'members/my_perks.html',
+                  {'transactions': transactions})
