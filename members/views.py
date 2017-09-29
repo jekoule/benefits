@@ -22,7 +22,7 @@ def sign_in(request):
             user = authenticate(request, username=email, password=password)
             if user is not None and user.is_member:
                 login(request, user)
-                return redirect('perks.index')
+                return redirect('perks:index')
             else:
                 error = 'Вы ввели неправильное имя пользователя или пароль'
                 return render(request, 'members/sign_in.html',

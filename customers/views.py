@@ -32,6 +32,7 @@ def delete_members(request):
                 pass
             else:
                 member.delete()
+                # delete User also
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
@@ -42,5 +43,5 @@ def add_members(request):
             create_members_from_list(request, request.POST.get('members_list'), company)
         elif 'members_file' in request.FILES:
             create_members_from_file(request, request.FILES['members_file'], company)
-        return redirect('customers.dashboard')
+        return redirect('customers:dashboard')
     return render(request, 'customers/add_members.html')

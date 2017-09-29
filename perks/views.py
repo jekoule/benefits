@@ -10,7 +10,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import Perk, PerkCategory, Transaction
 
 
-@login_required(login_url='/members/sign_in/')
+@login_required(login_url='/account/sign_in/')
 def index(request, category=None):
     if category is not None:
         category = get_object_or_404(PerkCategory, slug=category)
@@ -31,6 +31,7 @@ def index(request, category=None):
                    'active_category': category})
 
 
+@login_required(login_url='/account/sign_in/')
 def perk_detail(request, pk):
     perk = get_object_or_404(Perk, pk=pk)
     if request.method == 'POST':
