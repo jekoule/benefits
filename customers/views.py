@@ -16,12 +16,13 @@ def is_admin(user):
         return user.is_company_admin
 
 
-@user_passes_test(is_admin, login_url='members.sign_in')
+@user_passes_test(is_admin, login_url='members:sign_in')
 def dashboard(request):
     company = request.user.member.company
     return render(request, 'customers/dashboard.html', {'company': company})
 
 
+@user_passes_test(is_admin, login_url='members:sign_in')
 def delete_members(request):
     if request.method == 'POST':
         to_delete = request.POST.getlist('to_delete')
@@ -32,16 +33,19 @@ def delete_members(request):
                 pass
             else:
                 member.user.delete()
-                # delete User also
+                # delete User & Member instance
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
+@user_passes_test(is_admin, login_url='members:sign_in')
 def add_members(request):
     if request.method == 'POST':
         company = request.user.member.company
         if 'members_list' in request.POST:
-            create_members_from_list(request, request.POST.get('members_list'), company)
+            create_members_from_list(request,
+                                     request.POST.get('members_list'), company)
         elif 'members_file' in request.FILES:
-            create_members_from_file(request, request.FILES['members_file'], company)
+            create_members_from_file(request,
+                                     request.FILES['members_file'], company)
         return redirect('customers:dashboard')
     return render(request, 'customers/add_members.html')

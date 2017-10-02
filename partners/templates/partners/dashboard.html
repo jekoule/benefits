@@ -8,7 +8,16 @@
 
 <div class="container">
 
-
+  <h2>Транзакции</h2>
+  {% for t in transactions %}
+  <p>
+  {{ t.date_created }}
+  {{ t.member.email }}
+  {{ t.member.first_name }}
+  {{ t.member.last_name }}
+  {{ t.code }}
+  </p>
+  {% endfor %}
 	<br>
 
 </div>
