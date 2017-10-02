@@ -31,7 +31,7 @@ def delete_members(request):
             except ObjectDoesNotExist:
                 pass
             else:
-                member.delete()
+                member.user.delete()
                 # delete User also
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
