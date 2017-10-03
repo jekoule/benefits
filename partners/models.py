@@ -6,9 +6,13 @@ from django.conf import settings
 
 
 class Partner(models.Model):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='Учетная запись')
-    name = models.CharField(max_length=100, verbose_name='Наименование Компании')
-    info = models.TextField(verbose_name='Контактная информация', null=True, blank=True)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL,
+                                on_delete=models.CASCADE,
+                                verbose_name='Учетная запись')
+    name = models.CharField(max_length=100,
+                            verbose_name='Наименование Компании')
+    info = models.TextField(verbose_name='Контактная информация',
+                            null=True, blank=True)
 
     class Meta:
         verbose_name = 'Партнер'
