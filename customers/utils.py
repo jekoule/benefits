@@ -31,18 +31,15 @@ def create_member(email, company):
         activation_token=activation_token)
     member.save()
     # Finally send an email to member with an invitation to activate account
-    """
-    activation_link = reverse(
-        'members.views.register',
-        kwargs={'pk': user.pk, 'token': activation_token}
-    )
+    activation_link = 'http://127.0.0.1:8000' + \
+        reverse('members:activate') + \
+        '?pk={pk}&token={token}'.format(pk=member.pk, token=activation_token)
     send_mail(
         'Активация аккаунта Benefits',
         activation_link,
         'noreply@benefits.kz',
-        user.email
+        [user.email]
     )
-    """
 
 
 def create_member_multiple(request, emails, company):

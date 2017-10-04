@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block header %}
   {% include "perks/partials/navigation.html" %}
@@ -6,23 +7,20 @@
 
 {% block content %}
 
+
 <div class="container">
 
-  <div class="jumbotron">
-    <h1>Слайдер</h1>
-    <p>Здесь будут отображаться наиболее горячие предложения.</p>
-    <p><a class="btn btn-primary btn-lg">Узнать больше</a></p>
+  <div class="jumbotron" style="background-image: url({% static 'img/background.jpg' %})">
   </div>
-
 
   <div class="row">
     <div class="col-md-12">
-      <div class="btn-group btn-group-justified">
-        <a href="{% url 'perks:index' %}" class="btn btn-{% if active_category %}default{% else %}primary{% endif %}">Все</a>
+			<ul class="nav nav-pills nav-justified">
+				<li {% if active_category %}{% else %}class="active"{% endif %}><a href="{% url 'perks:index' %}">Все</a></li>
         {% for category in categories %}
-        <a href="{{ category.get_absolute_url }}" class="btn btn-{% if active_category == category %}primary{% else %}default{% endif %}">{{ category.name }}</a>
+        <li {% if active_category == category %}class="active"{% endif %}><a href="{{ category.get_absolute_url }}">{{ category.name }}</a></li>
         {% endfor %}
-      </div>
+			</ul>
     </div>
   </div>
 
@@ -30,21 +28,19 @@
 
   <div class="row">
     <div class="col-md-12">
-      <strong>
       <a class="text-info" href="#">Все предложения</a>&emsp;
       <a class="text-muted" href="#">Самые популярные</a>&emsp;
       <a class="text-muted" href="#">Новинки</a>&emsp;
-      </strong>
       <form class="navbar-form navbar-right" role="search">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Поиск по предложениям">
         </div>
-        <button type="submit" class="btn btn-primary">Найти</button>
+        <button type="submit" class="btn btn-info">Найти</button>
       </form>
     </div>
   </div>
 
-	<br>
+  <br>
 
   <div class="row">
   {% for perk in perks %}
@@ -59,7 +55,8 @@
           <h4>{{ perk.partner.name }}</h4>
           <p>{{ perk.short_description }}</p>
           <a href="{{ perk.get_absolute_url }}" class="btn btn-info left">Подробнее</a>	
-          <button data-toggle="modal" data-target="#add_perk_modal" class="btn btn-warning pull-right">Получить</button>
+          <button data-toggle="modal" data-target="#add_perk_modal" class="btn
+            btn-primary pull-right">Получить</button>
         </div>
       </div>
     </div>
@@ -68,7 +65,7 @@
 
   {% if perks.paginator.num_pages > 1 %}
   <div class="row text-center">
-		<ul class="pagination">
+    <ul class="pagination">
       {% if perks.has_previous %}
       <li><a href="?page={{ perks.previous_page_number }}">&laquo;</a></li>
       {% endif %}
@@ -78,11 +75,12 @@
       {% if perks.has_next %}
       <li><a href="?page={{ perks.next_page_number }}">&raquo;</a></li>
       {% endif %}
-		</ul>
+    </ul>
  </div>
  {% endif %}
 
 </div>
+
 
 {% include 'perks/partials/modals.html' %}
 
@@ -90,10 +88,12 @@
 
 {% block footer %}
 <footer class="footer" style="background-color: #333333">
-	<div class="center-block">
-    <br>
-		<h5 class="text-center" style="color: #ffffff">Benefits 2017</h5>
-    <br>
+	<div class="container">
+		<div class="center-block">
+			<br>
+			<h5 class="text-center" style="color: #ffffff">Benefits 2017</h5>
+			<br>
+		</div>
 	</div>
 </footer>
 {% endblock %}

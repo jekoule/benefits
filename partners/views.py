@@ -4,7 +4,8 @@ from __future__ import unicode_literals
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth import authenticate, login, update_session_auth_hash
-from core.forms import SigninForm
+from .forms import SigninForm
+from perks.models import Transaction
 
 
 def is_partner(user):
@@ -24,26 +25,22 @@ def sign_in(request):
             email = form.cleaned_data['email']
             password = form.cleaned_data['password']
             user = authenticate(request, username=email, password=password)
-            if user is not None and user.is_partner:
-                login(request, user)
-                if next_page:
-                    return redirect(next_page)
-                else:
-                    return redirect('partners:dashboard')
+            login(request, user)
+            if next_page is not None:
+                return redirect(next_page)
             else:
-                error = 'Вы ввели неправильное имя пользователя или пароль'
-        return render(request, 'partners/sign_in.html',
-                      {'form': form, 'error': error})
+                return redirect('partners:dashboard')
     else:
         form = SigninForm
-        return render(request, 'partners/sign_in.html', {'form': form})
+    return render(request, 'partners/sign_in.html', {'form': form})
 
 
 @user_passes_test(is_partner, login_url='partners:sign_in')
 def dashboard(request):
     partner = request.user.partner
+    transactions = Transaction.objects.filter(perk__partner=partner).order_by('-date_created')
     return render(request, 'partners/dashboard.html',
-                  {'partner': partner})
+                  {'partner': partner, 'transactions': transactions})
 
 
 @user_passes_test(is_partner, login_url='partners:sign_in')

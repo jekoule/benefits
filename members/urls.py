@@ -6,7 +6,9 @@ from django.contrib.auth.views import logout
 
 urlpatterns = [
     url(r'^sign_in/', views.sign_in, name='sign_in'),
+    url(r'^activate', views.activate, name='activate'),
     url(r'^register/', views.register, name='register'),
+    url(r'^success/', views.registration_success.as_view(), name='success'),
     url(r'^edit/', views.edit_info, name='edit_info'),
     url(r'^logout/', logout, {'next_page': '/account/sign_in/'},
         name='logout'),

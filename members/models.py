@@ -14,14 +14,14 @@ class Member(models.Model):
                                 verbose_name='Компания',
                                 related_name='members')
     first_name = models.CharField(max_length=100, verbose_name='Имя',
-                                  blank=True, null=True)
+                                 null=True)
     last_name = models.CharField(max_length=200, verbose_name='Фамилия',
-                                 blank=True, null=True)
+                                 null=True)
     phone_number = models.CharField(max_length=20,
                                     verbose_name='Номер телефона',
-                                    blank=True, null=True)
+                                    null=True)
     date_of_birth = models.DateField(verbose_name='Дата рождения',
-                                     blank=True, null=True)
+                                     null=True)
     activation_token = models.CharField(max_length=200, verbose_name='Токен',
                                         editable=False)
 
@@ -37,8 +37,9 @@ class Member(models.Model):
         return self.user.email
 
     def activate(self):
-        self.user.is_active = True
-        self.save()
+        user = self.user
+        user.is_active = True
+        user.save()
 
     @property
     def is_active(self):

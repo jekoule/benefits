@@ -7,16 +7,69 @@
 {% block content %}
 
 <div class="container">
-
-  <h2>Транзакции</h2>
-  {% for t in transactions %}
-  <p>
-  {{ t.date_created }}
-  {{ t.member.email }}
-  {{ t.member.first_name }}
-  {{ t.member.last_name }}
-  </p>
-  {% endfor %}
+  <div class="page-header">
+    <h1>{{ partner.name }} <small>&emsp;Панель управления</small></h1>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <h3>Активные предложения</h3> 
+      {% for perk in partner.perks.all %}
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="col-md-2">Картинка</th>
+            <th class="col-md-2">Название</th>
+            <th class="col-md-2">Краткое описание</th>
+            <th class="col-md-4">Полное описание</th>
+            <th class="col-md-2">Количество транзакций</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <div class="thumbnail">
+                <img src="{{ perk.thumbnail }}">
+              </div>
+            </td>
+            <td>{{ perk.title }}</td>
+            <td>{{ perk.short_description }}</td>
+            <td>{{ perk.full_description }}</td>
+            <td>{{ perk.transactions.all.count }}</td>
+          </tr>
+        </tbody>
+      </table>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <h3>Транзакции</h3> 
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th class="col-md-2">Дата</th>
+            <th class="col-md-2">Предложение</th>
+            <th class="col-md-2">Имя</th>
+            <th class="col-md-2">Фамилия</th>
+            <th class="col-md-2">Компания</th>
+            <th class="col-md-2">Код транзакции</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for t in transactions %}
+          <tr>
+            <td>{{ t.date_created }}</td>
+            <td>{{ t.perk.title }}</td>
+            <td>{{ t.member.first_name }}</td>
+            <td>{{ t.member.last_name }}</td>
+            <td>{{ t.member.company.name }}</td>
+            <td>{{ t.code }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
 	<br>
 
 </div>

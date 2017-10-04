@@ -2,15 +2,17 @@
 from __future__ import unicode_literals
 
 from django.shortcuts import render, get_object_or_404
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import user_passes_test
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from .models import Perk, PerkCategory, Transaction
+from members.views import is_member
 
 
-@login_required(login_url='members:sign_in')
+@user_passes_test(is_member, login_url='members:sign_in')
+@user_passes_test(lambda user: user.is_active, login_url='members:register')
 def index(request, category=None):
     if category is not None:
         category = get_object_or_404(PerkCategory, slug=category)
@@ -31,7 +33,8 @@ def index(request, category=None):
                    'active_category': category})
 
 
-@login_required(login_url='members:sign_in')
+@user_passes_test(is_member, login_url='members:sign_in')
+@user_passes_test(lambda user: user.is_active, login_url='members:register')
 def perk_detail(request, pk):
     perk = get_object_or_404(Perk, pk=pk)
     if request.method == 'POST':
