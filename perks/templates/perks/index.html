@@ -7,87 +7,102 @@
 
 {% block content %}
 
-
-<div class="container">
-
-  <div class="jumbotron" style="background-image: url({% static 'img/background.jpg' %})">
-  </div>
-
-  <div class="row">
-    <div class="col-md-12">
-			<ul class="nav nav-pills nav-justified">
-				<li {% if active_category %}{% else %}class="active"{% endif %}><a href="{% url 'perks:index' %}">Все</a></li>
-        {% for category in categories %}
-        <li {% if active_category == category %}class="active"{% endif %}><a href="{{ category.get_absolute_url }}">{{ category.name }}</a></li>
-        {% endfor %}
-			</ul>
-    </div>
-  </div>
-
-  <br>
-
-  <div class="row">
-    <div class="col-md-12">
-      <a class="text-info" href="#">Все предложения</a>&emsp;
-      <a class="text-muted" href="#">Самые популярные</a>&emsp;
-      <a class="text-muted" href="#">Новинки</a>&emsp;
-      <form class="navbar-form navbar-right" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Поиск по предложениям">
+<section id="inner_banner" class="parallex-bg" style="background-image: url({% static 'img/teamwork.jpg' %})">
+	<div class="container">
+    	<div class="white-text text-center div_zindex">
+        	<h1>Слайдер горячих предложений</h1>
         </div>
-        <button type="submit" class="btn btn-info">Найти</button>
-      </form>
     </div>
-  </div>
+    <div class="dark-overlay"></div>
+</section>
 
-  <br>
-
-  <div class="row">
-  {% for perk in perks %}
-    <div class="col-md-4">
-      <div class="panel panel-default">
-        <div class="panel-body">
-          <a href="{{ perk.get_absolute_url }}">
-          <img class="img-responsive" src="{{ perk.thumbnail }}">
-          </a>
+<section id="all_category" class="gray_bg">
+	<div class="container">
+    	<div id="category_slider">
+        	<div class="owl-carousel owl-theme">
+              {% for category in categories %}
+            	<div class="item">
+                	<a href="{{ category.get_absolute_url }}">
+    	            	<div class="category_icon">
+                      <img src="{% static 'img/category-icon1.png' %}" alt="image">
+                    </div>
+                    <p>{{ category.name }}</p>
+                  </a>
+              </div>
+              {% endfor %}
+            </div>
         </div>
-        <div class="panel-footer">
-          <h4>{{ perk.partner.name }}</h4>
-          <p>{{ perk.short_description }}</p>
-          <a href="{{ perk.get_absolute_url }}" class="btn btn-info left">Подробнее</a>	
-          <button data-toggle="modal" data-target="#add_perk_modal" class="btn
-            btn-primary pull-right">Получить</button>
-        </div>
-      </div>
     </div>
-  {% endfor %}
-  </div>
+</section>
 
-  {% if perks.paginator.num_pages > 1 %}
-  <div class="row text-center">
-    <ul class="pagination">
-      {% if perks.has_previous %}
-      <li><a href="?page={{ perks.previous_page_number }}">&laquo;</a></li>
-      {% endif %}
-      {% for page in perks.paginator.page_range %}
-        <li {% if perks.number == page %}class="active"{% endif %}><a href="#">{{ page }}</a></li>
-      {% endfor %}
-      {% if perks.has_next %}
-      <li><a href="?page={{ perks.next_page_number }}">&raquo;</a></li>
-      {% endif %}
-    </ul>
- </div>
- {% endif %}
+<section id="inner_pages">
+	<div class="container">
+    	<div class="listing_header">
+          <a class="active" href=""><h5>Все предложения&emsp;</h5></a>
+          <a href=""><h5>Новинки</h5></a>
+            <form class="navbar-form navbar-right" role="search">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Поиск по предложениям">
+              </div>
+              <button type="submit" class="btn btn-info"><i class="fa fa-search"></i></button>
+            </form>
+        </div>
 
-</div>
+    	<div class="row">
 
+          {% for perk in perks %}
+            <div class="col-md-4 grid_view show_listing">
+            	<div class="listing_wrap">
+                    <div class="listing_img">
+                        <a href="{{ perk.get_absolute_url }}"><img src="{{ perk.thumbnail }}" alt="image"></a>
+                    </div>
+                    <div class="listing_info">
+                        <div class="post_category">
+                            <a href="{{ perk.category.get_absolute_url }}">{{ perk.category.name }}</a>
+                        </div>
+                        <h4><a href="#">{{ perk.partner.name }}</a></h4>
+                        <p>{{ perk.title }}</p>
+
+                        <div class="listing_review_info">
+                          <a href="{{ perk.get_absolute_url }}" class="
+                            outline-btn btn-sm pull-left">Подробнее</a>
+                          <button data-toggle="modal"
+                            data-target="#add_perk_modal" class="btn btn-sm pull-right">Получить</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           {% endfor %} 
+
+        </div>
+
+        {% if perks.paginator.num_pages > 1 %}
+    		<nav class="pagination_nav">
+            <ul class="pagination">
+              {% if perks.has_previous %}
+                <li><a href="?page={{ perks.previous_page_number }}" aria-label="Назад"><span aria-hidden="true">&laquo;</span></a></li>
+              {% endif %}
+
+              {% for page in perks.paginator.page_range %}
+                <li {% if perks.number == page %}class="active"{% endif %}><a href="?page={{ page }}">{{ page }}</a></li>
+              {% endfor %}
+
+              {% if perks.has_next %}
+                <li><a href="?page={{ perks.next_page_number }}" aria-label="Вперёд"><span aria-hidden="true">&raquo;</span></a></li>
+              {% endif %}
+            </ul>
+        </nav>
+        {% endif %}
+
+    </div>
+</section>
 
 {% include 'perks/partials/modals.html' %}
 
 {% endblock %}
 
 {% block footer %}
-<footer class="footer" style="background-color: #333333">
+<footer class="footer secondary-bg">
 	<div class="container">
 		<div class="center-block">
 			<br>

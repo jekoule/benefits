@@ -1,38 +1,36 @@
-<nav class="navbar navbar-default navbar-static-top">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="{% url 'perks:index' %}">Benefits</a>
-    </div>
+<header id="header">
+  <nav class="navbar navbar-default navbar-fixed-top" data-spy="affix" data-offset-top="10">
+    <div class="container">
+      <div class="navbar-header">
+          <div class="logo"> <a href="{% url 'perks:index' %}">Benefits</a> </div>
+        <button id="menu_slide" data-target="#navigation" aria-expanded="false" data-toggle="collapse" class="navbar-toggle collapsed" type="button"> 
+            <span class="sr-only">Toggle navigation</span> 
+            <span class="icon-bar"></span> 
+            <span class="icon-bar"></span> 
+            <span class="icon-bar"></span> 
+        </button>
+      </div>
 
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
-      <ul class="nav navbar-nav">
-        {% if request.user.member.company %}
-        <li><a class="active">{{ request.user.company }}</a></li>
-        {% endif %}
-        {% if request.user.is_company_admin %}
-        <li><a href="{% url 'customers:dashboard' %}">Панель управления</a></li>
-        {% endif %}
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="{% url 'members:my_perks' %}">Мои предложения</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-            <i class="icon-user"></i> {{ request.user.email }} <span class="caret">
-          </a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="{% url 'members:edit_info' %}">Управление аккаунтом</a></li>
-            <li><a href="{% url 'members:change_password' %}">Смена пароля</a></li>
-            <li class="divider"></li>
-            <li><a href="{% url 'members:logout' %}">Выход</a></li>
-          </ul>
-        </li>
-      </ul>
+      <div class="collapse navbar-collapse" id="navigation">
+        <ul class="nav navbar-nav pull-left">
+          {% if request.user.member.company %}
+          <li><a class="active">{{ request.user.company }}</a></li>
+          {% endif %}
+          {% if request.user.is_company_admin %}
+          <li><a href="{% url 'customers:dashboard' %}">Панель управления</a></li>
+          {% endif %}
+        </ul>
+        <ul class="nav navbar-nav">
+          <li><a href="{% url 'members:my_perks' %}">Мои предложения</a></li>
+          <li class="menu-item-has-children"><a href="#">{{ request.user.email }}</a> <span class="arrow"></span>
+             <ul class="sub-menu">
+                <li><a href="{% url 'members:edit_info' %}">Управление аккаунтом</a></li>
+                <li><a href="{% url 'members:change_password' %}">Смена пароля</a></li>
+                <li><a href="{% url 'members:logout' %}">Выход</a></li>
+            </ul> 
+          </li>
+        </ul>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
+</header>
