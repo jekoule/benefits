@@ -5,6 +5,7 @@ import string
 from django.utils.crypto import get_random_string
 from django.db import models
 from django.core.exceptions import ObjectDoesNotExist
+from django.utils.safestring import mark_safe
 
 from partners.models import Partner
 from tinymce.models import HTMLField
@@ -14,6 +15,9 @@ from members.models import Member
 class PerkCategory(models.Model):
     name = models.CharField(max_length=100, verbose_name='Наименование')
     slug = models.SlugField(max_length=50, verbose_name='SLUG')
+    icon = models.FileField(upload_to='category_icons/',
+                            verbose_name='SVG иконка',
+                            blank=True, null=True)
 
     class Meta:
         verbose_name = 'Категория'
@@ -21,6 +25,10 @@ class PerkCategory(models.Model):
 
     def __unicode__(self):
         return self.name
+
+    def render_icon(self):
+        if self.icon:
+            return mark_safe(self.icon.read())
 
     @models.permalink
     def get_absolute_url(self):

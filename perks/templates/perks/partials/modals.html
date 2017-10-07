@@ -16,11 +16,17 @@
         в приложении.</p>
       </div>
       <div class="modal-footer">
-        <form method="POST" action="{{ perk.get_absolute_url }}" class="pull-right">
-        {% csrf_token %}
-        <button type="submit" class="btn btn-warning">Получить</button>
-        </form>
-        <button type="button" class="btn btn-default pull-right" data-dismiss="modal">Отмена</button>
+        <div class="row">
+          <div class="col-md-3 col-md-offset-6">
+            <form method="POST" action="{{ perk.get_absolute_url }}" class="pull-right">
+            {% csrf_token %}
+            <button type="submit" class="btn">Получить</button>
+            </form>
+          </div>
+          <div class="col-md-3">
+            <a class="btn btn-default" data-dismiss="modal">Отмена</a>
+          </div>
+        </div>
       </div>
     </div>
 

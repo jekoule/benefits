@@ -24,7 +24,7 @@
             	<div class="item">
                 	<a href="{{ category.get_absolute_url }}">
     	            	<div class="category_icon">
-                      <img src="{% static 'img/category-icon1.png' %}" alt="image">
+                      {{ category.render_icon }}
                     </div>
                     <p>{{ category.name }}</p>
                   </a>
