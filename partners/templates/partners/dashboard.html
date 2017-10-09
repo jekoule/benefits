@@ -1,87 +1,102 @@
-{% extends 'base.html' %}
+{% extends 'dashboard.html' %}
+{% load crispy_forms_tags static %}
 
-{% block header %}
-  {% include "partners/partials/navigation.html" %}
+{% block extra_css %}
+{{ block.super }}
+<link rel="stylesheet" type="text/css" href="{% static 'css/datatables.min.css' %}"/>
 {% endblock %}
 
-{% block content %}
+{% block logo-url %}
+{% url 'partners:dashboard' %}
+{% endblock %}
 
-<div class="container">
-  <div class="page-header">
-    <h1>{{ partner.name }} <small>&emsp;Панель управления</small></h1>
-  </div>
+{% block navbar-title %}Панель управления{% endblock %}
+
+{% block navbar-right %}
+<div class="submit_listing">
+    <a href="{% url 'partners:logout' %}" class="btn outline-btn">
+        <i class="fa fa-power-off"></i>&nbsp; Выйти
+    </a>
+</div>
+{% endblock %}
+
+{% block dashboard-nav %}
+  <ul>
+    <li class="active"><a href="{% url 'partners:dashboard' %}"><i class="fa fa-list"></i> Транзакции</a></li>
+    <li><a href=""><i class="fa fa-gift"></i> Предложения</a></li>
+    <li><a id="MLabel" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user-o"></i> Аккаунт</a>
+      <ul class="dropdown-menu" aria-labelledby="MLabel">
+        <li><a href="{% url 'partners:change_password' %}"><i class="fa fa-key"></i> Сменить пароль</a></li>
+      </ul>	
+    </li>
+    <li><a href="{% url 'partners:logout' %}"><i class="fa fa-power-off"></i> Выйти</a></li>
+  </ul>	
+{% endblock %}
+{% block dashboard-content %}
+<div id="titlebar">
   <div class="row">
     <div class="col-md-12">
-      <h3>Активные предложения</h3> 
-      {% for perk in partner.perks.all %}
-      <table class="table">
-        <thead>
-          <tr>
-            <th class="col-md-2">Картинка</th>
-            <th class="col-md-2">Название</th>
-            <th class="col-md-2">Краткое описание</th>
-            <th class="col-md-4">Полное описание</th>
-            <th class="col-md-2">Количество транзакций</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              <div class="thumbnail">
-                <img src="{{ perk.thumbnail }}">
-              </div>
-            </td>
-            <td>{{ perk.title }}</td>
-            <td>{{ perk.short_description }}</td>
-            <td>{{ perk.full_description }}</td>
-            <td>{{ perk.transactions.all.count }}</td>
-          </tr>
-        </tbody>
-      </table>
-      {% endfor %}
+      <h2>Транзакции</h2>
     </div>
   </div>
-  <div class="row">
-    <div class="col-md-12">
-      <h3>Транзакции</h3> 
-      <table class="table table-bordered table-hover">
-        <thead>
-          <tr>
-            <th class="col-md-2">Дата</th>
-            <th class="col-md-2">Предложение</th>
-            <th class="col-md-2">Имя</th>
-            <th class="col-md-2">Фамилия</th>
-            <th class="col-md-2">Компания</th>
-            <th class="col-md-2">Код транзакции</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for t in transactions %}
-          <tr>
-            <td>{{ t.date_created }}</td>
-            <td>{{ t.perk.title }}</td>
-            <td>{{ t.member.first_name }}</td>
-            <td>{{ t.member.last_name }}</td>
-            <td>{{ t.member.company.name }}</td>
-            <td>{{ t.code }}</td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    </div>
-  </div>
-	<br>
-
 </div>
 
+<div class="row">
+  <div class="col-md-12">
+    <table id="transactions_table" class="table table-bordered table-hover">
+      <thead class="bg-info">
+        <tr>
+          <th class="col-md-2">Дата</th>
+          <th class="col-md-2">Предложение</th>
+          <th class="col-md-2">Имя</th>
+          <th class="col-md-2">Фамилия</th>
+          <th class="col-md-2">Компания</th>
+          <th class="col-md-2">Код транзакции</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for t in transactions %}
+        <tr>
+          <td>{{ t.date_created }}</td>
+          <td>{{ t.perk.title }}</td>
+          <td>{{ t.member.first_name }}</td>
+          <td>{{ t.member.last_name }}</td>
+          <td>{{ t.member.company.name }}</td>
+          <td><strong>{{ t.code }}</strong></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
 {% endblock %}
 
-{% block footer %}
-<footer class="footer" style="background-color: #333333">
-	<div class="center-block">
-    <br>
-		<h5 class="text-center" style="color: #ffffff">Benefits 2017</h5>
-    <br>
-	</div>
-</footer>
+{% block extra_js %}
+<script type="text/javascript" src="{% static 'js/datatables.min.js' %}"></script>
+<script type="text/javascript">
+$(document).ready( function () {
+    $('#transactions_table').DataTable({
+			"language": {
+					"decimal":        "",
+					"emptyTable":     "У Вас пока нет транзакций",
+					"info":           "Показано _START_ - _END_ из _TOTAL_ записей",
+					"infoEmpty":      "Показано 0 - 0 из 0 записей",
+					"infoFiltered":   "(фильтр из всего _MAX_ записей)",
+					"infoPostFix":    "",
+					"thousands":      ",",
+					"lengthMenu":     "Показывать _MENU_ на странице",
+					"loadingRecords": "Загрузка...",
+					"processing":     "Обработка запроса...",
+					"search":         "Поиск по коду:",
+					"zeroRecords":    "Ничего не найдено",
+					"paginate": {
+							"first":      "Начало",
+							"last":       "Конец",
+							"next":       "Вперед",
+							"previous":   "Назад"
+					}
+			}
+});
+} );
+</script>
 {% endblock %}

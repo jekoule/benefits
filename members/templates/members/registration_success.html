@@ -1,19 +1,21 @@
 {% extends 'base.html' %}
-{% load static crispy_forms_tags %}
-
-{% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/signin.css' %}">
-{% endblock %}
 
 {% block content %}
-<div class="container">
-  <div class="well form-signin text-center">
-    <h2>Добро пожаловать!</h2>
-    <p class="lead">Вы успешно зарегистрированы в Benefits.</p>
-    <div class="row text-center">
-    <a class="btn btn-primary" href={% url 'perks:index' %}>Начать работу с
-      сервисом</a>
-    </div>
+<section class="primary-bg">
+	<div class="container">
+    	<div id="login_signup">
+            <div class="form_wrap_m">
+            	<div class="white_box">
+                	<h3>Добро пожаловать!</h3>
+                  <div class="alert alert-dismissable alert-info">
+                    Поздравляем! Вы успешно зарегистрированы в сервисе Benefits. Теперь у Вас появился доступ ко всем предложениям!
+                  </div>
+                  <a class="btn btn-block" href={% url 'perks:index' %}>
+                    Начать работу с сервисом
+                  </a>
+              </div>
+            </div>
+      </div>
   </div>
-</div>
+</section>
 {% endblock %}

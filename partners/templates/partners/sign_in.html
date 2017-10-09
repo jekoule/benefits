@@ -1,22 +1,23 @@
 {% extends 'base.html' %}
-{% load static crispy_forms_tags %}
-
-{% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/signin.css' %}">
-{% endblock %}
+{% load crispy_forms_tags %}
 
 {% block content %}
-<div class="container">
-      <form method="POST" action="" class="well form-signin">
-        {% csrf_token %}
-        <h2 class="form-signin-heading">Вход для партнеров</h2>
-        {% if error %}
-        <div class="alert alert-dismissible alert-danger">
-          {{ error }}
+<section class="primary-bg">
+	<div class="container">
+    	<div id="login_signup">
+            <div class="form_wrap_m">
+            	<div class="white_box">
+                	<h3>Вход для партнеров Benefits</h3>
+                  {% if error %}
+                  <div class="alert alert-dismissible alert-danger">
+                    {{ error }}
+                  </div>
+                  {% endif %}
+                  {% crispy form %}
+                    <p><a href="lost-password">Забыли пароль?</a></p>
+                </div>
+            </div>
         </div>
-        {% endif %}
-        {{ form|crispy }}
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Войти</button>
-      </form>
-</div>
+    </div>
+</section>
 {% endblock %}

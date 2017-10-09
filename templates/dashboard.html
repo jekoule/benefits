@@ -12,16 +12,23 @@
               <div class="container">
                  <div class="navbar-header">
                   <div class="logo"> 
-                    <a href="{% url 'perks:index' %}"><img src="assets/images/logo.png" alt="Benefits"/></a> 
+                    <a href="{% block logo-url %}{% url 'perks:index' %}{% endblock %}"><img src="assets/images/logo.png" alt="Benefits"/></a> 
                   </div>
                   <div id="dashboard-responsive-nav-trigger"><i class="fa fa-reorder"></i></div>
                 </div>
                   <div class="collapse navbar-collapse" id="navigation">
+                    <div class="navbar-title">
+                      <h5>
+                        {% block navbar-title %}Личный кабинет{% endblock %}
+                      </h5> 
+                    </div>
+                    {% block navbar-right %}
                     <div class="submit_listing">
                         <a href="{% url 'perks:index' %}" class="btn outline-btn">
                             <i class="fa fa-arrow-circle-left"></i> Возврат на сайт 
                         </a>
-                   </div>
+                    </div>
+                    {% endblock %}
                   </div>
                </div>   
           </nav>

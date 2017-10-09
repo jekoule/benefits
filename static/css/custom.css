@@ -1,0 +1,125 @@
+input[type=checkbox] {
+	height: 15px;
+	width: 30px;
+}
+
+.dataTables_paginate a {
+	font-size: 14px;
+}
+
+.perks-search input, button {
+	background: #fff;
+	height: 39px;
+}
+
+.perks-search i {
+	display: block;
+}
+
+#perks-navigation {
+	background-color: #eee;
+	padding: 15px 0;
+}
+
+#perks-navigation a {
+	color: #000;
+	fill: #000;
+}
+
+#perks-navigation p {
+	margin-bottom: 0;
+}
+
+#navigation .navbar-title {
+	float: left;
+	margin-top: 20px;
+	margin-left: 45px;
+}
+
+#navigation .navbar-title h5 {
+	color: #fff;
+}
+
+header .navbar.navbar-default{
+	background:#fcfcfc;
+	box-shadow:0px 0px 5px #ccc;
+}
+
+header #navigation .nav.navbar-nav a{
+	color:#000;
+}
+header .submit_listing .btn.outline-btn{
+	background:#38ccff;
+	border:none;
+	border-radius:0px;
+}
+header .submit_listing .btn.outline-btn:hover{
+	background:#03aee9;
+	border-color: #03aee9;	
+}
+.nav-pills a {
+	fill: #000;
+	color: #000;
+}
+.nav-pills a:hover {
+	fill: #03aee9;
+	color: #03aee9;
+}
+.nav-pills li {
+	padding: 5px;
+}
+
+#category_menu {
+	padding: 10px 0;
+	background: #fff;	
+}
+
+#category_menu .category_item {
+	background: #fff;
+	text-align:center;
+}
+
+#category_menu p {
+	margin-bottom: 0;
+}
+
+#category_menu .category_icon {
+	background: none;
+	margin: 0 auto;
+	width: 70px;
+}
+
+#grid {
+	background: #efefef;
+}
+
+#grid .listing_wrap {
+	background: #fff;
+}
+
+.listing_header {
+	margin: 30px auto 10px;
+	padding: 12px 0;
+	border: none;
+}
+
+.listing_header a {
+	float: left;
+	color: #000;
+	font-weight: bold;
+	margin: 15px 10px 15px auto;
+}
+
+.listing_header .active {
+	text-decoration: underline;
+}
+
+.affix {
+	z-index: 999;
+	top: 0;
+	width:100%;
+}
+
+.affix + section {
+	padding-top: 132px;
+}

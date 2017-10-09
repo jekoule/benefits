@@ -1,9 +1,5 @@
 {% extends 'base.html' %}
-{% load static crispy_forms_tags %}
-
-{% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/signin.css' %}">
-{% endblock %}
+{% load crispy_forms_tags %}
 
 {% block content %}
 <section class="primary-bg">
@@ -12,18 +8,12 @@
             <div class="form_wrap_m">
             	<div class="white_box">
                 	<h3>Вход в клуб Benefits</h3>
-                  <form method="POST" action="">
-                    {% csrf_token %}
-                    {% if error %}
-                    <div class="alert alert-dismissible alert-danger">
-                      {{ error }}
-                    </div>
-                    {% endif %}
-                    {{ form|crispy }}
-                    <div class="form-group">
-                      <input class="btn btn-block" type="submit" value="Войти">
-                    </div>
-                  </form>
+                  {% if error %}
+                  <div class="alert alert-dismissible alert-danger">
+                    {{ error }}
+                  </div>
+                  {% endif %}
+                  {% crispy form %}
                     <p><a href="lost-password">Забыли пароль?</a></p>
                     <div class="back_home"><a href="{% url 'cms:index' %}" class="btn
                         outline-btn btn-sm"><i class="fa

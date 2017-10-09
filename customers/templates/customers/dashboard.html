@@ -1,5 +1,12 @@
-{% extends 'members/base.html' %}
-{% load crispy_forms_tags %}
+{% extends 'dashboard.html' %}
+{% load crispy_forms_tags static %}
+
+{% block extra_css %}
+{{ block.super }}
+<link rel="stylesheet" type="text/css" href="{% static 'css/datatables.min.css' %}"/>
+{% endblock %}
+
+{% block navbar-title %}Панель управления{% endblock %}
 
 {% block dashboard-nav %}
   <ul>
@@ -20,7 +27,7 @@
 <div id="titlebar">
   <div class="row">
     <div class="col-md-12">
-      <h2>{{ company.name }} <small>&emsp;Панель управления</small></h2>
+      <h2>{{ company.name }} <small>&emsp;Показатели</small></h2>
     </div>
   </div>
 </div>
@@ -39,23 +46,25 @@
   </div>
 </div>
 
+<hr>
+
 <div class="row">
-  <div class="col-md-12">
-    <h4>Моя компания</h4> 
-    <a href="{% url 'customers:add_members' %}" class="btn btn-success btn-sm pull-right">
+  <div class="col-md-6">
+    <h4>Сотрудники</h4> 
+  </div>
+  <div class="col-md-6">
+    <a href="{% url 'customers:add_members' %}" class="btn active btn-sm pull-right">
       <i class="fa fa-plus-circle"></i>&nbsp; Добавить сотрудников
     </a>
   </div>
 </div>
 
-<hr>
-
 <div class="row">
   <div class="col-md-12">
     <form action="{% url 'customers:delete_members' %}" method="POST">
     {% csrf_token %}
-    <table class="table table-striped table-hover">
-      <thead>
+    <table id="employees_table" class="table table-bordered table-hover">
+      <thead class="bg-info">
         <tr>
           <th class="col-md-1">#</th>
           <th class="col-md-3">Email</th>
@@ -90,7 +99,8 @@
         {% endfor %}
       </tbody>
     </table>
-    <button type="submit" class="btn btn-danger btn-sm pull-right">
+		<hr>
+    <button type="submit" class="btn red btn-sm">
       <i class="fa fa-trash"></i>&nbsp; Удалить выбранных сотрудников
     </button>
     </form>
@@ -130,6 +140,33 @@
 {% endblock %}
 
 {% block extra_js %}
+<script type="text/javascript" src="{% static 'js/datatables.min.js' %}"></script>
+<script type="text/javascript">
+$(document).ready( function () {
+    $('#employees_table').DataTable({
+			"language": {
+					"decimal":        "",
+					"emptyTable":     "У Вас пока нет сотрудников",
+					"info":           "Показано _START_ - _END_ из _TOTAL_ записей",
+					"infoEmpty":      "Показано 0 - 0 из 0 записей",
+					"infoFiltered":   "(фильтр из всего _MAX_ записей)",
+					"infoPostFix":    "",
+					"thousands":      ",",
+					"lengthMenu":     "Показывать _MENU_ на странице",
+					"loadingRecords": "Загрузка...",
+					"processing":     "Обработка запроса...",
+					"search":         "Поиск:",
+					"zeroRecords":    "Ничего не найдено",
+					"paginate": {
+							"first":      "Начало",
+							"last":       "Конец",
+							"next":       "Вперед",
+							"previous":   "Назад"
+					}
+			}
+});
+} );
+</script>
 {% if messages %}
 <script type="text/javascript">
     $(window).on('load',function(){
@@ -138,3 +175,4 @@
 </script>
 {% endif %}
 {% endblock %}
+

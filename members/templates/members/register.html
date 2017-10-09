@@ -1,26 +1,25 @@
 {% extends 'base.html' %}
-{% load static crispy_forms_tags %}
-
-{% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/signin.css' %}">
-{% endblock %}
+{% load crispy_forms_tags %}
 
 {% block content %}
-<div class="container">
-      <form method="POST" action="" class="form-signin">
-        {% csrf_token %}
-        <h2 class="form-signin-heading">Регистрация</h2>
-        <h5 class="form-signin-heading">Для завершения активации аккаунта
-          Benefits, заполните небольшую форму:</h5>
-        {% if error %}
-        <div class="alert alert-dismissible alert-danger">
-          {{ error }}
-        </div>
-        {% endif %}
-        {{ form|crispy }}
-        <button class="btn btn-lg btn-primary btn-block"
-          type="submit">Зарегистрироваться</button>
-      </form>
-
-    </div>
+<section class="primary-bg">
+	<div class="container">
+    	<div id="login_signup">
+            <div class="form_wrap_m">
+            	<div class="white_box">
+                	<h3>Регистрация</h3>
+                  <div class="alert alert-dismissable alert-info">
+                  Для завершения активации аккаунта Benefits, заполните небольшую форму:
+                  </div>
+                  {% if error %}
+                  <div class="alert alert-dismissible alert-danger">
+                    {{ error }}
+                  </div>
+                  {% endif %}
+                  {% crispy form %}
+              </div>
+            </div>
+      </div>
+  </div>
+</section>
 {% endblock %}

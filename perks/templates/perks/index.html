@@ -7,40 +7,43 @@
 
 {% block content %}
 
-<section id="inner_banner" class="parallex-bg" style="background-image: url({% static 'img/teamwork.jpg' %})">
+<section id="inner_banner" class="parallex-bg" style="background: url({% static 'img/teamwork.jpg' %}">
 	<div class="container">
     	<div class="white-text text-center div_zindex">
-        	<h1>Слайдер горячих предложений</h1>
+        	<h1>How it Work </h1>
         </div>
     </div>
     <div class="dark-overlay"></div>
 </section>
 
-<section id="all_category" class="gray_bg">
-	<div class="container">
-    	<div id="category_slider">
-        	<div class="owl-carousel owl-theme">
-              {% for category in categories %}
-            	<div class="item">
-                	<a href="{{ category.get_absolute_url }}">
-    	            	<div class="category_icon">
-                      {{ category.render_icon }}
-                    </div>
-                    <p>{{ category.name }}</p>
-                  </a>
-              </div>
-              {% endfor %}
+<nav id="category_menu" class="navbar navbar-default" data-spy="affix" data-offset-top="462">
+  <div class="container">
+    <ul class="nav nav-pills nav-justified">
+    {% for category in categories %}
+        <li>
+        <div class="category_item">
+          <a href="{{ category.get_absolute_url }}">
+            <div class="category_icon">
+            {{ category.render_icon }}
             </div>
+            <p>
+            {{ category.name }}
+            </p>
+          </a>
         </div>
-    </div>
-</section>
+        </li>
+    {% endfor %}
+    </ul>
+  </div>
+</nav>
 
-<section id="inner_pages">
+
+<section id="grid">
 	<div class="container">
     	<div class="listing_header">
-          <a class="active" href=""><h5>Все предложения&emsp;</h5></a>
-          <a href=""><h5>Новинки</h5></a>
-            <form class="navbar-form navbar-right" role="search">
+          <a class="active" href="">Все предложения</a>
+          <a href="">Новинки</a>
+            <form class="navbar-form navbar-right perks-search" role="search">
               <div class="form-group">
                 <input type="text" class="form-control" placeholder="Поиск по предложениям">
               </div>
@@ -50,6 +53,7 @@
 
     	<div class="row">
 
+        {% for i in "xxxxxx" %}
           {% for perk in perks %}
             <div class="col-md-4 grid_view show_listing">
             	<div class="listing_wrap">
@@ -73,6 +77,7 @@
                 </div>
             </div>
            {% endfor %} 
+        {% endfor %}
 
         </div>
 
