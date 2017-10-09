@@ -1,111 +1,89 @@
 {% extends 'perks/index.html' %}
+{% load static %}
 
 {% block content %}
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <ol class="breadcrumb">
-        <li><a href="{% url 'perks:index' %}">Все предложения</a></li>
-        <li><a href="{{ perk.category.get_absolute_url }}">{{ perk.category.name }}</a></li>
-          <li class="active">{{ perk.title }}</li>
-      </ol>
-    </div>
-  </div>
-  <div class="row ">
-    <div class="col-md-12">
-      <div class="col-md-7">
-        <div class="thumbnail">
-          <img src="{{ perk.thumbnail }}" alt="">
+
+<section class="listing_detail_header style2_header parallex-bg"
+         style="background: url({{ perk.thumbnail }})">
+  
+	<div class="container">
+
+    	<div class="div_zindex white-text">
+        	<div class="row">
+            	<div class="col-md-8">
+                <h1>{{ perk.partner.name }}</h1>
+                <p>{{ perk.short_description }}</p>
+                </div>
+                <div class="col-md-4">
+                	<div class="pricing_info">
+                    <p class="listing_price">{{ perk.discount }}</p>
+                        <div class="listing_message"><a class="btn"
+                            data-toggle="modal" data-target="#add_perk_modal"><i
+                              class="fa fa-gift"></i>  Получить</a></div>
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
+    <div class="dark-overlay"></div>
+</section>
+
+<section class="listing_info_wrap listing_detail_2">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <ol class="breadcrumb">
+          <li><a href="{% url 'perks:index' %}">Все предложения</a></li>
+          <li><a href="{{ perk.category.get_absolute_url }}">{{ perk.category.name }}</a></li>
+            <li class="active">{{ perk.title }}</li>
+        </ol>
       </div>
-      <div class="col-md-5">
+    </div>
+    <div class="image_slider_wrap">
+      <div id="listing_img_slider">
+          <div class="owl-carousel owl-theme">
+            {% for image in perk.images.all %}
+            <div class="item"><img src="{{ image.img.url }}" alt="image"></div>
+            {% endfor %}
+          </div>    
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-8">
         <div class="panel panel-default">
-          <div class="panel-heading">
-            <h2>{{ perk.title }}</h2>
+          <div class="panel-heading" role="tab" id="headingOne">
+            <h4 class="panel-title">
+              <a role="button" data-toggle="collapse" data-parent="#accordion" href="#description" aria-expanded="true" aria-controls="collapseOne">
+                <i class="fa  fa-file-text-o"></i> Описание</a>
+              </a>
+            </h4>
           </div>
-          <div class="panel-body">
-            <p class="lead">{{ perk.short_description }}</p>
-            <hr>
-            <div class="col-md-12">
-            <button data-toggle="modal" data-target="#add_perk_modal" class="btn
-              btn-lg btn-warning pull-right">Получить</button>
+          <div id="description" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+            <div class="panel-body">
+              <p> {{ perk.full_description|safe }}</p>
             </div>
           </div>
-        </div>
+        </div>       
+      </div>
+      <div class="col-md-4">
+        <div class="listinghub_sidebar">
+          <div class="sidebar_wrap listing_contact_info">
+              <div class="widget_title">
+                  <h6>Контактная информация</h6>
+              </div>
+              <ul>
+                  <li><i class="fa fa-map-marker"></i> PO Box 1025MNO Collins Street West Victoria 8007 Australia</li>
+                  <li><i class="fa fa-phone"></i> <a href="tel:+61-1234-5678-09">+61-1234-5678-09</a></li>
+                  <li><i class="fa fa-envelope"></i> <a href="mailto:contcat@example.com">contcat@example.com</a></li>
+                  <li><i class="fa fa-link"></i> <a href="www.example.com">www.example.com</a></li>
+              </ul>
+          </div>
+        </div> 
       </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col-md-12">
-      <div class="col-md-4">
-        <div class="alert alert-info">
-        <div class="row">
-          <div class="col-md-2">
-            <h3>1)</>
-          </div> 
-          <div class="col-md-10">
-            <p>
-            Получите скидку на сайте Benefits или в мобильном приложении
-            </p>
-          </div> 
-        </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="alert alert-info">
-        <div class="row">
-          <div class="col-md-2">
-            <h3>2)</>
-          </div> 
-          <div class="col-md-10">
-            <p>
-            Предъявите код скидки sales-менеджеру в любом из клубов Fidelity
-            </p>
-          </div> 
-        </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="alert alert-info">
-        <div class="row">
-          <div class="col-md-2">
-            <h3>3)</>
-          </div> 
-          <div class="col-md-10">
-            <p>
-            Получите клубную карту со скидкой и наслаждайтесь тренировками!
-            </p>
-          </div> 
-        </div>
-        </div>
-      </div>
-    </div>
-  </div>
-	<div class="row">
-    <div class="col-md-12">
-    <div class="col-md-7">
-      <div class="panel">
-        <div class="panel-heading">
-          <h3>Подробная информация</h3>
-        </div>
-        <div class="panel-body">
-          <p>{{ perk.full_description|safe }}</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-5">
-      <div class="panel">
-        <div class="panel-heading">
-          <h3>Контакты</h3>
-        </div>
-        <div class="panel-body">
-          <p>{{ perk.contact_info|safe }}</p>
-        </div>
-      </div>
-    </div>
-    </div>
-	</div>
-</div>
+</section>
+
 
 {% include 'perks/partials/modals.html' %}
 

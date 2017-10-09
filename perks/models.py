@@ -43,6 +43,8 @@ class Perk(models.Model):
                                  null=True, blank=True, related_name='perks',
                                  verbose_name='Категория')
     title = models.CharField(max_length=200, verbose_name="Заголовок")
+    discount = models.CharField(max_length=200, verbose_name='Скидка',
+                                blank=True, null=True)
     short_description = models.CharField(max_length=200,
                                          verbose_name='Краткое описание',
                                          blank=True, null=True)

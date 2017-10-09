@@ -1,35 +1,59 @@
-{% extends 'perks/index.html' %}
+{% extends 'members/base.html' %}
+{% load crispy_forms_tags %}
 
-{% block content %}
-
-<div class="container">
-  <div class="page-header">
-    <h1>История получения предложений</h1>
-  </div>
+{% block dashboard-nav %}
+  <ul>
+    {% if request.user.is_company_admin %}
+    <li><a href="{% url 'customers:dashboard' %}"><i class="fa fa-cogs"></i> Панель управления</a></li>
+    {% endif %}
+    <li class="active"><a href="{% url 'members:my_perks' %}"><i class="fa fa-gift"></i> Мои предложения</a></li>
+    <li><a id="MLabel" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user-o"></i> Аккаунт</a>
+      <ul class="dropdown-menu" aria-labelledby="MLabel">
+        <li><a href="{% url 'members:edit_info' %}"><i class="fa fa-edit"></i> Редактировать</a></li>
+        <li><a href="{% url 'members:change_password' %}"><i class="fa fa-key"></i> Сменить пароль</a></li>
+      </ul>	
+    </li>
+    <li><a href="{% url 'members:logout' %}"><i class="fa fa-power-off"></i> Выйти</a></li>
+  </ul>	
+{% endblock %}
+{% block dashboard-content %}
+<div id="titlebar">
   <div class="row">
-  <table class="table table-hover">
-    <tbody>
-      {% for t in transactions %}
-      <tr>
-        <td class="col-md-2">
-          <div class="thumbnail"> 
-            <img src="{{ t.perk.thumbnail }}">
-          </div> 
-        </td>
-        <td class="col-md-6">
-          <p class="lead">{{ t.perk.title }}</p> 
-          <p>{{ t.perk.short_description }}</p>
-        </td>
-        <td class="col-md-2">
-          {{ t.date_created }}</td>
-        <td class="col-md-2">
-          <p>Секретный код: <strong>{{ t.code }}</strong></p>
-        </td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+    <div class="col-md-12">
+      <h2>Мои предложения</h2>
+    </div>
   </div>
 </div>
-
+<div class="row">
+  <div class="col-md-12">
+    <div class="dashboard-list-box">
+      {% if transactions %}
+      <h4>История получения предложений</h4>
+      <ul>
+        {% for t in transactions %}
+          <li>
+            <div class="list-box-listing">
+                <div class="list-box-listing-img">
+                  <a href="{{ t.perk.get_absolute_url }}"><img src="{{ t.perk.thumbnail }}" alt="{{ t.perk.title }}"></a>
+                </div>
+                <div class="list-box-listing-content">
+                  <div class="inner">
+                    <h3><a href="{{ t.perk.get_absolute_url }}">{{ t.perk.title }}</a></h3>
+                    <span>{{ t.perk.short_description }}</span>
+                  </div>
+                  <div class="buttons-to-right">
+                    <span class="button gray">Код: {{ t.code }}</span>
+                    <span>{{ t.date_created }}</span>
+                  </div>
+                </div>
+            </div>
+          </li>
+        {% endfor %} 
+      </ul> 
+      {% else %}
+      <h4>У вас пока нет полученных предложений</h4>
+      {% endif %}
+    </div>
+  </div>
+</div>
 {% endblock %}

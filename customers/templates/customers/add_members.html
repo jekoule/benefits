@@ -1,48 +1,58 @@
-{% extends 'perks/index.html' %}
+{% extends 'members/base.html' %}
+{% load crispy_forms_tags %}
 
-{% block content %}
-
-<div class="container">
-  <div class="page-header">
-    <h1>{{ request.user.member.company.name }} <small>&emsp;Добавить сотрудников</small></h1>
-  </div>
+{% block dashboard-nav %}
+  <ul>
+    {% if request.user.is_company_admin %}
+    <li class="active"><a href="{% url 'customers:dashboard' %}"><i class="fa fa-cogs"></i> Панель управления</a></li>
+    {% endif %}
+    <li><a href="{% url 'members:my_perks' %}"><i class="fa fa-gift"></i> Мои предложения</a></li>
+    <li><a id="MLabel" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user-o"></i> Аккаунт</a>
+      <ul class="dropdown-menu" aria-labelledby="MLabel">
+        <li><a href="{% url 'members:edit_info' %}"><i class="fa fa-edit"></i> Редактировать</a></li>
+        <li><a href="{% url 'members:change_password' %}"><i class="fa fa-key"></i> Сменить пароль</a></li>
+      </ul>	
+    </li>
+    <li><a href="{% url 'members:logout' %}"><i class="fa fa-power-off"></i> Выйти</a></li>
+  </ul>	
+{% endblock %}
+{% block dashboard-content %}
+<div id="titlebar">
   <div class="row">
+    <div class="col-md-12">
+      <h2>{{ request.user.member.company.name }} <small>&emsp;Добавление сотрудников</small></h2>
+    </div>
+  </div>
+</div>
+<div class="row">
     <div class="col-md-6">
-      <div class="panel panel-primary">
-				<div class="panel-heading">
-					<h3 class="panel-title">Добавить вручную</h3>
-				</div>
-				<div class="panel-body">
+      <div class="add_listing_info">
+        <h3>Добавить вручную</h3>
           <p>
         Заполните электронные адреса сотрудников в поле ниже (каждый новый адрес
         необходимо добавлять с новой строки):
           </p>
-          <form action="" method="POST" class="form-horizontal">
+          <form action="" method="POST">
             {% csrf_token %}
             <textarea class="form-control" rows="10" name="members_list" id="members_list"></textarea>
             <br>
-            <button type="submit" class="btn btn-primary pull-right">Добавить</button>
+            <button type="submit" class="btn btn-primary">Добавить</button>
           </form>
-        </div>
 			</div>
     </div>
     <div class="col-md-6">
-      <div class="panel panel-primary">
-				<div class="panel-heading">
-					<h3 class="panel-title">Импорт из CSV-файла</h3>
-				</div>
-				<div class="panel-body">
+      <div class="add_listing_info">
+        <h3>Импорт из CSV-файла</h3>
           <p>
             Загрузите CSV-файл с электронными адресами сотрудников:
           </p>
-          <form action="" method="POST" enctype="multipart/form-data" class="form-horizontal">
+          <form action="" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <input type="file" id="members_file" name="members_file">     
-            <button type="submit" class="btn btn-primary pull-right">Импортировать</button>
+            <br>
+            <button type="submit" class="btn btn-primary">Импортировать</button>
           </form>
-				</div>
 			</div>
 		</div>
   </div>
-</div>
 {% endblock %}

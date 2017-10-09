@@ -1,19 +1,28 @@
-{% extends 'perks/index.html' %}
-{% load static crispy_forms_tags %}
+{% extends 'members/base.html' %}
+{% load crispy_forms_tags %}
 
-{% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/signin.css' %}">
+{% block dashboard-nav %}
+  <ul>
+    {% if request.user.is_company_admin %}
+    <li><a href="{% url 'customers:dashboard' %}"><i class="fa fa-cogs"></i> Панель управления</a></li>
+    {% endif %}
+    <li><a href="{% url 'members:my_perks' %}"><i class="fa fa-gift"></i> Мои предложения</a></li>
+    <li class="active"><a id="MLabel" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user-o"></i> Аккаунт</a>
+      <ul class="dropdown-menu" aria-labelledby="MLabel">
+        <li><a href="{% url 'members:edit_info' %}"><i class="fa fa-edit"></i> Редактировать</a></li>
+        <li><a href="{% url 'members:change_password' %}"><i class="fa fa-key"></i> Сменить пароль</a></li>
+      </ul>	
+    </li>
+    <li><a href="{% url 'members:logout' %}"><i class="fa fa-power-off"></i> Выйти</a></li>
+  </ul>	
 {% endblock %}
-
-{% block content %}
-  <div class="container">
-    <div class="panel panel-primary panel-account">
-      <div class="panel-heading text-center">
-        <h2 class="panel-title">Редактирование персональной информации</h2>
-      </div>
-      <div class="panel-body">
-        <form method="POST" action="">
+{% block dashboard-content %}
+<div class="row">
+  <div class="col-md-6">
+    <div class="add_listing_info">
+      <form method="POST" action="">
           {% csrf_token %}
+        <h3>Редактировать информацию</h3>
           {% if messages %}
             {% for message in messages %}
             <div class="alert alert-dismissable {{ message.tags }}">
@@ -24,10 +33,9 @@
             {% endfor %}
           {% endif %}
           {{ form|crispy }}
-          <button class="btn btn-success btn-block"
-            type="submit">Сохранить изменения</button>
-        </form>
-      </div>
+          <button class="btn btn-success btn-block" type="submit">Сохранить изменения</button>
+      </form>
     </div>
   </div>
+</div>
 {% endblock %}
