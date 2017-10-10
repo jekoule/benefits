@@ -1,6 +1,8 @@
 {% extends 'dashboard.html' %}
 {% load crispy_forms_tags %}
 
+{% block navbar-title %}Панель управления{% endblock %}
+
 {% block dashboard-nav %}
   <ul>
     {% if request.user.is_company_admin %}
@@ -36,7 +38,7 @@
             {% csrf_token %}
             <textarea class="form-control" rows="10" name="members_list" id="members_list"></textarea>
             <br>
-            <button type="submit" class="btn btn-primary">Добавить</button>
+            <input type="submit" class="btn" value="Добавить">
           </form>
 			</div>
     </div>
@@ -48,9 +50,9 @@
           </p>
           <form action="" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
-            <input type="file" id="members_file" name="members_file">     
+            <input type="file" id="members_file" name="members_file" value="Выберите файл">     
             <br>
-            <button type="submit" class="btn btn-primary">Импортировать</button>
+            <input type="submit" class="btn" value="Импортировать">
           </form>
 			</div>
 		</div>

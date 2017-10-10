@@ -3,51 +3,43 @@
 
 {% block content %}
 
-<section class="listing_detail_header style2_header parallex-bg"
-         style="background: url({{ perk.thumbnail }})">
-  
+<section id="perk_detail_top" class="section-padding" style="background: url({% static 'img/smiles.jpg' %})">
 	<div class="container">
-
-    	<div class="div_zindex white-text">
-        	<div class="row">
-            	<div class="col-md-8">
-                <h1>{{ perk.partner.name }}</h1>
-                <p>{{ perk.short_description }}</p>
+      <div class="white_box div_zindex">
+          <div class="row">
+            <div class="col-md-7">
+               <div class="image_slider_wrap">
+                  <div id="listing_img_slider">
+                      <div class="owl-carousel owl-theme">
+                        {% for image in perk.images.all %}
+                        <div class="item"><img src="{{ image.img.url }}" alt="image"></div>
+                        {% endfor %}
+                      </div>    
+                  </div>
+              </div>                
+            </div>
+            <div class="col-md-5">
+                <div class="row">
+                  <div class="col-md-12">
+                    <h3>{{ perk.title }}</h3>
+                    <p>{{ perk.short_description }}</p>
+                  </div>
                 </div>
-                <div class="col-md-4">
-                	<div class="pricing_info">
-                    <p class="listing_price">{{ perk.discount }}</p>
-                        <div class="listing_message"><a class="btn"
-                            data-toggle="modal" data-target="#add_perk_modal"><i
-                              class="fa fa-gift"></i>  Получить</a></div>
-                    </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <a href="#" class="btn">Получить</a>
+                  </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="dark-overlay"></div>
+          </div>
+      </div>
+	</div>
+  <div class="blue-overlay"></div>
 </section>
+
 
 <section class="listing_info_wrap listing_detail_2">
   <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <ol class="breadcrumb">
-          <li><a href="{% url 'perks:index' %}">Все предложения</a></li>
-          <li><a href="{{ perk.category.get_absolute_url }}">{{ perk.category.name }}</a></li>
-            <li class="active">{{ perk.title }}</li>
-        </ol>
-      </div>
-    </div>
-    <div class="image_slider_wrap">
-      <div id="listing_img_slider">
-          <div class="owl-carousel owl-theme">
-            {% for image in perk.images.all %}
-            <div class="item"><img src="{{ image.img.url }}" alt="image"></div>
-            {% endfor %}
-          </div>    
-      </div>
-    </div>
     <div class="row">
       <div class="col-md-8">
         <div class="panel panel-default">

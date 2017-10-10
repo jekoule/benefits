@@ -1,10 +1,19 @@
-input[type=checkbox] {
+
+.dataTables_wrapper .pagination a {
+	font-size: 14px;
+}
+
+.dataTables_wrapper input[type=search] {
+	height: 30px;	
+}
+
+.dataTables_wrapper input[type=checkbox] {
 	height: 15px;
 	width: 30px;
 }
 
-.dataTables_paginate a {
-	font-size: 14px;
+.dataTables_wrapper select {
+	padding: 0 10px;
 }
 
 .perks-search input, button {
@@ -57,6 +66,21 @@ header .submit_listing .btn.outline-btn:hover{
 	background:#03aee9;
 	border-color: #03aee9;	
 }
+
+#perks_slider {
+	padding: 120px 0;
+}
+
+.blue-overlay {
+	background: rgba(3, 174, 233, 0.8) none repeat scroll 0 0;
+	content: "";
+	height: 100%;
+	left: 0;
+	position: absolute;
+	top: 0;
+	width: 100%;
+}
+
 .nav-pills a {
 	fill: #000;
 	color: #000;
@@ -114,6 +138,41 @@ header .submit_listing .btn.outline-btn:hover{
 	text-decoration: underline;
 }
 
+.listing_info .btn {
+	height: 40px;
+	font-size: 12px;
+	font-weight: 600;
+	padding: 5px 22px;
+	border: 2px solid #03aee9;
+	text-transform: uppercase;
+}
+
+.listing_info .more_info_btn {
+	float: left;
+	color: #fff;
+	background: #03aee9;
+}
+
+.listing_info .get_perk_btn {
+	float:right;
+	background: none;
+	color:#111;
+}
+
+.listing_info .more_info_btn:hover {
+	background: #03aee9;
+	color: #fff;
+}
+
+.listing_info .get_perk_btn:hover {
+	background: none;
+	color: #111;
+}
+
+.listing_info p {
+	color: #333;
+}
+
 .affix {
 	z-index: 999;
 	top: 0;
@@ -122,4 +181,16 @@ header .submit_listing .btn.outline-btn:hover{
 
 .affix + section {
 	padding-top: 132px;
+}
+
+#perk_detail_top {
+	padding: 40px 0;
+}
+
+#perk_detail_top .white_box {
+	padding: 0;
+}
+
+#perk_detail_top .image_slider_wrap {
+	margin: 0;
 }

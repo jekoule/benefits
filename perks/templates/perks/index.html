@@ -7,16 +7,17 @@
 
 {% block content %}
 
-<section id="inner_banner" class="parallex-bg" style="background: url({% static 'img/teamwork.jpg' %}">
+<section id="perks_slider" class="parallex-bg" style="background: url({% static 'img/smiles.jpg' %}">
 	<div class="container">
     	<div class="white-text text-center div_zindex">
-        	<h1>How it Work </h1>
+        	<h2>Лучшие предложения для Вас!</h1>
+          <p>Мы постоянно работаем над улучшением нашего сервиса и поиска самых лучших предложений</p>
         </div>
     </div>
-    <div class="dark-overlay"></div>
+    <div class="blue-overlay"></div>
 </section>
 
-<nav id="category_menu" class="navbar navbar-default" data-spy="affix" data-offset-top="462">
+<nav id="category_menu" class="navbar navbar-default" data-spy="affix" data-offset-top="442">
   <div class="container">
     <ul class="nav nav-pills nav-justified">
     {% for category in categories %}
@@ -68,10 +69,8 @@
                         <p>{{ perk.title }}</p>
 
                         <div class="listing_review_info">
-                          <a href="{{ perk.get_absolute_url }}" class="
-                            outline-btn btn-sm pull-left">Подробнее</a>
-                          <button data-toggle="modal"
-                            data-target="#add_perk_modal" class="btn btn-sm pull-right">Получить</button>
+                          <a href="{{ perk.get_absolute_url }}" class="btn more_info_btn">Подробнее</a>
+                          <button data-toggle="modal" data-target="#add_perk_modal" class="btn get_perk_btn">Получить</button>
                         </div>
                     </div>
                 </div>
@@ -116,4 +115,14 @@
 		</div>
 	</div>
 </footer>
+{% endblock %}
+
+{% block extra_js %}
+{% if active_category %}
+<script type="text/javascript">
+$(document).ready( function () {
+	$(window).scrollTop($('#category_menu').offset().top);
+});
+</script>
+{% endif %}
 {% endblock %}

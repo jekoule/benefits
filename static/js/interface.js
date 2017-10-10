@@ -116,12 +116,7 @@ $(function(e) {
 	dots:false,
 	autoplay:true,
     autoplayTimeout:5000,
-    responsive:{
-        0:{items:1},
-		400:{items:2},
-		768:{items:3},
-        992:{items:4}
-    }
+    items: 1,
 	})
 	
 /*-------------------------------------------------------------------------------
