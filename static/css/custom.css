@@ -16,6 +16,11 @@
 	padding: 0 10px;
 }
 
+.customer_logo {
+	max-width: 100px;
+	max-height: 40px;
+}
+
 .perks-search input, button {
 	background: #fff;
 	height: 39px;
@@ -183,14 +188,64 @@ header .submit_listing .btn.outline-btn:hover{
 	padding-top: 132px;
 }
 
-#perk_detail_top {
-	padding: 40px 0;
+#perk_detail_top .perk_table {
+	background: #fff;
+	z-index: 1;
+	overflow: hidden;
+	position: relative;
 }
 
-#perk_detail_top .white_box {
-	padding: 0;
+#perk_detail_top .right_side {
+	padding: 10px 30px 30px 30px;
 }
 
-#perk_detail_top .image_slider_wrap {
-	margin: 0;
+@media (min-width: 960px) {
+	
+	#perk_detail_top {
+		padding: 40px 0;
+	}
+	
+	#perk_detail_top .perk_table {
+		background: #fff;
+		display: table;
+		table-layout: fixed;
+		border-radius: 3px;
+		width: 100%;
+		height: 100%;
+		position: relative;
+	}
+
+	#perk_detail_top .perk_row {
+		display: table-row;
+		width: 100%;
+		height: 100%;
+	}
+
+	#perk_detail_top .left_side {
+		display: table-cell;
+		width: 50%;
+		height: 100%;
+	}
+
+	#perk_detail_top .right_side {
+		display: table-cell;
+		width: 50%;
+		height: 100%;
+		vertical-align: top;
+	}
+
+}
+
+#perk_detail_top .perk_info {
+	width: 100%;
+	height: 70%;
+}
+
+#perk_detail_top .perk_buttons {
+	width: 100%;
+	height: 30%;
+}
+
+#perk_detail_top .get_perk_btn {
+	float: right;
 }

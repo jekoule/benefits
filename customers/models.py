@@ -12,6 +12,9 @@ class Company(models.Model):
     name = models.CharField(max_length=100, verbose_name='Наименование')
     address = models.CharField(max_length=200, verbose_name='Адрес',
                                blank=True, null=True)
+    logo = models.ImageField(upload_to='customers/logos',
+                             verbose_name='Логотип',
+                             blank=True, null=True)
 
     class Meta:
         ordering = ['name', ]
