@@ -3,7 +3,7 @@
 
 {% block content %}
 
-<section id="perk_detail_top" class="section-padding" style="background: url({% static 'img/smiles.jpg' %})">
+<section id="perk_detail_top" class="section-padding" style="background: #03aee9">
 	<div class="container">
     <div class="perk_table">
         <div class="perk_row">
@@ -13,16 +13,21 @@
               <div class="right_side">
                   <div class="perk_info">
                     <h3>{{ perk.title }}</h3>
-                    <p>{{ perk.short_description }}</p>
+                    <hr>
+                    <p class="lead">{{ perk.short_description }}</p>
                   </div>
                   <div class="perk_buttons">
-                      <a href="#" class="btn get_perk_btn">Получить</a>
+                      <a href="#" class="btn get_perk_btn">
+                        <i class="fa fa-gift"></i>&nbsp;Получить
+                      </a>
+                      <a href="{{request.META.HTTP_REFERER}}" class="btn back_to_perks_btn">
+                        <i class="fa fa-arrow-circle-left"></i> Назад
+                      </a>
                   </div>
               </div>
         </div>
     </div>
 	</div>
-  <div class="blue-overlay"></div>
 </section>
 
 
@@ -30,18 +35,12 @@
   <div class="container">
     <div class="row">
       <div class="col-md-8">
-        <div class="panel panel-default">
-          <div class="panel-heading" role="tab" id="headingOne">
-            <h4 class="panel-title">
-              <a role="button" data-toggle="collapse" data-parent="#accordion" href="#description" aria-expanded="true" aria-controls="collapseOne">
-                <i class="fa  fa-file-text-o"></i> Описание</a>
-              </a>
-            </h4>
-          </div>
-          <div id="description" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-            <div class="panel-body">
+        <div class="listinghub_sidebar">
+          <div class="sidebar_wrap listing_contact_info">
+              <div class="widget_title">
+                  <h6>Описание</h6>
+              </div>
               <p> {{ perk.full_description|safe }}</p>
-            </div>
           </div>
         </div>       
       </div>
