@@ -15,14 +15,19 @@
                     <h3>{{ perk.title }}</h3>
                     <hr>
                     <p class="lead">{{ perk.short_description }}</p>
+                    {% if not perk.active %}
+                    <div class="alert alert-dismissable alert-danger">Предложение неактивно</div>
+                    {% endif %}
                   </div>
                   <div class="perk_buttons">
                       <a href="#" class="btn get_perk_btn">
                         <i class="fa fa-gift"></i>&nbsp;Получить
                       </a>
+                      {% if perk.active %}
                       <a href="{{request.META.HTTP_REFERER}}" class="btn back_to_perks_btn">
                         <i class="fa fa-arrow-circle-left"></i> Назад
                       </a>
+                      {% endif %}
                   </div>
               </div>
         </div>
@@ -51,10 +56,15 @@
                   <h6>Контактная информация</h6>
               </div>
               <ul>
+                  {% if perk.address %}
                   <li><i class="fa fa-map-marker"></i> PO Box 1025MNO Collins Street West Victoria 8007 Australia</li>
+                  {% endif %}
+                  {% if perk.phone_number %}
                   <li><i class="fa fa-phone"></i> <a href="tel:+61-1234-5678-09">+61-1234-5678-09</a></li>
-                  <li><i class="fa fa-envelope"></i> <a href="mailto:contcat@example.com">contcat@example.com</a></li>
+                  {% endif %}
+                  {% if perk.website %}
                   <li><i class="fa fa-link"></i> <a href="www.example.com">www.example.com</a></li>
+                  {% endif %}
               </ul>
           </div>
         </div> 

@@ -50,11 +50,18 @@ class Perk(models.Model):
                                          blank=True, null=True)
     full_description = HTMLField(verbose_name='Полное описание',
                                  null=True, blank=True)
-    contact_info = HTMLField(verbose_name='Контактная информация',
-                             null=True, blank=True)
+    address = models.CharField(max_length=200, verbose_name='Адрес',
+                               null=True, blank=True)
+    phone_number = models.CharField(max_length=200, verbose_name='Телефон',
+                                    null=True, blank=True)
+    website = models.URLField(verbose_name='Веб-сайт', null=True, blank=True)
+    active = models.BooleanField(default=True,
+                                 verbose_name='Предложение активно')
     date_created = models.DateTimeField(null=True, blank=True,
                                         auto_now_add=True,
                                         verbose_name='Дата создания')
+    main_image = models.ImageField(upload_to='perks/',
+                                   verbose_name='Основная картинка')
 
     class Meta:
         verbose_name = 'Предложения'
@@ -65,7 +72,7 @@ class Perk(models.Model):
 
     @property
     def thumbnail(self):
-        return self.images.first().img.url
+        return self.main_image.url
 
     @models.permalink
     def get_absolute_url(self):
@@ -84,8 +91,8 @@ class PerkImage(models.Model):
     thumbnail.allow_tags = True
 
     class Meta:
-        verbose_name = 'Картинка'
-        verbose_name_plural = 'Картинки'
+        verbose_name = 'Дополнительная картинка'
+        verbose_name_plural = 'Дополнительные картинки'
 
     def __unicode__(self):
         return self.img.url

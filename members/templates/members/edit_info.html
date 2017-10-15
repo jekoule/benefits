@@ -39,3 +39,12 @@
   </div>
 </div>
 {% endblock %}
+
+{% block extra_js %}
+<script type="text/javascript">
+$(document).ready(function(){
+  $("#id_phone_number").inputmask("+7 (999) 999-9999",{ autoUnmask: true, removeMaskOnSubmit: true });
+  $("#id_date_of_birth").inputmask("99.99.9999",{ "placeholder": "ДД.ММ.ГГГГ" });
+});
+</script>
+{% endblock %}

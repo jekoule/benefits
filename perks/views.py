@@ -16,9 +16,9 @@ from members.views import is_member
 def index(request, category=None):
     if category is not None:
         category = get_object_or_404(PerkCategory, slug=category)
-        perk_list = Perk.objects.filter(category=category)
+        perk_list = Perk.objects.filter(category=category, active=True)
     else:
-        perk_list = Perk.objects.all()
+        perk_list = Perk.objects.filter(active=True)
     paginator = Paginator(perk_list, 12)
     page = request.GET.get('page')
     try:
