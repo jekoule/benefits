@@ -1,0 +1,27 @@
+{% extends 'perks/index.html' %}
+{% load static %}
+
+{% block content %}
+<section id="result" class="section-padding" style="background: url({% static 'img/smiles.jpg' %})">
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3 text-center div_zindex">
+            <p class="lead">Ваш код для получения скидки:</p>
+            <p class="lead"><strong>{{ transaction_code }}</strong></p>
+            <p>Предъявите данный код представителю компании-партнера.</p>
+            <p>Код также был отправлен на Ваш электронный адрес: 
+            <a>{{ request.user.email }}</a></p>
+            <p><strong>Спасибо что пользуетесь сервисом Benefits!</strong></p>
+            <hr>
+            <a class="btn" href="{% url 'perks:index' %}">
+              <i class="fa fa-arrow-left"></i>&emsp;Вернуться к предложениям
+            </a>
+    </div>
+  </div>
+</div>
+<div class="blue-overlay"></div>
+</section>
+{% endblock %}
+
+{% block footer_top %}
+{% endblock %}

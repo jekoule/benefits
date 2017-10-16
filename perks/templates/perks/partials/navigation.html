@@ -18,11 +18,12 @@
       </div>
 
       <div class="collapse navbar-collapse" id="navigation">
+        {% if request.user.is_company_admin %}
         <ul class="nav navbar-nav pull-left">
-          {% if request.user.is_company_admin %}
           <li><a href="{% url 'customers:dashboard' %}"><i class="fa fa-cogs"></i>Панель управления</a></li>
-          {% endif %}
         </ul>
+        {% endif %}
+        {% if request.user.is_member %}
         <ul class="nav navbar-nav">
           <li><a href="{% url 'members:my_perks' %}"><i class="fa fa-gift"></i>Мои предложения</a></li>
           <li class="menu-item-has-children">
@@ -34,6 +35,11 @@
             </ul> 
           </li>
         </ul>
+        {% else %}
+          <div class="submit_listing">
+          <a class="btn login_btn" href="{% url 'members:sign_in' %}"><i class="fa fa-sign-in"></i>&nbsp;Вход</a>
+          </div>
+        {% endif %}
       </div>
     </div>
   </nav>

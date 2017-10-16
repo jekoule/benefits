@@ -1,3 +1,7 @@
+html, body {
+	height: 100%;
+	min-height: 100%;
+}
 
 .dataTables_wrapper .pagination a {
 	font-size: 14px;
@@ -70,6 +74,11 @@ header .submit_listing .btn.outline-btn{
 header .submit_listing .btn.outline-btn:hover{
 	background:#03aee9;
 	border-color: #03aee9;	
+}
+header .submit_listing .login_btn {
+	background: none;
+	border: 1px solid #111;
+	color: #111;
 }
 
 #perks_slider {
@@ -191,7 +200,7 @@ header .submit_listing .btn.outline-btn:hover{
 }
 
 .footer_top .support {
-	margin-top: 20px;
+	margin: 20px 0;
 }
 
 .affix {
@@ -315,4 +324,38 @@ header .submit_listing .btn.outline-btn:hover{
 #perk_detail_top .get_perk_btn:hover {
 	background: #38ccff;
 	border-color: #38ccff;
+}
+
+.modal-footer .btn {
+	display: block;
+	float: right;
+	margin-left: 20px;
+	border: 1px solid #03aee9;
+}
+
+.modal-footer .get_perk_btn {
+	background: #03aee9;
+	color: #fff;
+}
+
+.modal-footer .get_perk_btn:hover {
+	background: #38ccff;
+	border-color: #38ccff;
+}
+
+.modal-footer .back_btn {
+	background: none;
+	color: #111;
+	border-color: #111;
+}
+
+#result {
+	min-height: calc(100% - 163px);
+	height: calc(100% - 163px);
+}
+
+#result .div_zindex {
+	background: #fff;
+	padding: 40px;
+	border-radius: 3px;
 }

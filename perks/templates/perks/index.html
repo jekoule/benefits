@@ -10,7 +10,7 @@
 <section id="perks_slider" class="parallex-bg" style="background: url({% static 'img/smiles.jpg' %}">
 	<div class="container">
     	<div class="white-text text-center div_zindex">
-        	<h2>Лучшие предложения для Вас!</h1>
+        	<h2>Лучшие предложения для Вас!</h2>
           <p>Мы подбираем наиболее интересные предложения на выгодных условиях для наших пользователей.</p>
         </div>
     </div>
@@ -69,7 +69,9 @@
 
                         <div class="listing_review_info">
                           <a href="{{ perk.get_absolute_url }}" class="btn more_info_btn">Подробнее</a>
-                          <button data-toggle="modal" data-target="#add_perk_modal" class="btn get_perk_btn">Получить</button>
+                          <a class="btn get_perk_btn" {% if request.user.is_member %}data-toggle="modal" data-target="#add_perk_modal" href="{{ perk.get_modal_url }}" data-remote="{{ perk.get_modal_url }}"{% else %}href="{% url 'members:sign_in' %}"{% endif %}>
+                            Получить
+                          </a>
                         </div>
                     </div>
                 </div>
@@ -99,52 +101,59 @@
     </div>
 </section>
 
-
-{% include 'perks/partials/modals.html' %}
+<div id="add_perk_modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    </div>
+  </div>
+</div>
 
 {% endblock %}
 
 {% block footer %}
-<footer class="footer secondary-bg">
-<div class="footer_top">
-	<div class="container">
-    	<div class="white-text text-center">
-        	<h3>Как пользоваться сервисом?</h3>
-        </div>
-        
-        <div class="row">
-        	<div class="col-md-4">
-            	<div class="steps_wrap">
-                	<div class="icon_div">
-                    	<i class="fa fa-search"></i>
-                    </div>
-                    <p>Выберите интересующее Вас предложение из представленного ассортимента.</p>
-                </div>
-            </div>
-            
+
+  <footer class="footer secondary-bg">
+  {% block footer_top %}
+  <div class="footer_top">
+    <div class="container">
+        <div class="white-text text-center">
+            <h3>Как пользоваться сервисом?</h3>
+          </div>
+          
+          <div class="row">
             <div class="col-md-4">
-            	<div class="steps_wrap">
-                	<div class="icon_div">
-                    	<i class="fa fa-envelope-open-o"></i>
-                    </div>
-                    <p>Нажмите на кнопку "Получить". После подтверждения на Ваш email придет уникальный четырехзначный код.</p>
-                </div>
-            </div>
-            
-            <div class="col-md-4">
-            	<div class="steps_wrap">
-                	<div class="icon_div">
-                    	<i class="fa fa-smile-o"></i>
-                    </div>
-                    <p>Предъявите полученный код представителю компании-партнера и наслаждайтесь предложением</p>
-                </div>
-            </div>
-        </div>
-        <div class="support text-center">
-        <p>Если у Вас возникли проблемы при работе с сервисом, напишите нам на <a href="mailto: support@benefits.kz">support@benefits.kz</a></p>
-        </div>
-    </div>
-</div>
+                <div class="steps_wrap">
+                    <div class="icon_div">
+                        <i class="fa fa-search"></i>
+                      </div>
+                      <p>Выберите интересующее Вас предложение из представленного ассортимента.</p>
+                  </div>
+              </div>
+              
+              <div class="col-md-4">
+                <div class="steps_wrap">
+                    <div class="icon_div">
+                        <i class="fa fa-envelope-open-o"></i>
+                      </div>
+                      <p>Нажмите на кнопку "Получить". После подтверждения на Ваш email придет уникальный четырехзначный код.</p>
+                  </div>
+              </div>
+              
+              <div class="col-md-4">
+                <div class="steps_wrap">
+                    <div class="icon_div">
+                        <i class="fa fa-smile-o"></i>
+                      </div>
+                      <p>Предъявите полученный код представителю компании-партнера и наслаждайтесь предложением</p>
+                  </div>
+              </div>
+          </div>
+          <div class="support text-center">
+          <p>Если у Вас возникли проблемы при работе с сервисом, напишите нам на <a href="mailto: support@benefits.kz">support@benefits.kz</a></p>
+          </div>
+      </div>
+  </div>
+  {% endblock %}
 <div class="footer_bottom">
 	<div class="container">
 		<div class="center-block">

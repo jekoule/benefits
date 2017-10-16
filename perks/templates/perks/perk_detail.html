@@ -20,12 +20,12 @@
                     {% endif %}
                   </div>
                   <div class="perk_buttons">
-                      <a href="#" class="btn get_perk_btn">
-                        <i class="fa fa-gift"></i>&nbsp;Получить
-                      </a>
-                      {% if perk.active %}
                       <a href="{{request.META.HTTP_REFERER}}" class="btn back_to_perks_btn">
                         <i class="fa fa-arrow-circle-left"></i> Назад
+                      </a>
+                      {% if perk.active %}
+                      <a class="btn get_perk_btn" {% if request.user.is_member %}data-toggle="modal" data-target="#add_perk_modal" href="{{ perk.get_modal_url }}" data-remote="{{ perk.get_modal_url }}"{% else %}href="{% url 'members:sign_in' %}"{% endif %}>
+                        <i class="fa fa-gift"></i>&nbsp;Получить
                       </a>
                       {% endif %}
                   </div>
@@ -73,7 +73,11 @@
   </div>
 </section>
 
-
-{% include 'perks/partials/modals.html' %}
+<div id="add_perk_modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    </div>
+  </div>
+</div>
 
 {% endblock %}

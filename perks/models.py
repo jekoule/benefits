@@ -78,6 +78,14 @@ class Perk(models.Model):
     def get_absolute_url(self):
         return ('perks:perk_detail', (), {'pk': self.pk})
 
+    @models.permalink
+    def get_modal_url(self):
+        return ('perks:perk_modal', (), {'pk': self.pk})
+
+    @models.permalink
+    def get_perk_url(self):
+        return ('perks:get_perk', (), {'pk': self.pk})
+
 
 class PerkImage(models.Model):
     perk = models.ForeignKey(Perk, on_delete=models.CASCADE,

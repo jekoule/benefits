@@ -1,0 +1,16 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal">&times;</button>
+  <h4 class="modal-title">Получить предложение?</h4>
+</div>
+<div class="modal-body">
+  <p class="lead" id="perk_info"><strong>{{ perk.partner.name }}</strong>: {{ perk.title }}</p>
+  <hr>
+  <p>Уникальный 4-х значный код для получения предложения придет на ваш
+  электронный адрес: <a>{{ request.user.email }}</a>.</p> 
+</div>
+<div class="modal-footer">
+  <div class="row">
+      <a class="btn back_btn" data-dismiss="modal">Отмена</a>
+      <a class="btn get_perk_btn" href="{{ perk.get_perk_url }}">Получить</a>
+  </div>
+</div>
