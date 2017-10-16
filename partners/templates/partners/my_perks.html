@@ -1,0 +1,90 @@
+{% extends 'partners/partner_base.html' %}
+{% load crispy_forms_tags %}
+
+{% block dashboard-nav %}
+<ul>
+  <li><a href="{% url 'partners:dashboard' %}"><i class="fa fa-list"></i> Транзакции</a></li>
+  <li class="active"><a href="{% url 'partners:my_perks' %}"><i class="fa fa-gift"></i> Предложения</a></li>
+  <li><a id="MLabel" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user-o"></i> Аккаунт</a>
+    <ul class="dropdown-menu" aria-labelledby="MLabel">
+      <li><a href="{% url 'partners:change_password' %}"><i class="fa fa-key"></i> Сменить пароль</a></li>
+    </ul>	
+  </li>
+  <li><a href="{% url 'partners:logout' %}"><i class="fa fa-power-off"></i> Выйти</a></li>
+</ul>
+{% endblock %}
+
+{% block dashboard-content %}
+<div id="titlebar">
+  <div class="row">
+    <div class="col-md-12">
+      <h2>Активные предложения</h2>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="dashboard-info-box">
+      <div class="dashboard-info color-1">
+        <h4>{{ perks.count }}</h4> <span>Активных предложений</span>
+      </div>
+      <div class="dashboard-info color-4">
+        <h4>{{ transactions_count }}</h4> <span>Использований</span>
+      </div>
+  </div>
+</div>
+
+<hr>
+
+<div class="row">			
+  <div class="col-md-12">
+    {% for perk in perks %}
+    <div class="dashboard-list-box">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th class="col-md-2">Наименование</th>
+            <th class="col-md-8">{{ perk.title }} </th>
+            <th class="col-md-2 text-center"><a class="button btn-block" href="{{ perk.get_absolute_url }}"><i class="fa fa-eye"></i>  Смотреть на сайте</a></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Количество использований</strong></td> 
+            <td><p>{{ perk.transactions.count }}</p></td>
+          </tr>
+          <tr>
+            <td><strong>Основное изображение</strong></td> 
+            <td><img src="{{ perk.thumbnail }}"></td>
+          </tr>
+          <tr>
+            <td><strong>Краткое описание</strong></td> 
+            <td><p>{{ perk.short_description }}</p></td>
+          </tr>
+          <tr>
+            <td><strong>Полное описание</strong></td> 
+            <td>{{ perk.full_description|safe }}</p></td>
+          </tr>
+          <tr>
+            <td><strong>Адрес</strong></td> 
+            <td><p>{{ perk.address }}</p></td>
+          </tr>
+          <tr>
+            <td><strong>Телефон</strong></td> 
+            <td><p>{{ perk.phone_number }}</p></td>
+          </tr>
+          <tr>
+            <td><strong>Веб-сайт</strong></td> 
+            <td><p>{{ perk.website }}</p></td>
+          </tr>
+          <tr>
+            <td><strong>Дата создания</strong></td> 
+            <td><p>{{ perk.date_created }}</p></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

@@ -152,6 +152,34 @@ header .submit_listing .login_btn {
 	text-decoration: underline;
 }
 
+.listing_img .discount {
+	position:absolute;
+	bottom:15px;
+	left:15px;
+	font-size: 16px;
+	background: rgba(3, 174, 233, 0.9) none repeat scroll 0 0;
+}
+
+.listing_info .perk_title {
+	height: 40px; 
+}
+
+.listing_info .perk_title h3 {
+	margin-top: 10px;
+	font-size: 14px; 
+	color: #333;
+}
+
+.listing_info .partner_name h4 {
+	font-size: 16px; 
+	font-weight: 700;
+	color: #111;
+}
+
+.listing_info .listing_review_info {
+	margin: 16px -20px 0;
+}
+
 .listing_info .btn {
 	height: 40px;
 	font-size: 12px;
@@ -261,6 +289,15 @@ header .submit_listing .login_btn {
 		display: table-cell;
 		width: 50%;
 		height: 100%;
+		position: relative;
+	}
+
+	#perk_detail_top .left_side .discount {
+		position: absolute;
+		top: 30px;
+		right: 30px;
+		font-size: 20px;
+		background: rgba(3, 174, 233, 0.9) none repeat scroll 0 0;
 	}
 
 	#perk_detail_top .right_side {
@@ -268,6 +305,24 @@ header .submit_listing .login_btn {
 		width: 50%;
 		height: 100%;
 		vertical-align: top;
+	}
+
+	#perk_detail_top .right_side h1 {
+		font-size: 26px;
+		margin-top: 0;
+	}
+	
+	#perk_detail_top .right_side hr {
+		margin: 15px 0;
+	}
+
+	#perk_detail_top .right_side .lead {
+		font-size: 16px;
+	}
+
+	#perk_detail_top .lead {
+		font-size: 18px;
+		color: #111;
 	}
 
 	#perk_detail_top .get_perk_btn {

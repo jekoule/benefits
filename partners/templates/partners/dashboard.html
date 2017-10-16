@@ -1,29 +1,15 @@
-{% extends 'dashboard.html' %}
-{% load crispy_forms_tags static %}
+{% extends 'partners/partner_base.html' %}
+{% load static %}
 
 {% block extra_css %}
 {{ block.super }}
 <link rel="stylesheet" type="text/css" href="{% static 'css/datatables.min.css' %}"/>
 {% endblock %}
 
-{% block logo-url %}
-{% url 'partners:dashboard' %}
-{% endblock %}
-
-{% block navbar-title %}Панель управления{% endblock %}
-
-{% block navbar-right %}
-<div class="submit_listing">
-    <a href="{% url 'partners:logout' %}" class="btn outline-btn">
-        <i class="fa fa-sign-out"></i>&nbsp; Выйти
-    </a>
-</div>
-{% endblock %}
-
 {% block dashboard-nav %}
   <ul>
     <li class="active"><a href="{% url 'partners:dashboard' %}"><i class="fa fa-list"></i> Транзакции</a></li>
-    <li><a href=""><i class="fa fa-gift"></i> Предложения</a></li>
+    <li><a href="{% url 'partners:my_perks' %}"><i class="fa fa-gift"></i> Предложения</a></li>
     <li><a id="MLabel" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user-o"></i> Аккаунт</a>
       <ul class="dropdown-menu" aria-labelledby="MLabel">
         <li><a href="{% url 'partners:change_password' %}"><i class="fa fa-key"></i> Сменить пароль</a></li>

@@ -13,6 +13,8 @@ class ImageInline(admin.TabularInline):
 
 
 class PerkAdmin(admin.ModelAdmin):
+    list_display = ('partner_name', 'title', 'category', 'date_created', )
+    list_display_links = ('partner_name', 'title', )
     inlines = [
         ImageInline,
     ]

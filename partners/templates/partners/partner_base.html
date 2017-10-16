@@ -1,0 +1,22 @@
+{% extends 'dashboard.html' %}
+
+{% block logo-url %}
+{% url 'partners:dashboard' %}
+{% endblock %}
+
+{% block navbar-title %}Панель управления{% endblock %}
+
+{% block navbar-right %}
+<div class="submit_listing">
+    <a href="{% url 'partners:logout' %}" class="btn outline-btn">
+        <i class="fa fa-sign-out"></i>&nbsp; Выйти
+    </a>
+</div>
+{% endblock %}
+
+{% block dashboard-nav %}
+{% endblock %}
+
+{% block dashboard-content %}
+
+{% endblock %}

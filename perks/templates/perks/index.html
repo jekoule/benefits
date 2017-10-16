@@ -59,13 +59,15 @@
             	<div class="listing_wrap">
                     <div class="listing_img">
                         <a href="{{ perk.get_absolute_url }}"><img src="{{ perk.thumbnail }}" alt="image"></a>
+                        <span class="discount label">{{ perk.discount }}</span>
                     </div>
                     <div class="listing_info">
-                        <div class="post_category">
-                            <a href="{{ perk.category.get_absolute_url }}">{{ perk.category.name }}</a>
+                        <div class="perk_title">
+                          <h3>{{ perk.title }}</h3>
                         </div>
-                        <h4><a href="#">{{ perk.partner.name }}</a></h4>
-                        <p>{{ perk.title }}</p>
+                        <div class="partner_name">
+                          <h4>{{ perk.partner.name }}</h4>
+                        </div>
 
                         <div class="listing_review_info">
                           <a href="{{ perk.get_absolute_url }}" class="btn more_info_btn">Подробнее</a>

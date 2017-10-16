@@ -68,7 +68,7 @@ class Perk(models.Model):
         verbose_name_plural = 'Предложения'
 
     def __unicode__(self):
-        return self.short_description
+        return self.title
 
     @property
     def thumbnail(self):
@@ -85,6 +85,10 @@ class Perk(models.Model):
     @models.permalink
     def get_perk_url(self):
         return ('perks:get_perk', (), {'pk': self.pk})
+
+    def partner_name(self):
+        return self.partner.name
+    partner_name.short_description = 'Партнер'
 
 
 class PerkImage(models.Model):

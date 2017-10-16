@@ -9,12 +9,25 @@
         <div class="perk_row">
               <div class="left_side">
                   <img src="{{ perk.thumbnail }}" alt="image">
+                  <span class="discount label">{{ perk.discount }}</span>
               </div>
               <div class="right_side">
                   <div class="perk_info">
-                    <h3>{{ perk.title }}</h3>
+                    <h1>{{ perk.title }}</h1>
                     <hr>
                     <p class="lead">{{ perk.short_description }}</p>
+                    <div class="row">
+                      <p>
+                      <div class="col-md-3">Размер скидки: </div>
+                      <div class="col-md-9"><strong>{{ perk.discount }}</strong></div>
+                      </p>
+                    </div>
+                    <div class="row">
+                      <p>
+                      <div class="col-md-3">Партнер: </div>
+                      <div class="col-md-9"><strong>{{ perk.partner.name }}</strong></div>
+                      </p>
+                    </div>
                     {% if not perk.active %}
                     <div class="alert alert-dismissable alert-danger">Предложение неактивно</div>
                     {% endif %}
@@ -57,13 +70,13 @@
               </div>
               <ul>
                   {% if perk.address %}
-                  <li><i class="fa fa-map-marker"></i> PO Box 1025MNO Collins Street West Victoria 8007 Australia</li>
+                  <li><i class="fa fa-map-marker"></i> {{ perk.address }}</li>
                   {% endif %}
                   {% if perk.phone_number %}
-                  <li><i class="fa fa-phone"></i> <a href="tel:+61-1234-5678-09">+61-1234-5678-09</a></li>
+                  <li><i class="fa fa-phone"></i> {{ perk.phone_number }}</a></li>
                   {% endif %}
                   {% if perk.website %}
-                  <li><i class="fa fa-link"></i> <a href="www.example.com">www.example.com</a></li>
+                  <li><i class="fa fa-link"></i> <a href="{{ perk.website }}">{{ perk.website }}</a></li>
                   {% endif %}
               </ul>
           </div>
