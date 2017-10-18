@@ -34,6 +34,22 @@ html, body {
 	display: block;
 }
 
+@media (max-width: 960px) { 
+	#all_perks {
+		display: none;
+	}
+	.perks-search {
+		display: inline-block;
+		float: right;
+	}
+	.perks-search .form-group {
+		display: inline-block;
+	}
+	.perks-search .btn {
+		display: inline-block;
+	}
+}
+
 #perks-navigation {
 	background-color: #eee;
 	padding: 15px 0;
@@ -81,6 +97,12 @@ header .submit_listing .login_btn {
 	color: #111;
 }
 
+@media (max-width: 960px) { 
+	header #navigation .nav.navbar-nav li{
+		width:100%;
+	}
+}
+
 #perks_slider {
 	padding: 120px 0;
 }
@@ -113,7 +135,7 @@ header .submit_listing .login_btn {
 }
 
 #category_menu .category_item {
-	background: #fff;
+	background: none;
 	text-align:center;
 }
 
@@ -125,6 +147,41 @@ header .submit_listing .login_btn {
 	background: none;
 	margin: 0 auto;
 	width: 70px;
+}
+
+#category_menu.affix {
+	background: rgba(0, 0, 0, 0.6) none repeat scroll 0 0;
+}
+
+#category_menu.affix p {
+	color: #fff;
+}
+
+#category_menu.affix .category_icon {
+	display: none;
+}
+
+@media (max-width: 960px) { 
+	#category_menu {
+		display: none;
+	}
+}
+
+@media (min-width: 960px) { 
+	#category_select {
+		display: none;
+	}
+}
+
+#category_select .btn-group {
+	display: block;
+}
+
+#category_select .dropdown-toggle {
+	background: #333;
+	width: 100%;
+	height: 50px;
+	border-radius: none;
 }
 
 #grid {
@@ -144,7 +201,7 @@ header .submit_listing .login_btn {
 .listing_header a {
 	float: left;
 	color: #000;
-	font-weight: bold;
+	font-size: 16px;
 	margin: 15px 10px 15px auto;
 }
 
@@ -237,7 +294,7 @@ header .submit_listing .login_btn {
 }
 
 .affix {
-	z-index: 999;
+	z-index: 5;
 	top: 0;
 	width:100%;
 }
@@ -253,6 +310,27 @@ header .submit_listing .login_btn {
 @media (max-width: 960px) { 
 	#perk_detail_top .container {
 		padding: 0;
+	}
+}
+
+#perk_detail_top .breadcrumb {
+	background: rgba(255, 255, 255, 0.7) none repeat scroll 0 0;
+	z-index: 1;
+	position: relative;
+}
+
+#perk_detail_top .breadcrumb a {
+	color: #03aee9;
+}
+
+#perk_detail_top .breadcrumb li {
+	color: #777;
+	margin: 0;
+}
+
+@media (max-width: 960px) { 
+	#perk_detail_top .breadcrumb {
+		display: none;
 	}
 }
 
