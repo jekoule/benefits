@@ -17,6 +17,7 @@ def index(request, category=None):
         perk_list = Perk.objects.filter(category=category, active=True)
     else:
         perk_list = Perk.objects.filter(active=True)
+    perk_list = perk_list.order_by('-date_created')
     paginator = Paginator(perk_list, 12)
     page = request.GET.get('page')
     try:
