@@ -24,6 +24,6 @@ class Company(models.Model):
     def __unicode__(self):
         return self.name
 
-    @property
     def number_of_members(self):
-        return self.members.count
+        return self.members.count()
+    number_of_members.short_description = 'Количество сотрудников'

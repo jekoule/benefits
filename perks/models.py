@@ -6,6 +6,7 @@ from django.utils.crypto import get_random_string
 from django.db import models
 from django.core.exceptions import ObjectDoesNotExist
 from django.utils.safestring import mark_safe
+from geoposition.fields import GeopositionField
 
 from partners.models import Partner
 from tinymce.models import HTMLField
@@ -55,13 +56,13 @@ class Perk(models.Model):
     phone_number = models.CharField(max_length=200, verbose_name='Телефон',
                                     null=True, blank=True)
     website = models.URLField(verbose_name='Веб-сайт', null=True, blank=True)
+    geoposition = GeopositionField(verbose_name='Геолокация',
+                                   null=True, blank=True)
     active = models.BooleanField(default=True,
                                  verbose_name='Предложение активно')
     date_created = models.DateTimeField(null=True, blank=True,
                                         auto_now_add=True,
                                         verbose_name='Дата создания')
-    main_image = models.ImageField(upload_to='perks/',
-                                   verbose_name='Основная картинка')
 
     class Meta:
         verbose_name = 'Предложения'
@@ -72,7 +73,8 @@ class Perk(models.Model):
 
     @property
     def thumbnail(self):
-        return self.main_image.url
+        if self.images.first():
+            return self.images.first().img.url
 
     @models.permalink
     def get_absolute_url(self):
@@ -103,8 +105,8 @@ class PerkImage(models.Model):
     thumbnail.allow_tags = True
 
     class Meta:
-        verbose_name = 'Дополнительная картинка'
-        verbose_name_plural = 'Дополнительные картинки'
+        verbose_name = 'картинка'
+        verbose_name_plural = 'Картинки'
 
     def __unicode__(self):
         return self.img.url
