@@ -17,22 +17,22 @@
     <div class="blue-overlay"></div>
 </section>
 
-<section id="category_select">
+<section id="category_select" class="hidden-md hidden-lg">
 	<div class="btn-group">
 		<button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			Выбрать категорию <span class="caret"></span>
+      {% if active_category %}{{ active_category }}{% else %}Выбрать категорию {% endif %}<span class="caret"></span>
 		</button>
 		<ul class="dropdown-menu">
-			<li><a href="#">Все предложения</a></li>
+      <li><a href="{% url 'perks:index' %}#grid">Все предложения</a></li>
 			<li role="separator" class="divider"></li>
 			{% for category in categories %}
-			<li><a href="{{ category.get_absolute_url }}">{{ category.name }}</a></li>
+			<li><a href="{{ category.get_absolute_url }}#grid">{{ category.name }}</a></li>
 			{% endfor %}
 		</ul>
 	</div>
 </section>
 
-<nav id="category_menu" class="navbar navbar-default" data-spy="affix" data-offset-top="515">
+<nav id="category_menu" class="navbar navbar-default hidden-xs" data-spy="affix" data-offset-top="515">
   <div class="container">
     <ul class="nav nav-pills nav-justified">
     {% for category in categories %}
@@ -56,7 +56,7 @@
 <section id="grid">
 	<div class="container">
     	<div class="listing_header">
-        <a class="active" id="all_perks" href="{% url 'perks:index' %}#category_menu">Все предложения</a>
+        <a class="active hidden-xs" href="{% url 'perks:index' %}#category_menu">Все предложения</a>
 				<form class="navbar-form navbar-right perks-search" role="search">
 					<div class="form-group">
 						<input type="text" class="form-control" placeholder="Поиск по предложениям">

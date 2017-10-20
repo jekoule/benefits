@@ -3,6 +3,17 @@ html, body {
 	min-height: 100%;
 }
 
+.dataTables_wrapper thead {
+	background: #38ccff;
+}
+
+
+.dataTables_wrapper thead th {
+	font-weight: normal;
+	text-transform: none;
+	color: #111;
+}
+
 .dataTables_wrapper .pagination a {
 	font-size: 14px;
 }
@@ -35,9 +46,6 @@ html, body {
 }
 
 @media (max-width: 960px) { 
-	#all_perks {
-		display: none;
-	}
 	.perks-search {
 		display: inline-block;
 		float: right;
@@ -99,6 +107,7 @@ header .submit_listing .login_btn {
 
 @media (max-width: 960px) { 
 	header #navigation .nav.navbar-nav li{
+		float: left;
 		width:100%;
 	}
 }
@@ -161,27 +170,18 @@ header .submit_listing .login_btn {
 	display: none;
 }
 
-@media (max-width: 960px) { 
-	#category_menu {
-		display: none;
-	}
-}
-
-@media (min-width: 960px) { 
-	#category_select {
-		display: none;
-	}
-}
-
 #category_select .btn-group {
 	display: block;
 }
 
 #category_select .dropdown-toggle {
-	background: #333;
+	background: #fff;
+	color: #000;
+	font-weight: normal;
+	font-size: 12px;
 	width: 100%;
 	height: 50px;
-	border-radius: none;
+	border-radius: 0;
 }
 
 #grid {
@@ -328,12 +328,6 @@ header .submit_listing .login_btn {
 	margin: 0;
 }
 
-@media (max-width: 960px) { 
-	#perk_detail_top .breadcrumb {
-		display: none;
-	}
-}
-
 #perk_detail_top .perk_table {
 	background: #fff;
 	z-index: 1;
@@ -344,6 +338,10 @@ header .submit_listing .login_btn {
 #perk_detail_top .right_side {
 	box-sizing: border-box;
 	padding: 30px;
+}
+
+#perk_detail_top .right_side h1 {
+	font-size: 26px;
 }
 
 @media (min-width: 960px) {
@@ -391,7 +389,6 @@ header .submit_listing .login_btn {
 	}
 
 	#perk_detail_top .right_side h1 {
-		font-size: 26px;
 		margin-top: 0;
 	}
 	
@@ -437,7 +434,7 @@ header .submit_listing .login_btn {
 	width: 100%;
 	height: 20%;
 	position: relative;
-	border-top: 1px solid #999;
+	border-top: 1px solid #eee;
 }
 
 #perk_detail_top .get_perk_btn {

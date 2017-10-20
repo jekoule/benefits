@@ -5,7 +5,7 @@
 
 <section id="perk_detail_top" class="section-padding" style="background: url({% static 'img/doodles.png' %})">
 	<div class="container">
-    <ol class="breadcrumb">
+    <ol class="breadcrumb hidden-xs">
       <li><a href="{% url 'perks:index' %}">Все предложения</a></li>
       <li><a href="{{ perk.category.get_absolute_url }}">{{ perk.category.name }}</a></li>
       <li class="active">{{ perk.title }}</li>
@@ -38,7 +38,7 @@
                     {% endif %}
                   </div>
                   <div class="perk_buttons">
-                      <a href="{{request.META.HTTP_REFERER}}" class="btn back_to_perks_btn">
+                      <a href="{{request.META.HTTP_REFERER}}" class="btn back_to_perks_btn hidden-xs hidden-md">
                         <i class="fa fa-arrow-circle-left"></i> Назад
                       </a>
                       {% if perk.active %}

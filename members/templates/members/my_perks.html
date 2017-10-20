@@ -29,6 +29,57 @@
     <div class="dashboard-list-box">
       {% if transactions %}
       <h4>История получения предложений</h4>
+      {% for t in transactions %}
+      <div class="row">
+        <div class="col-md-3">
+          <a href="{{ t.perk.get_absolute_url }}"><img src="{{ t.perk.thumbnail }}" alt="{{ t.perk.title }}"></a>
+        </div>
+        <div class="col-md-5">
+          <h6><a href="{{ t.perk.get_absolute_url }}">{{ t.perk.title }}</a></h6>
+          <p>{{ t.perk.short_description }}</p>
+          <p>Партнер: <strong>{{ t.perk.partner.name }}</strong></p>
+        </div>
+        <div class="col-md-2">
+          <p>Дата получения:</p>
+          <p>{{ t.date_created }}</p>
+        </div>
+        <div class="col-md-2">
+          <p>Уникальный код:</p>
+          <p><strong>{{ t.code }}</strong></p>
+        </div>
+      </div>
+      {% endfor %}
+      <ul>
+        {% for t in transactions %}
+          <li>
+            <div class="list-box-listing">
+                <div class="list-box-listing-img">
+                  <a href="{{ t.perk.get_absolute_url }}"><img src="{{ t.perk.thumbnail }}" alt="{{ t.perk.title }}"></a>
+                </div>
+                <div class="list-box-listing-content">
+                  <div class="inner">
+                    <h3><a href="{{ t.perk.get_absolute_url }}">{{ t.perk.title }}</a></h3>
+                    <span>{{ t.perk.short_description }}</span>
+                  </div>
+                  <div class="buttons-to-right">
+                    <span class="button gray">Код: {{ t.code }}</span>
+                    <span>{{ t.date_created }}</span>
+                  </div>
+                </div>
+            </div>
+          </li>
+        {% endfor %} 
+      </ul> 
+      {% else %}
+      <h4>У вас пока нет полученных предложений</h4>
+      {% endif %}
+    </div>
+  </div>
+</div><div class="row">
+  <div class="col-md-12">
+    <div class="dashboard-list-box">
+      {% if transactions %}
+      <h4>История получения предложений</h4>
       <ul>
         {% for t in transactions %}
           <li>
