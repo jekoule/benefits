@@ -1,7 +1,10 @@
 Django==1.11.5
 django-crispy-forms==1.6.1
+django-geoposition==0.3.0
 django-tinymce==2.6.0
 olefile==0.44
 Pillow==4.2.1
 pkg-resources==0.0.0
+python-http-client==3.0.0
 pytz==2017.2
+sendgrid==5.2.0
