@@ -45,7 +45,7 @@ html, body {
 	display: block;
 }
 
-@media (max-width: 960px) { 
+@media (max-width: 760px) { 
 	.perks-search {
 		display: inline-block;
 		float: right;
@@ -105,7 +105,7 @@ header .submit_listing .login_btn {
 	color: #111;
 }
 
-@media (max-width: 960px) { 
+@media (max-width: 760px) { 
 	header #navigation .nav.navbar-nav li{
 		float: left;
 		width:100%;
@@ -307,9 +307,11 @@ header .submit_listing .login_btn {
 	padding: 0;
 }
 
-@media (max-width: 960px) { 
+@media (max-width: 968px) { 
 	#perk_detail_top .container {
 		padding: 0;
+		margin: 0;
+		width: 100%;
 	}
 }
 
@@ -328,6 +330,12 @@ header .submit_listing .login_btn {
 	margin: 0;
 }
 
+#perk_detail_top .breadcrumb_mobile {
+	margin: 0; 
+	border-radius: 0;
+	background: #fff;
+}
+
 #perk_detail_top .perk_table {
 	background: #fff;
 	z-index: 1;
@@ -344,7 +352,7 @@ header .submit_listing .login_btn {
 	font-size: 26px;
 }
 
-@media (min-width: 960px) {
+@media (min-width: 992px) {
 	
 	#perk_detail_top {
 		padding: 40px 0;
@@ -493,4 +501,10 @@ header .submit_listing .login_btn {
 	background: #fff;
 	padding: 40px;
 	border-radius: 3px;
+}
+
+@media (max-width: 760px) {
+	#result {
+		padding: 0;
+	}
 }

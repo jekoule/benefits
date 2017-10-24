@@ -141,9 +141,10 @@
 
 {% block extra_js %}
 <script type="text/javascript" src="{% static 'js/datatables.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/dataTables.buttons.min.js' %}"></script>
 <script type="text/javascript">
 $(document).ready( function () {
-    $('#employees_table').DataTable({
+    var table = $('#employees_table').DataTable({
 			"language": {
 					"decimal":        "",
 					"emptyTable":     "У Вас пока нет сотрудников",
@@ -163,8 +164,15 @@ $(document).ready( function () {
 							"next":       "Вперед",
 							"previous":   "Назад"
 					}
-			}
+			},
+      "paging": false,
+      buttons: [
+      { text: "<i class='fa fa-plus-circle'></i>  Добавить сотрудников", action: "", className: "btn btn-sm"},
+      { text: "<i class='fa fa-trash'></i>  Удалить выбранных", action: "", className: "btn btn-sm red"},
+        ],
     });
+    table.buttons().container()
+          .appendTo( $('.col-sm-6:eq(0)', table.table().container() ) );
 } );
 </script>
 {% if messages %}
