@@ -1,11 +1,7 @@
 # -*- coding: utf-8 -*-
-import hashlib
-import random
 import csv
 import re
-from django.core.mail import send_mail
 from django.db import IntegrityError
-from django.urls import reverse
 from django.contrib.auth import get_user_model
 from django.contrib import messages
 from members.models import Member
@@ -18,28 +14,11 @@ def create_member(email, company):
     password = User.objects.make_random_password()
     user.set_password(password)
     user.save()
-    # Generating activation key
-    # First generate random part as a result of hashing random string
-    random_part = hashlib.sha256(str(random.random())).hexdigest()[:5]
-    hashable = random_part + user.email.encode('utf-8')
-    # Then create hash for random_part and email
-    activation_token = hashlib.sha256(hashable).hexdigest()
-    # then create member itself
-    member = Member(
-        user=user,
-        company=company,
-        activation_token=activation_token)
+    member = Member(user=user, company=company)
     member.save()
+    member.generate_token()
     # Finally send an email to member with an invitation to activate account
-    activation_link = 'http://127.0.0.1:8000' + \
-        reverse('members:activate') + \
-        '?pk={pk}&token={token}'.format(pk=member.pk, token=activation_token)
-    send_mail(
-        'Активация аккаунта Benefits',
-        activation_link,
-        'noreply@benefits.kz',
-        [user.email]
-    )
+    member.notify_activation()
 
 
 def create_member_multiple(request, emails, company):
