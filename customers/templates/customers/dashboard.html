@@ -33,44 +33,37 @@
 </div>
 
 <div class="row">
-  <div class="dashboard-info-box">
-      <div class="dashboard-info color-1">
-          <h4>153</h4> <span>Предложений использовано</span>
-      </div>
-      <div class="dashboard-info color-4">
-          <h4>89</h4> <span>Активных сотрудников</span>
-      </div>
-      <div class="dashboard-info color-5">
-          <h4>85%</h4> <span>Используют сервис</span>
-      </div>
+  <div class="col-md-12">
+    <div class="dashboard-info-box">
+        <div class="dashboard-info color-1">
+            <h4>153</h4> <span>Предложений использовано</span>
+        </div>
+        <div class="dashboard-info color-4">
+            <h4>89</h4> <span>Активных сотрудников</span>
+        </div>
+        <div class="dashboard-info color-5">
+            <h4>85%</h4> <span>Используют сервис</span>
+        </div>
+    </div>
   </div>
 </div>
 
 <hr>
 
 <div class="row">
-  <div class="col-md-6">
-    <h4>Сотрудники</h4> 
-  </div>
-  <div class="col-md-6">
-    <a href="{% url 'customers:add_members' %}" class="btn active btn-sm pull-right">
-      <i class="fa fa-plus-circle"></i>&nbsp; Добавить сотрудников
-    </a>
-  </div>
-</div>
-
-<div class="row">
   <div class="col-md-12">
+    <h4>Сотрудники</h4> 
     <form action="{% url 'customers:delete_members' %}" method="POST">
     {% csrf_token %}
-    <table id="employees_table" class="table table-bordered table-hover">
-      <thead class="bg-info">
+    <table id="employees_table" data-order='[[ 0, "asc" ]]' data-page-length='10' class="table table-bordered table-hover">
+        <thead class="bg-info">
         <tr>
           <th class="col-md-1">#</th>
           <th class="col-md-3">Email</th>
-          <th class="col-md-3">Имя</th>
-          <th class="col-md-3">Фамилия</th>
-          <th class="col-md-1">Активен?</th>
+          <th class="col-md-2">Имя</th>
+          <th class="col-md-2">Фамилия</th>
+          <th class="col-md-2">Статус</th>
+          <th class="col-md-1">Доступ</th>
           <th class="col-md-1"></th>
         </tr>
       </thead>
@@ -79,8 +72,15 @@
         <tr>
           <td>{{ forloop.counter }}</td>
           <td>{{ member.email }}</td>
-          <td>{{ member.first_name }}</td>
-          <td>{{ member.last_name }}</td>
+          <td>{{ member.first_name|default:'-' }}</td>
+          <td>{{ member.last_name|default:'-' }}</td>
+          <td>
+            {% if member.is_active %}
+            <span class="label label-success">Активен</span>
+            {% else %} 
+            <span class="label label-default">Ожидает регистрации</span>
+            {% endif %}
+          </td>
           <td>
             {% if member.is_active %}
             <span class="label label-success">Да</span>
@@ -92,7 +92,13 @@
             {% if member.is_admin %}
             <span class="label label-warning">Администратор</span> 
             {% else %}
-            <input type="checkbox" name="to_delete" value="{{ member.pk }}">
+              {% if member.is_active %}
+              <a href="" class="text-warning"><i class='fa fa-power-off'></i> Отключить</a>
+              {% else %}
+              <a href="" class="text-danger"><i class='fa fa-trash'></i> Удалить</a>
+              {% endif %}
+              <!--<input type="checkbox" name="to_delete" value="{{ member.pk }}">-->
+
             {% endif %}
           </td>
         </tr>
@@ -165,11 +171,16 @@ $(document).ready( function () {
 							"previous":   "Назад"
 					}
 			},
-      "paging": false,
+      "lengthChange": false,
       buttons: [
-      { text: "<i class='fa fa-plus-circle'></i>  Добавить сотрудников", action: "", className: "btn btn-sm"},
-      { text: "<i class='fa fa-trash'></i>  Удалить выбранных", action: "", className: "btn btn-sm red"},
-        ],
+          {
+            text: '<i class="fa fa-plus"></i> Добавить',
+            action: function ( e, dt, button, config ) {
+              window.location = "{% url 'customers:add_members' %}";
+            },
+            className: "btn btn-sm",
+          }
+      ]
     });
     table.buttons().container()
           .appendTo( $('.col-sm-6:eq(0)', table.table().container() ) );

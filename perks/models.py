@@ -24,7 +24,7 @@ class PerkCategory(models.Model):
         verbose_name = 'Категория'
         verbose_name_plural = 'Категории'
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
     def render_icon(self):
@@ -68,7 +68,7 @@ class Perk(models.Model):
         verbose_name = 'Предложения'
         verbose_name_plural = 'Предложения'
 
-    def __unicode__(self):
+    def __str__(self):
         return self.title
 
     @property
@@ -108,7 +108,7 @@ class PerkImage(models.Model):
         verbose_name = 'картинка'
         verbose_name_plural = 'Картинки'
 
-    def __unicode__(self):
+    def __str__(self):
         return self.img.url
 
 
@@ -139,5 +139,5 @@ class Transaction(models.Model):
         verbose_name = 'Транзакция'
         verbose_name_plural = 'Транзакции'
 
-    def __unicode__(self):
+    def __str__(self):
         return self.code

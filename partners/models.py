@@ -18,5 +18,5 @@ class Partner(models.Model):
         verbose_name = 'Партнер'
         verbose_name_plural = 'Партнеры'
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name

@@ -40,7 +40,7 @@
         <div class="category_item">
           <a href="{{ category.get_absolute_url }}">
             <div class="category_icon">
-            {{ category.render_icon }}
+            {{ category.render_icon|safe }}
             </div>
             <p>
             {{ category.name }}

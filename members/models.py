@@ -9,6 +9,7 @@ from django.core.validators import RegexValidator
 from django.urls import reverse
 import sendgrid
 from sendgrid.helpers.mail import Mail, Email, Personalization, Substitution
+import urllib.request as urllib
 from customers.models import Company
 
 sg = sendgrid.SendGridAPIClient(
@@ -41,7 +42,7 @@ class Member(models.Model):
         verbose_name = 'Сотрудник'
         verbose_name_plural = 'Сотрудники'
 
-    def __unicode__(self):
+    def __str__(self):
         return self.user.email
 
     def generate_token(self):
@@ -86,7 +87,14 @@ class Member(models.Model):
         )
         mail.add_personalization(personalization)
         mail.template_id = settings.SENDGRID_TEMPLATES['activation']
-        sg.client.mail.send.post(request_body=mail.get())
+        try:
+            response = sg.client.mail.send.post(request_body=mail.get())
+        except urllib.HTTPError as e:
+            print(e.read())
+            exit()
+        print(response.status_code)
+        print(response.body)
+        print(response.headers)
 
     def notify_registration_complete(self):
         mail = Mail()
@@ -96,4 +104,11 @@ class Member(models.Model):
         #personalization.add_to(Email(self.user.email))
         mail.add_personalization(personalization)
         mail.template_id = settings.SENDGRID_TEMPLATES['registration_complete']
-        sg.client.mail.send.post(request_body=mail.get())
+        try:
+            response = sg.client.mail.send.post(request_body=mail.get())
+        except urllib.HTTPError as e:
+            print(e.read())
+            exit()
+        print(response.status_code)
+        print(response.body)
+        print(response.headers)

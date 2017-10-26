@@ -21,7 +21,7 @@ class Company(models.Model):
         verbose_name = 'Компания'
         verbose_name_plural = 'Компании'
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
     def number_of_members(self):
