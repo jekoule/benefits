@@ -16,8 +16,7 @@
     <li><a href="{% url 'members:my_perks' %}"><i class="fa fa-gift"></i> Мои предложения</a></li>
     <li><a id="MLabel" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user-o"></i> Аккаунт</a>
       <ul class="dropdown-menu" aria-labelledby="MLabel">
-        <li><a href="{% url 'members:edit_info' %}"><i class="fa fa-edit"></i> Редактировать</a></li>
-        <li><a href="{% url 'members:change_password' %}"><i class="fa fa-key"></i> Сменить пароль</a></li>
+        <li><a href="{% url 'members:edit_info' %}"><i class="fa fa-edit"></i> Редактировать</a></li> <li><a href="{% url 'members:change_password' %}"><i class="fa fa-key"></i> Сменить пароль</a></li>
       </ul>	
     </li>
     <li><a href="{% url 'members:logout' %}"><i class="fa fa-power-off"></i> Выйти</a></li>
@@ -27,7 +26,7 @@
 <div id="titlebar">
   <div class="row">
     <div class="col-md-12">
-      <h2>{{ company.name }} <small>&emsp;Показатели</small></h2>
+      <h2>Статистика<small>&emsp;{{ company.name }}</small></h2>
     </div>
   </div>
 </div>
@@ -36,13 +35,13 @@
   <div class="col-md-12">
     <div class="dashboard-info-box">
         <div class="dashboard-info color-1">
-            <h4>153</h4> <span>Предложений использовано</span>
+          <h4>{{ company.transactions_count }}</h4> <span>Предложений использовано</span>
         </div>
         <div class="dashboard-info color-4">
-            <h4>89</h4> <span>Активных сотрудников</span>
+          <h4>{{ company.active_members_count }}</h4> <span>Активных аккаунтов</span>
         </div>
         <div class="dashboard-info color-5">
-            <h4>85%</h4> <span>Используют сервис</span>
+          <h4>{{ company.pending_registration_count }}</h4> <span>Ожидают регистрации</span>
         </div>
     </div>
   </div>
@@ -50,66 +49,51 @@
 
 <hr>
 
+<div id="titlebar">
+  <div class="row">
+    <div class="col-md-12">
+      <h2>Сотрудники</h2>
+    </div>
+  </div>
+</div>
+
 <div class="row">
   <div class="col-md-12">
-    <h4>Сотрудники</h4> 
-    <form action="{% url 'customers:delete_members' %}" method="POST">
-    {% csrf_token %}
     <table id="employees_table" data-order='[[ 0, "asc" ]]' data-page-length='10' class="table table-bordered table-hover">
         <thead class="bg-info">
         <tr>
           <th class="col-md-1">#</th>
           <th class="col-md-3">Email</th>
-          <th class="col-md-2">Имя</th>
-          <th class="col-md-2">Фамилия</th>
-          <th class="col-md-2">Статус</th>
-          <th class="col-md-1">Доступ</th>
-          <th class="col-md-1"></th>
+          <th class="col-md-4">Фамилия, Имя</th>
+          <th class="col-md-2">Доступ к сервису</th>
+          <th class="col-md-2"></th>
         </tr>
       </thead>
       <tbody>
         {% for member in company.members.all %}
-        <tr>
+        <tr id="row_{{ member.pk }}" {% if not member.enabled %}class="bg-danger"{% endif %}>
           <td>{{ forloop.counter }}</td>
           <td>{{ member.email }}</td>
-          <td>{{ member.first_name|default:'-' }}</td>
-          <td>{{ member.last_name|default:'-' }}</td>
+          <td>{{ member.full_name|default:'<span class="label label-warning">Ожидает регистрации</span>' }}</td>
           <td>
-            {% if member.is_active %}
+            {% if member.enabled %}
             <span class="label label-success">Активен</span>
             {% else %} 
-            <span class="label label-default">Ожидает регистрации</span>
-            {% endif %}
-          </td>
-          <td>
-            {% if member.is_active %}
-            <span class="label label-success">Да</span>
-            {% else %} 
-            <span class="label label-default">Нет</span>
+            <span class="label label-default"><b>Отключен</b></span>
             {% endif %}
           </td>
           <td>
             {% if member.is_admin %}
-            <span class="label label-warning">Администратор</span> 
+              <span class="label label-info">Администратор</span> 
             {% else %}
-              {% if member.is_active %}
-              <a href="" class="text-warning"><i class='fa fa-power-off'></i> Отключить</a>
-              {% else %}
-              <a href="" class="text-danger"><i class='fa fa-trash'></i> Удалить</a>
-              {% endif %}
-              <!--<input type="checkbox" name="to_delete" value="{{ member.pk }}">-->
-
+              <a href="" class="text-warning btn_disable switch_member" data-pk="{{ member.pk }}" {% if not member.enabled %}hidden{% endif %}><i class='fa fa-ban'></i> Отключить</a>
+              <a href="" class="text-primary btn_enable switch_member" data-pk="{{ member.pk }}" {% if member.enabled %}hidden{% endif %}><i class='fa fa-plug'></i> Включить</a>
             {% endif %}
           </td>
         </tr>
         {% endfor %}
       </tbody>
     </table>
-		<hr>
-    <button type="submit" class="btn red btn-sm">
-      <i class="fa fa-trash"></i>&nbsp; Удалить выбранных сотрудников
-    </button>
-    </form>
   </div>
 </div>
 <br>
@@ -149,6 +133,25 @@
 <script type="text/javascript" src="{% static 'js/datatables.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/dataTables.buttons.min.js' %}"></script>
 <script type="text/javascript">
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+function csrfSafeMethod(method) {
+    // these HTTP methods do not require CSRF protection
+    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+}
 $(document).ready( function () {
     var table = $('#employees_table').DataTable({
 			"language": {
@@ -174,7 +177,7 @@ $(document).ready( function () {
       "lengthChange": false,
       buttons: [
           {
-            text: '<i class="fa fa-plus"></i> Добавить',
+            text: '<i class="fa fa-plus"></i> Добавить сотрудников',
             action: function ( e, dt, button, config ) {
               window.location = "{% url 'customers:add_members' %}";
             },
@@ -184,6 +187,66 @@ $(document).ready( function () {
     });
     table.buttons().container()
           .appendTo( $('.col-sm-6:eq(0)', table.table().container() ) );
+		var csrftoken = getCookie('csrftoken');
+    $(".delete_member").click(function() {
+			if (confirm('Удалить выбранного сотрудника?')) {
+				$.ajax({
+					beforeSend: function(xhr, settings) {
+							if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+									xhr.setRequestHeader("X-CSRFToken", csrftoken);
+							}
+					},
+					type: "POST",
+					url: "{% url 'customers:delete_member_ajax' %}",
+					data: {
+						'pk': $(this).attr('id')
+					}
+				});
+				$(this).closest('tr').remove();
+			};
+    });
+    $(".btn_enable").click(function() {
+      event.preventDefault();
+      if (confirm('Включить доступ к сервису для данного сотрудника?')) {
+				$.ajax({
+					beforeSend: function(xhr, settings) {
+							if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+									xhr.setRequestHeader("X-CSRFToken", csrftoken);
+							}
+					},
+					type: "POST",
+					url: "{% url 'customers:switch_status_ajax' %}",
+					data: {
+						'pk': $(this).attr('data-pk')
+					}
+				});
+        $(this).hide();
+        $(this).siblings('.btn_disable').show();
+        $(this).parent().prev().html('<span class="label label-success">Активен</span>');
+        $(this).closest('tr').removeClass('bg-danger');
+      };
+    });
+    $(".btn_disable").click(function() {
+      event.preventDefault();
+      if (confirm('Отключить доступ к сервису для данного сотрудника?')) {
+				$.ajax({
+					beforeSend: function(xhr, settings) {
+							if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+									xhr.setRequestHeader("X-CSRFToken", csrftoken);
+							}
+					},
+					type: "POST",
+					url: "{% url 'customers:switch_status_ajax' %}",
+					data: {
+						'pk': $(this).attr('data-pk')
+					}
+				});
+        $(this).hide();
+        $(this).siblings('.btn_enable').show();
+        $(this).parent().prev().html('<span class="label label-default">Отключен</span>');
+        $(this).closest('tr').addClass('bg-danger');
+      };
+    });
 } );
 </script>
 {% if messages %}

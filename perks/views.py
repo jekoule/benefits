@@ -3,7 +3,6 @@ from __future__ import unicode_literals
 
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import user_passes_test
-from django.core.mail import send_mail
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.generic.detail import DetailView
 
@@ -51,9 +50,6 @@ def get_perk(request, pk):
     transaction = Transaction(member=request.user.member,
                               perk=perk)
     transaction.save()
-    subject, from_email = 'Код', 'info@benefits.kz'
-    to_email = [request.user.email]
-    text = 'Ваш код транзакции: %s' % transaction.code
-    send_mail(subject, text, from_email, to_email)
+    transaction.notify_member()
     return render(request, 'perks/result.html',
                   {'transaction_code': transaction.code})

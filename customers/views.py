@@ -4,7 +4,8 @@ from __future__ import unicode_literals
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import user_passes_test
 from members.models import Member
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse, \
+    HttpResponseForbidden
 from django.core.exceptions import ObjectDoesNotExist
 from .utils import create_members_from_list, create_members_from_file
 
@@ -35,6 +36,36 @@ def delete_members(request):
                 member.user.delete()
                 # delete User & Member instance
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+
+@user_passes_test(is_admin, login_url='members:sign_in')
+def delete_member_ajax(request):
+    if request.is_ajax():
+        if request.method == 'POST':
+            member_pk = request.POST.get('pk')
+            try:
+                member = Member.objects.get(pk=member_pk)
+            except ObjectDoesNotExist:
+                pass
+            else:
+                member.user.delete()
+            return HttpResponse(request.META.get('HTTP_REFERER'))
+    return HttpResponseForbidden()
+
+
+@user_passes_test(is_admin, login_url='members:sign_in')
+def switch_status_ajax(request):
+    if request.is_ajax():
+        if request.method == 'POST':
+            member_pk = request.POST.get('pk')
+            try:
+                member = Member.objects.get(pk=member_pk)
+            except ObjectDoesNotExist:
+                pass
+            else:
+                member.switch_status()
+            return HttpResponse(request.META.get('HTTP_REFERER'))
+    return HttpResponseForbidden()
 
 
 @user_passes_test(is_admin, login_url='members:sign_in')

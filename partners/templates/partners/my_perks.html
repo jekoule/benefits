@@ -24,17 +24,17 @@
 </div>
 
 <div class="row">
-  <div class="dashboard-info-box">
-      <div class="dashboard-info color-1">
-        <h4>{{ perks.count }}</h4> <span>Активных предложений</span>
-      </div>
-      <div class="dashboard-info color-4">
-        <h4>{{ transactions_count }}</h4> <span>Использований</span>
-      </div>
+  <div class="col-md-12">
+    <div class="dashboard-info-box">
+        <div class="dashboard-info color-1">
+          <h4>{{ perks.count }}</h4> <span>Активных предложений</span>
+        </div>
+        <div class="dashboard-info color-4">
+          <h4>{{ transactions_count }}</h4> <span>Использований</span>
+        </div>
+    </div>
   </div>
 </div>
-
-<hr>
 
 <div class="row">			
   <div class="col-md-12">
@@ -59,27 +59,27 @@
           </tr>
           <tr>
             <td><strong>Краткое описание</strong></td> 
-            <td><p>{{ perk.short_description }}</p></td>
+            <td><p>{{ perk.short_description|default:"-" }}</p></td>
           </tr>
           <tr>
             <td><strong>Полное описание</strong></td> 
-            <td>{{ perk.full_description|safe }}</p></td>
+            <td>{{ perk.full_description|safe|default:"-" }}</p></td>
           </tr>
           <tr>
             <td><strong>Адрес</strong></td> 
-            <td><p>{{ perk.address }}</p></td>
+            <td><p>{{ perk.address|default:"-" }}</p></td>
           </tr>
           <tr>
             <td><strong>Телефон</strong></td> 
-            <td><p>{{ perk.phone_number }}</p></td>
+            <td><p>{{ perk.phone_number|default:"-" }}</p></td>
           </tr>
           <tr>
             <td><strong>Веб-сайт</strong></td> 
-            <td><p>{{ perk.website }}</p></td>
+            <td><p>{{ perk.website|default:"-" }}</p></td>
           </tr>
           <tr>
             <td><strong>Дата создания</strong></td> 
-            <td><p>{{ perk.date_created }}</p></td>
+            <td><p>{{ perk.date_created|default:"-" }}</p></td>
           </tr>
         </tbody>
       </table>

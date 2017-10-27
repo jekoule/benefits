@@ -6,11 +6,19 @@ from django.utils.crypto import get_random_string
 from django.db import models
 from django.core.exceptions import ObjectDoesNotExist
 from django.utils.safestring import mark_safe
+from django.conf import settings
 from geoposition.fields import GeopositionField
+import sendgrid
+from sendgrid.helpers.mail import Mail, Email, Personalization, Substitution
+import urllib.request as urllib
 
 from partners.models import Partner
 from tinymce.models import HTMLField
 from members.models import Member
+
+sg = sendgrid.SendGridAPIClient(
+    apikey=settings.SENDGRID_API_KEY
+)
 
 
 class PerkCategory(models.Model):
@@ -141,3 +149,20 @@ class Transaction(models.Model):
 
     def __str__(self):
         return self.code
+
+    def notify_member(self):
+        mail = Mail()
+        mail.from_email = Email('info@benefits.kz')
+        personalization = Personalization()
+        personalization.add_to(Email('o.arystanov@gmail.com'))
+        #personalization.add_to(Email(self.member.user.email))
+        mail.add_personalization(personalization)
+        mail.template_id = settings.SENDGRID_TEMPLATES['activation']
+        try:
+            response = sg.client.mail.send.post(request_body=mail.get())
+        except urllib.HTTPError as e:
+            print(e.read())
+            exit()
+        print(response.status_code)
+        print(response.body)
+        print(response.headers)

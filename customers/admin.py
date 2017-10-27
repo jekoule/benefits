@@ -18,7 +18,8 @@ class MemberInline(admin.TabularInline):
 
 
 class CompanyAdmin(admin.ModelAdmin):
-    readonly_fields = ('number_of_members',)
+    readonly_fields = ('total_members_count', 'active_members_count',
+                       'transactions_count',)
     inlines = (MemberInline,)
 
 

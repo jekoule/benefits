@@ -4,6 +4,7 @@ import re
 from django.db import IntegrityError
 from django.contrib.auth import get_user_model
 from django.contrib import messages
+from io import TextIOWrapper
 from members.models import Member
 User = get_user_model()
 
@@ -52,6 +53,7 @@ def create_members_from_list(request, list, company):
 
 
 def create_members_from_file(request, file, company):
-    reader = csv.reader(file)
+    f = TextIOWrapper(file, encoding='utf-8')
+    reader = csv.reader(f)
     emails = [row[0] for row in reader]
     create_member_multiple(request, emails, company)

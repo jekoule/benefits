@@ -10,6 +10,7 @@ from django.urls import reverse
 import sendgrid
 from sendgrid.helpers.mail import Mail, Email, Personalization, Substitution
 import urllib.request as urllib
+
 from customers.models import Company
 
 sg = sendgrid.SendGridAPIClient(
@@ -37,10 +38,13 @@ class Member(models.Model):
                                      null=True)
     activation_token = models.CharField(max_length=200, verbose_name='Токен',
                                         editable=False)
+    enabled = models.BooleanField(default=True, editable=False,
+                                  verbose_name='Включен')
 
     class Meta:
         verbose_name = 'Сотрудник'
         verbose_name_plural = 'Сотрудники'
+        ordering = ['-enabled', 'pk']
 
     def __str__(self):
         return self.user.email
@@ -48,15 +52,33 @@ class Member(models.Model):
     def generate_token(self):
         # Generating activation key
         # First generate random part as a result of hashing random string
-        random_part = hashlib.sha256(str(random.random())).hexdigest()[:5]
-        hashable = random_part + self.user.email.encode('utf-8')
+        random_string = str(random.random()).encode('utf-8')
+        random_part = hashlib.sha256(random_string).hexdigest()[:5]
+        hashable = random_part.encode('utf-8') + \
+            self.user.email.encode('utf-8')
         # Then create hash for random_part and email
         self.activation_token = hashlib.sha256(hashable).hexdigest()
         self.save()
 
+    def switch_status(self):
+        if self.enabled:
+            self.enabled = False
+        else:
+            self.enabled = True
+        self.save()
+
+    @property
+    def full_name(self):
+        if self.last_name and self.first_name:
+            return self.last_name + ' ' + self.first_name
+
     @property
     def email(self):
         return self.user.email
+
+    @property
+    def transactions_count(self):
+        return self.transactions.count()
 
     def activate(self):
         user = self.user

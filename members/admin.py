@@ -6,7 +6,7 @@ from .models import Member
 
 
 class MemberAdmin(admin.ModelAdmin):
-    readonly_fields = ('is_active', 'is_admin', 'activation_token')
+    readonly_fields = ('is_active', 'is_admin', 'enabled', 'activation_token')
 
     def is_active(self, object):
         return object.is_active
