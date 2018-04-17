@@ -9,18 +9,18 @@
 {% block navbar-title %}Панель управления{% endblock %}
 
 {% block dashboard-nav %}
-  <ul>
-    {% if request.user.is_company_admin %}
-    <li class="active"><a href="{% url 'customers:dashboard' %}"><i class="fa fa-cogs"></i> Панель управления</a></li>
-    {% endif %}
-    <li><a href="{% url 'members:my_perks' %}"><i class="fa fa-gift"></i> Мои предложения</a></li>
-    <li><a id="MLabel" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user-o"></i> Аккаунт</a>
-      <ul class="dropdown-menu" aria-labelledby="MLabel">
-        <li><a href="{% url 'members:edit_info' %}"><i class="fa fa-edit"></i> Редактировать</a></li> <li><a href="{% url 'members:change_password' %}"><i class="fa fa-key"></i> Сменить пароль</a></li>
-      </ul>	
-    </li>
-    <li><a href="{% url 'members:logout' %}"><i class="fa fa-power-off"></i> Выйти</a></li>
-  </ul>	
+<ul>
+  {% if request.user.is_company_admin %}
+  <li class="active"><a href="{% url 'customers:dashboard' %}"><i class="fa fa-cogs"></i> Панель управления</a></li>
+  {% endif %}
+  <li><a href="{% url 'members:my_perks' %}"><i class="fa fa-gift"></i> Мои предложения</a></li>
+  <li><a id="MLabel" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user-o"></i> Аккаунт</a>
+    <ul class="dropdown-menu" aria-labelledby="MLabel">
+      <li><a href="{% url 'members:edit_info' %}"><i class="fa fa-edit"></i> Редактировать</a></li> <li><a href="{% url 'members:change_password' %}"><i class="fa fa-key"></i> Сменить пароль</a></li>
+    </ul>	
+  </li>
+  <li><a href="{% url 'members:logout' %}"><i class="fa fa-power-off"></i> Выйти</a></li>
+</ul>	
 {% endblock %}
 {% block dashboard-content %}
 <div id="titlebar">
@@ -34,15 +34,15 @@
 <div class="row">
   <div class="col-md-12">
     <div class="dashboard-info-box">
-        <div class="dashboard-info color-1">
-          <h4>{{ company.transactions_count }}</h4> <span>Предложений использовано</span>
-        </div>
-        <div class="dashboard-info color-4">
-          <h4>{{ company.active_members_count }}</h4> <span>Активных аккаунтов</span>
-        </div>
-        <div class="dashboard-info color-5">
-          <h4>{{ company.pending_registration_count }}</h4> <span>Ожидают регистрации</span>
-        </div>
+      <div class="dashboard-info color-1">
+        <h4>{{ company.transactions_count }}</h4> <span>Предложений использовано</span>
+      </div>
+      <div class="dashboard-info color-4">
+        <h4>{{ company.active_members_count }}</h4> <span>Активных аккаунтов</span>
+      </div>
+      <div class="dashboard-info color-5">
+        <h4>{{ company.pending_registration_count }}</h4> <span>Ожидают регистрации</span>
+      </div>
     </div>
   </div>
 </div>
@@ -60,7 +60,7 @@
 <div class="row">
   <div class="col-md-12">
     <table id="employees_table" data-order='[[ 0, "asc" ]]' data-page-length='10' class="table table-bordered table-hover">
-        <thead class="bg-info">
+      <thead class="bg-info">
         <tr>
           <th class="col-md-1">#</th>
           <th class="col-md-3">Email</th>
@@ -84,10 +84,10 @@
           </td>
           <td>
             {% if member.is_admin %}
-              <span class="label label-info">Администратор</span> 
+            <span class="label label-info">Администратор</span> 
             {% else %}
-              <a href="" class="text-warning btn_disable switch_member" data-pk="{{ member.pk }}" {% if not member.enabled %}hidden{% endif %}><i class='fa fa-ban'></i> Отключить</a>
-              <a href="" class="text-primary btn_enable switch_member" data-pk="{{ member.pk }}" {% if member.enabled %}hidden{% endif %}><i class='fa fa-plug'></i> Включить</a>
+            <a href="" class="text-warning btn_disable switch_member" data-pk="{{ member.pk }}" {% if not member.enabled %}hidden{% endif %}><i class='fa fa-ban'></i> Отключить</a>
+            <a href="" class="text-primary btn_enable switch_member" data-pk="{{ member.pk }}" {% if member.enabled %}hidden{% endif %}><i class='fa fa-plug'></i> Включить</a>
             {% endif %}
           </td>
         </tr>
@@ -102,29 +102,29 @@
 {% block modal %}
 
 <div id="myModal" class="modal fade" role="dialog">
-		<div class="modal-dialog">
-			<!-- Modal content-->
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-				</div>
-				<div class="modal-body col-md-12">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body col-md-12">
         {% if messages %}
-          {% for message in messages %}
-          <p class="{{ message.tags }}">
-            <strong>
-            {{ message }}
-            </strong>
-          </p>
-          {% endfor %}
+        {% for message in messages %}
+        <p class="{{ message.tags }}">
+        <strong>
+          {{ message }}
+        </strong>
+        </p>
+        {% endfor %}
         {% endif %}
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Закрыть окно</button>
-				</div>
-			</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть окно</button>
+      </div>
+    </div>
 
-		</div>
+  </div>
 </div>
 
 {% endblock %}
@@ -133,127 +133,127 @@
 <script type="text/javascript" src="{% static 'js/datatables.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/dataTables.buttons.min.js' %}"></script>
 <script type="text/javascript">
-function getCookie(name) {
+  function getCookie(name) {
     var cookieValue = null;
     if (document.cookie && document.cookie !== '') {
-        var cookies = document.cookie.split(';');
-        for (var i = 0; i < cookies.length; i++) {
-            var cookie = jQuery.trim(cookies[i]);
-            // Does this cookie string begin with the name we want?
-            if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                break;
-            }
+      var cookies = document.cookie.split(';');
+      for (var i = 0; i < cookies.length; i++) {
+        var cookie = jQuery.trim(cookies[i]);
+        // Does this cookie string begin with the name we want?
+        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+          break;
         }
+      }
     }
     return cookieValue;
-}
+  }
 function csrfSafeMethod(method) {
-    // these HTTP methods do not require CSRF protection
-    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+  // these HTTP methods do not require CSRF protection
+  return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
 }
 $(document).ready( function () {
-    var table = $('#employees_table').DataTable({
-			"language": {
-					"decimal":        "",
-					"emptyTable":     "У Вас пока нет сотрудников",
-					"info":           "Показано _START_ - _END_ из _TOTAL_ записей",
-					"infoEmpty":      "Показано 0 - 0 из 0 записей",
-					"infoFiltered":   "(фильтр из всего _MAX_ записей)",
-					"infoPostFix":    "",
-					"thousands":      ",",
-					"lengthMenu":     "Показывать _MENU_ на странице",
-					"loadingRecords": "Загрузка...",
-					"processing":     "Обработка запроса...",
-					"search":         "Поиск:",
-					"zeroRecords":    "Ничего не найдено",
-					"paginate": {
-							"first":      "Начало",
-							"last":       "Конец",
-							"next":       "Вперед",
-							"previous":   "Назад"
-					}
-			},
-      "lengthChange": false,
-      buttons: [
-          {
-            text: '<i class="fa fa-plus"></i> Добавить сотрудников',
-            action: function ( e, dt, button, config ) {
-              window.location = "{% url 'customers:add_members' %}";
-            },
-            className: "btn btn-sm",
+  var table = $('#employees_table').DataTable({
+    "language": {
+      "decimal":        "",
+      "emptyTable":     "У Вас пока нет сотрудников",
+      "info":           "Показано _START_ - _END_ из _TOTAL_ записей",
+      "infoEmpty":      "Показано 0 - 0 из 0 записей",
+      "infoFiltered":   "(фильтр из всего _MAX_ записей)",
+      "infoPostFix":    "",
+      "thousands":      ",",
+      "lengthMenu":     "Показывать _MENU_ на странице",
+      "loadingRecords": "Загрузка...",
+      "processing":     "Обработка запроса...",
+      "search":         "Поиск:",
+      "zeroRecords":    "Ничего не найдено",
+      "paginate": {
+        "first":      "Начало",
+        "last":       "Конец",
+        "next":       "Вперед",
+        "previous":   "Назад"
+      }
+    },
+    "lengthChange": false,
+    buttons: [
+      {
+        text: '<i class="fa fa-plus"></i> Добавить сотрудников',
+        action: function ( e, dt, button, config ) {
+          window.location = "{% url 'customers:add_members' %}";
+        },
+        className: "btn btn-sm",
+      }
+    ]
+  });
+  table.buttons().container()
+    .appendTo( $('.col-sm-6:eq(0)', table.table().container() ) );
+  var csrftoken = getCookie('csrftoken');
+  $(".delete_member").click(function() {
+    if (confirm('Удалить выбранного сотрудника?')) {
+      $.ajax({
+        beforeSend: function(xhr, settings) {
+          if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+            xhr.setRequestHeader("X-CSRFToken", csrftoken);
           }
-      ]
-    });
-    table.buttons().container()
-          .appendTo( $('.col-sm-6:eq(0)', table.table().container() ) );
-		var csrftoken = getCookie('csrftoken');
-    $(".delete_member").click(function() {
-			if (confirm('Удалить выбранного сотрудника?')) {
-				$.ajax({
-					beforeSend: function(xhr, settings) {
-							if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
-									xhr.setRequestHeader("X-CSRFToken", csrftoken);
-							}
-					},
-					type: "POST",
-					url: "{% url 'customers:delete_member_ajax' %}",
-					data: {
-						'pk': $(this).attr('id')
-					}
-				});
-				$(this).closest('tr').remove();
-			};
-    });
-    $(".btn_enable").click(function() {
-      event.preventDefault();
-      if (confirm('Включить доступ к сервису для данного сотрудника?')) {
-				$.ajax({
-					beforeSend: function(xhr, settings) {
-							if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
-									xhr.setRequestHeader("X-CSRFToken", csrftoken);
-							}
-					},
-					type: "POST",
-					url: "{% url 'customers:switch_status_ajax' %}",
-					data: {
-						'pk': $(this).attr('data-pk')
-					}
-				});
-        $(this).hide();
-        $(this).siblings('.btn_disable').show();
-        $(this).parent().prev().html('<span class="label label-success">Активен</span>');
-        $(this).closest('tr').removeClass('bg-danger');
-      };
-    });
-    $(".btn_disable").click(function() {
-      event.preventDefault();
-      if (confirm('Отключить доступ к сервису для данного сотрудника?')) {
-				$.ajax({
-					beforeSend: function(xhr, settings) {
-							if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
-									xhr.setRequestHeader("X-CSRFToken", csrftoken);
-							}
-					},
-					type: "POST",
-					url: "{% url 'customers:switch_status_ajax' %}",
-					data: {
-						'pk': $(this).attr('data-pk')
-					}
-				});
-        $(this).hide();
-        $(this).siblings('.btn_enable').show();
-        $(this).parent().prev().html('<span class="label label-default">Отключен</span>');
-        $(this).closest('tr').addClass('bg-danger');
-      };
-    });
+        },
+        type: "POST",
+        url: "{% url 'customers:delete_member_ajax' %}",
+        data: {
+          'pk': $(this).attr('id')
+        }
+      });
+      $(this).closest('tr').remove();
+    };
+  });
+  $(".btn_enable").click(function() {
+    event.preventDefault();
+    if (confirm('Включить доступ к сервису для данного сотрудника?')) {
+      $.ajax({
+        beforeSend: function(xhr, settings) {
+          if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+          }
+        },
+        type: "POST",
+        url: "{% url 'customers:switch_status_ajax' %}",
+        data: {
+          'pk': $(this).attr('data-pk')
+        }
+      });
+      $(this).hide();
+      $(this).siblings('.btn_disable').show();
+      $(this).parent().prev().html('<span class="label label-success">Активен</span>');
+      $(this).closest('tr').removeClass('bg-danger');
+    };
+  });
+  $(".btn_disable").click(function() {
+    event.preventDefault();
+    if (confirm('Отключить доступ к сервису для данного сотрудника?')) {
+      $.ajax({
+        beforeSend: function(xhr, settings) {
+          if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+          }
+        },
+        type: "POST",
+        url: "{% url 'customers:switch_status_ajax' %}",
+        data: {
+          'pk': $(this).attr('data-pk')
+        }
+      });
+      $(this).hide();
+      $(this).siblings('.btn_enable').show();
+      $(this).parent().prev().html('<span class="label label-default">Отключен</span>');
+      $(this).closest('tr').addClass('bg-danger');
+    };
+  });
 } );
 </script>
 {% if messages %}
 <script type="text/javascript">
-    $(window).on('load',function(){
-        $('#myModal').modal('show');
-    });
+  $(window).on('load',function(){
+    $('#myModal').modal('show');
+  });
 </script>
 {% endif %}
 {% endblock %}
