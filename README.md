@@ -5,4 +5,4 @@ The application developed allows to add and manage companies, employees, availab
 Unfortunatley, this startup project has been frozen due to low demand from local businesses.
 
 ## Used technologies:
-** Django, SendGrid API, Google Maps API **
+**Django, SendGrid API, Google Maps API**
