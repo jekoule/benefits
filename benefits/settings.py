@@ -132,11 +132,11 @@ TINYMCE_DEFAULT_CONFIG = {
     'height': 300
 }
 
-SENDGRID_API_KEY = os.getenv('SENDGRID_API_KEY')
+SENDGRID_API_KEY = os.getenv('SENDGRID_APIKEY')
 SENDGRID_TEMPLATES = {
     "activation": "571fe13e-bc4e-45e6-8be0-b26ac533b0c4",
     "registration_complete": "",
     "get_perk": "",
 }
 
-GEOPOSITION_GOOGLE_MAPS_API_KEY = os.getenv('GOOGLE_MAPS_API_KEY')
+GEOPOSITION_GOOGLE_MAPS_API_KEY = os.getenv('GOOGLEMAPS_APIKEY')
