@@ -2,118 +2,118 @@
 {% load static %}
 
 {% block header %}
-  {% include "perks/partials/navigation.html" %}
+{% include "perks/partials/navigation.html" %}
 {% endblock %}
 
 {% block content %}
 
 <section id="perks_slider" class="parallex-bg" style="background: url({% static 'img/doodles.png' %}">
-	<div class="container">
-    	<div class="white-text text-center div_zindex">
-        	<h2>Лучшие предложения для Вас!</h2>
-          <p>Мы подбираем наиболее интересные предложения на выгодных условиях для наших пользователей.</p>
-        </div>
+  <div class="container">
+    <div class="white-text text-center div_zindex">
+      <h2>Лучшие предложения для Вас!</h2>
+      <p>Мы подбираем наиболее интересные предложения на выгодных условиях для наших пользователей.</p>
     </div>
-    <div class="blue-overlay"></div>
+  </div>
+  <div class="blue-overlay"></div>
 </section>
 
 <section id="category_select" class="hidden-sm hidden-md hidden-lg">
-	<div class="btn-group">
-		<button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <div class="btn-group">
+    <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       {% if active_category %}{{ active_category }} {% else %}Выбрать категорию {% endif %}<span class="caret"></span>
-		</button>
-		<ul class="dropdown-menu">
+    </button>
+    <ul class="dropdown-menu">
       <li><a href="{% url 'perks:index' %}#grid">Все предложения</a></li>
-			<li role="separator" class="divider"></li>
-			{% for category in categories %}
-			<li><a href="{{ category.get_absolute_url }}#grid">{{ category.name }}</a></li>
-			{% endfor %}
-		</ul>
-	</div>
+      <li role="separator" class="divider"></li>
+      {% for category in categories %}
+      <li><a href="{{ category.get_absolute_url }}#grid">{{ category.name }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
 </section>
 
 <nav id="category_menu" class="navbar navbar-default hidden-xs" data-spy="affix" data-offset-top="515">
   <div class="container">
     <ul class="nav nav-pills nav-justified">
-    {% for category in categories %}
-        <li>
+      {% for category in categories %}
+      <li>
         <div class="category_item">
           <a href="{{ category.get_absolute_url }}">
             <div class="category_icon">
-            {{ category.render_icon|safe }}
+              <object data="{{ category.icon_url }}" type=""></object>
             </div>
             <p>
-            {{ category.name }}
+              {{ category.name }}
             </p>
           </a>
         </div>
-        </li>
-    {% endfor %}
+      </li>
+      {% endfor %}
     </ul>
   </div>
 </nav>
 
 <section id="grid">
-	<div class="container">
-    	<div class="listing_header">
-        <a class="active hidden-xs" href="{% url 'perks:index' %}#category_menu">Все предложения</a>
-				<form class="navbar-form navbar-right perks-search" role="search">
-					<div class="form-group">
-						<input type="text" class="form-control" placeholder="Поиск по предложениям">
-					</div>
-					<button type="submit" class="btn btn-info"><i class="fa fa-search"></i></button>
-				</form>
-			</div>
-
-    	<div class="row">
-
-          {% for perk in perks %}
-            <div class="col-md-4 col-sm-6 grid_view show_listing">
-            	<div class="listing_wrap">
-                    <div class="listing_img">
-                        <a href="{{ perk.get_absolute_url }}"><img src="{{ perk.thumbnail }}" alt="image"></a>
-                        <span class="discount label">{{ perk.discount }}</span>
-                    </div>
-                    <div class="listing_info">
-                        <div class="perk_title">
-                          <h3>{{ perk.title }}</h3>
-                        </div>
-                        <div class="partner_name">
-                          <h4>{{ perk.partner.name }}</h4>
-                        </div>
-
-                        <div class="listing_review_info">
-                          <a href="{{ perk.get_absolute_url }}" class="btn more_info_btn">Подробнее</a>
-                          <a class="btn get_perk_btn" {% if request.user.is_member %}data-toggle="modal" data-target="#add_perk_modal" href="{{ perk.get_modal_url }}" data-remote="{{ perk.get_modal_url }}"{% else %}href="{% url 'members:sign_in' %}"{% endif %}>
-                            Получить
-                          </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        {% endfor %} 
-
+  <div class="container">
+    <div class="listing_header">
+      <a class="active hidden-xs" href="{% url 'perks:index' %}#category_menu">Все предложения</a>
+      <form class="navbar-form navbar-right perks-search" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Поиск по предложениям">
         </div>
+        <button type="submit" class="btn btn-info"><i class="fa fa-search"></i></button>
+      </form>
+    </div>
 
-        {% if perks.paginator.num_pages > 1 %}
-    		<nav class="pagination_nav">
-            <ul class="pagination">
-              {% if perks.has_previous %}
-                <li><a href="?page={{ perks.previous_page_number }}" aria-label="Назад"><span aria-hidden="true">&laquo;</span></a></li>
-              {% endif %}
+    <div class="row">
 
-              {% for page in perks.paginator.page_range %}
-                <li {% if perks.number == page %}class="active"{% endif %}><a href="?page={{ page }}">{{ page }}</a></li>
-              {% endfor %}
+      {% for perk in perks %}
+      <div class="col-md-4 col-sm-6 grid_view show_listing">
+        <div class="listing_wrap">
+          <div class="listing_img">
+            <a href="{{ perk.get_absolute_url }}"><img src="{{ perk.thumbnail }}" alt="image"></a>
+            <span class="discount label">{{ perk.discount }}</span>
+          </div>
+          <div class="listing_info">
+            <div class="perk_title">
+              <h3>{{ perk.title }}</h3>
+            </div>
+            <div class="partner_name">
+              <h4>{{ perk.partner.name }}</h4>
+            </div>
 
-              {% if perks.has_next %}
-                <li><a href="?page={{ perks.next_page_number }}" aria-label="Вперёд"><span aria-hidden="true">&raquo;</span></a></li>
-              {% endif %}
-            </ul>
-        </nav>
-        {% endif %}
+            <div class="listing_review_info">
+              <a href="{{ perk.get_absolute_url }}" class="btn more_info_btn">Подробнее</a>
+              <a class="btn get_perk_btn" {% if request.user.is_member %}data-toggle="modal" data-target="#add_perk_modal" href="{{ perk.get_modal_url }}" data-remote="{{ perk.get_modal_url }}"{% else %}href="{% url 'members:sign_in' %}"{% endif %}>
+                Получить
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %} 
 
     </div>
+
+    {% if perks.paginator.num_pages > 1 %}
+    <nav class="pagination_nav">
+      <ul class="pagination">
+        {% if perks.has_previous %}
+        <li><a href="?page={{ perks.previous_page_number }}" aria-label="Назад"><span aria-hidden="true">&laquo;</span></a></li>
+        {% endif %}
+
+        {% for page in perks.paginator.page_range %}
+        <li {% if perks.number == page %}class="active"{% endif %}><a href="?page={{ page }}">{{ page }}</a></li>
+        {% endfor %}
+
+        {% if perks.has_next %}
+        <li><a href="?page={{ perks.next_page_number }}" aria-label="Вперёд"><span aria-hidden="true">&raquo;</span></a></li>
+        {% endif %}
+      </ul>
+    </nav>
+    {% endif %}
+
+  </div>
 </section>
 
 <div id="add_perk_modal" class="modal fade" role="dialog">
@@ -127,22 +127,22 @@
 
 {% block footer %}
 <footer class="footer secondary-bg">
-<div class="footer_bottom">
-	<div class="container">
-		<div class="center-block">
-      <p>Copyright &copy; 2017 Benefits</p>    
-		</div>
-	</div>
-</div>
+  <div class="footer_bottom">
+    <div class="container">
+      <div class="center-block">
+        <p>Copyright &copy; 2017 Benefits</p>    
+      </div>
+    </div>
+  </div>
 </footer>
 {% endblock %}
 
 {% block extra_js %}
 {% if active_category %}
 <script type="text/javascript">
-$(document).ready( function () {
-	$(window).scrollTop($('#category_menu').offset().top);
-});
+  $(document).ready( function () {
+    $(window).scrollTop($('#category_menu').offset().top);
+  });
 </script>
 {% endif %}
 {% endblock %}

@@ -5,7 +5,6 @@ import string
 from django.utils.crypto import get_random_string
 from django.db import models
 from django.core.exceptions import ObjectDoesNotExist
-from django.utils.safestring import mark_safe
 from django.conf import settings
 from django.urls import reverse
 from geoposition.fields import GeopositionField
@@ -34,9 +33,8 @@ class PerkCategory(models.Model):
     def __str__(self):
         return self.name
 
-    def render_icon(self):
-        if self.icon:
-            return mark_safe(self.icon.read())
+    def icon_url(self):
+        return self.icon.url
 
     def get_absolute_url(self):
         return reverse('perks:category', kwargs={'category': self.slug})
