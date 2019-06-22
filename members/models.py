@@ -13,9 +13,7 @@ import urllib.request as urllib
 
 from customers.models import Company
 
-sg = sendgrid.SendGridAPIClient(
-    apikey=settings.SENDGRID_API_KEY
-)
+sg = sendgrid.SendGridAPIClient(settings.SENDGRID_API_KEY)
 phone_validator = RegexValidator(r"^[0-9]{10}$")
 
 
@@ -24,6 +22,7 @@ class Member(models.Model):
                                 on_delete=models.CASCADE,
                                 verbose_name='Учетная запись')
     company = models.ForeignKey(Company,
+                                on_delete=models.CASCADE,
                                 verbose_name='Компания',
                                 related_name='members')
     first_name = models.CharField(max_length=100, verbose_name='Имя',

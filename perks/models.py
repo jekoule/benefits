@@ -7,6 +7,7 @@ from django.db import models
 from django.core.exceptions import ObjectDoesNotExist
 from django.utils.safestring import mark_safe
 from django.conf import settings
+from django.urls import reverse
 from geoposition.fields import GeopositionField
 import sendgrid
 from sendgrid.helpers.mail import Mail, Email, Personalization, Substitution
@@ -16,9 +17,7 @@ from partners.models import Partner
 from tinymce.models import HTMLField
 from members.models import Member
 
-sg = sendgrid.SendGridAPIClient(
-    apikey=settings.SENDGRID_API_KEY
-)
+sg = sendgrid.SendGridAPIClient(settings.SENDGRID_API_KEY)
 
 
 class PerkCategory(models.Model):
@@ -39,9 +38,8 @@ class PerkCategory(models.Model):
         if self.icon:
             return mark_safe(self.icon.read())
 
-    @models.permalink
     def get_absolute_url(self):
-        return ('perks:category', (), {'category': self.slug})
+        return reverse('perks:category', kwargs={'category': self.slug})
 
 
 class Perk(models.Model):
@@ -84,17 +82,14 @@ class Perk(models.Model):
         if self.images.first():
             return self.images.first().img.url
 
-    @models.permalink
     def get_absolute_url(self):
-        return ('perks:perk_detail', (), {'pk': self.pk})
+        return reverse('perks:perk_detail', kwargs={'pk': self.pk})
 
-    @models.permalink
     def get_modal_url(self):
-        return ('perks:perk_modal', (), {'pk': self.pk})
+        return reverse('perks:perk_modal', kwargs={'pk': self.pk})
 
-    @models.permalink
     def get_perk_url(self):
-        return ('perks:get_perk', (), {'pk': self.pk})
+        return reverse('perks:get_perk', kwargs={'pk': self.pk})
 
     def partner_name(self):
         return self.partner.name
