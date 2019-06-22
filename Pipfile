@@ -15,6 +15,7 @@ sendgrid = "*"
 Django = "*"
 Pillow = "*"
 python_http_client = "*"
+pyyaml = "*"
 
 [requires]
 python_version = "3.7"
