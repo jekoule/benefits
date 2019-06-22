@@ -1,0 +1,44 @@
+- model: members.member
+  pk: 1
+  fields:
+    user: 3
+    company: 1
+    first_name: "\u0411\u0435\u0440\u0438\u043A"
+    last_name: "\u0410\u0445\u043C\u0435\u0442\u043E\u0432"
+    phone_number: '7015121326'
+    date_of_birth: 1980-12-02
+    activation_token: ''
+    enabled: true
+- model: members.member
+  pk: 2 
+  fields:
+    user: 27
+    company: 1
+    first_name: "\u0412\u0430\u0441\u044F"
+    last_name: "\u0418\u0432\u0430\u043D\u043E\u0432"
+    phone_number: '7756451356'
+    date_of_birth: 1996-05-16
+    activation_token: b6ad3bd939a9ec392faf2d84b43336f0d6cd461e0bcec94367735201de07db54
+    enabled: true
+- model: members.member
+  pk: 3
+  fields:
+    user: 95
+    company: 1
+    first_name: "\u0414\u0430\u043D\u0438\u044F\u0440"
+    last_name: "\u041C\u0443\u0445\u0430\u043C\u0435\u0434\u0438\u0435\u0432"
+    phone_number: '7021111912'
+    date_of_birth: 1989-06-13
+    activation_token: 0b792fcf3a9057ed579d5076a30646c355ed2a93ea8cb9aedffd3deb947a24a9
+    enabled: true
+- model: members.member
+  pk: 4
+  fields:
+    user: 249
+    company: 1
+    first_name: null
+    last_name: null
+    phone_number: null
+    date_of_birth: null
+    activation_token: fa5fdb39ef000ecf6f5523ae21ce6c187ab1918a190879065c4dd0e560beecc3
+    enabled: true

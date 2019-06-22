@@ -1,0 +1,36 @@
+- model: partners.partner
+  pk: 1
+  fields:
+    user: 32
+    name: Fidelity
+    info: ''
+- model: partners.partner
+  pk: 2
+  fields:
+    user: 39
+    name: Parmigiano Group
+    info: ''
+- model: partners.partner
+  pk: 3
+  fields:
+    user: 40
+    name: Interpress
+    info: ''
+- model: partners.partner
+  pk: 4
+  fields:
+    user: 41
+    name: TOP.kz
+    info: ''
+- model: partners.partner
+  pk: 5
+  fields:
+    user: 42
+    name: Endurance Almaty
+    info: ''
+- model: partners.partner
+  pk: 6
+  fields:
+    user: 43
+    name: Technodom
+    info: ''

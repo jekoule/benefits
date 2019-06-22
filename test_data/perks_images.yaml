@@ -1,0 +1,30 @@
+- model: perks.perkimage
+  pk: 13
+  fields:
+    perk: 1
+    img: perks/pexels-photo_1_gPizIkQ.jpg
+- model: perks.perkimage
+  pk: 14
+  fields:
+    perk: 2
+    img: perks/2cfb24a38d66260d3ed85ad93408a838_lDvxi89.jpg
+- model: perks.perkimage
+  pk: 15
+  fields:
+    perk: 3
+    img: perks/pexels-photo-136404.jpeg
+- model: perks.perkimage
+  pk: 16
+  fields:
+    perk: 4
+    img: perks/160307-cleaningservices-stock_dhUUTcf.jpg
+- model: perks.perkimage
+  pk: 17
+  fields:
+    perk: 5
+    img: perks/english-lessons_IFq7d9Q.jpg
+- model: perks.perkimage
+  pk: 18
+  fields:
+    perk: 6
+    img: perks/thumb_44_1200x800_0_0_crop_toB7Iz5.jpg

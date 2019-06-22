@@ -1,0 +1,644 @@
+- model: perks.transaction
+  pk: 6020
+  fields:
+    member: 1
+    perk: 3
+    date_created: 2017-10-16 06:59:22.600903+00:00
+    code: 32I6
+- model: perks.transaction
+  pk: 6021
+  fields:
+    member: 1
+    perk: 3
+    date_created: 2017-10-16 10:04:02.911597+00:00
+    code: 7B9F
+- model: perks.transaction
+  pk: 6022
+  fields:
+    member: 1
+    perk: 3
+    date_created: 2017-10-16 10:06:48.976690+00:00
+    code: 5Z42
+- model: perks.transaction
+  pk: 6023
+  fields:
+    member: 1
+    perk: 3
+    date_created: 2017-10-16 10:12:23.587988+00:00
+    code: ZFXC
+- model: perks.transaction
+  pk: 6024
+  fields:
+    member: 2
+    perk: 3
+    date_created: 2017-10-16 10:12:56.646752+00:00
+    code: Q3FE
+- model: perks.transaction
+  pk: 6025
+  fields:
+    member: 2
+    perk: 3
+    date_created: 2017-10-16 10:13:22.144260+00:00
+    code: BKTZ
+- model: perks.transaction
+  pk: 6026
+  fields:
+    member: 2
+    perk: 3
+    date_created: 2017-10-16 10:14:17.992964+00:00
+    code: 4W39
+- model: perks.transaction
+  pk: 6027
+  fields:
+    member: 2
+    perk: 3
+    date_created: 2017-10-16 10:15:17.311624+00:00
+    code: RBE1
+- model: perks.transaction
+  pk: 6028
+  fields:
+    member: 3
+    perk: 3
+    date_created: 2017-10-16 10:16:57.046563+00:00
+    code: X1PP
+- model: perks.transaction
+  pk: 6029
+  fields:
+    member: 3
+    perk: 3
+    date_created: 2017-10-16 10:16:59.653415+00:00
+    code: CTI1
+- model: perks.transaction
+  pk: 6030
+  fields:
+    member: 3
+    perk: 3
+    date_created: 2017-10-16 10:19:36.591492+00:00
+    code: R88Q
+- model: perks.transaction
+  pk: 6031
+  fields:
+    member: 3
+    perk: 3
+    date_created: 2017-10-16 11:18:02.803910+00:00
+    code: AZ5Z
+- model: perks.transaction
+  pk: 6032
+  fields:
+    member: 4
+    perk: 3
+    date_created: 2017-10-16 11:18:57.824089+00:00
+    code: WQPR
+- model: perks.transaction
+  pk: 6033
+  fields:
+    member: 4
+    perk: 3
+    date_created: 2017-10-16 11:19:19.103387+00:00
+    code: E2TP
+- model: perks.transaction
+  pk: 6034
+  fields:
+    member: 4
+    perk: 3
+    date_created: 2017-10-16 11:19:38.485425+00:00
+    code: UAL4
+- model: perks.transaction
+  pk: 6035
+  fields:
+    member: 4
+    perk: 3
+    date_created: 2017-10-16 11:19:39.313079+00:00
+    code: 1ZSI
+- model: perks.transaction
+  pk: 6036
+  fields:
+    member: 4
+    perk: 3
+    date_created: 2017-10-16 11:19:39.617950+00:00
+    code: I18H
+- model: perks.transaction
+  pk: 6037
+  fields:
+    member: 4
+    perk: 3
+    date_created: 2017-10-16 11:19:39.851876+00:00
+    code: QMTL
+- model: perks.transaction
+  pk: 6038
+  fields:
+    member: 3
+    perk: 3
+    date_created: 2017-10-16 11:19:41.469757+00:00
+    code: VINX
+- model: perks.transaction
+  pk: 6039
+  fields:
+    member: 2
+    perk: 3
+    date_created: 2017-10-16 11:19:51.235980+00:00
+    code: UWFS
+- model: perks.transaction
+  pk: 6040
+  fields:
+    member: 1
+    perk: 3
+    date_created: 2017-10-16 11:19:51.891368+00:00
+    code: LJ6P
+- model: perks.transaction
+  pk: 6041
+  fields:
+    member: 2
+    perk: 3
+    date_created: 2017-10-16 11:19:55.090020+00:00
+    code: D7P0
+- model: perks.transaction
+  pk: 6042
+  fields:
+    member: 3
+    perk: 3
+    date_created: 2017-10-16 11:19:55.738371+00:00
+    code: L1NT
+- model: perks.transaction
+  pk: 6043
+  fields:
+    member: 1
+    perk: 3
+    date_created: 2017-10-16 11:20:18.762804+00:00
+    code: AFFL
+- model: perks.transaction
+  pk: 6044
+  fields:
+    member: 3
+    perk: 3
+    date_created: 2017-10-16 11:20:28.916010+00:00
+    code: 5KIV
+- model: perks.transaction
+  pk: 6045
+  fields:
+    member: 2
+    perk: 3
+    date_created: 2017-10-16 11:20:41.638502+00:00
+    code: 8NT1
+- model: perks.transaction
+  pk: 6046
+  fields:
+    member: 2
+    perk: 3
+    date_created: 2017-10-16 11:20:55.526055+00:00
+    code: Q5WJ
+- model: perks.transaction
+  pk: 6047
+  fields:
+    member: 4
+    perk: 3
+    date_created: 2017-10-16 11:22:17.895519+00:00
+    code: UT41
+- model: perks.transaction
+  pk: 6048
+  fields:
+    member: 1
+    perk: 3
+    date_created: 2017-10-16 11:22:44.615918+00:00
+    code: FSLS
+- model: perks.transaction
+  pk: 6049
+  fields:
+    member: 3
+    perk: 3
+    date_created: 2017-10-16 11:22:54.831960+00:00
+    code: LWCP
+- model: perks.transaction
+  pk: 6050
+  fields:
+    member: 3
+    perk: 3
+    date_created: 2017-10-16 11:25:06.994745+00:00
+    code: 2L5U
+- model: perks.transaction
+  pk: 6051
+  fields:
+    member: 1
+    perk: 3
+    date_created: 2017-10-16 11:25:19.320687+00:00
+    code: AATA
+- model: perks.transaction
+  pk: 6052
+  fields:
+    member: 1
+    perk: 3
+    date_created: 2017-10-16 11:25:55.930768+00:00
+    code: UEDK
+- model: perks.transaction
+  pk: 6053
+  fields:
+    member: 2
+    perk: 3
+    date_created: 2017-10-16 11:26:05.762936+00:00
+    code: ZCZR
+- model: perks.transaction
+  pk: 6054
+  fields:
+    member: 2
+    perk: 3
+    date_created: 2017-10-16 11:27:00.943943+00:00
+    code: XUYT
+- model: perks.transaction
+  pk: 6055
+  fields:
+    member: 1
+    perk: 3
+    date_created: 2017-10-16 11:27:17.275078+00:00
+    code: LPFV
+- model: perks.transaction
+  pk: 6056
+  fields:
+    member: 4
+    perk: 3
+    date_created: 2017-10-16 11:27:35.932255+00:00
+    code: CRDI
+- model: perks.transaction
+  pk: 6057
+  fields:
+    member: 1
+    perk: 3
+    date_created: 2017-10-16 11:28:00.045458+00:00
+    code: 0FDP
+- model: perks.transaction
+  pk: 6058
+  fields:
+    member: 2
+    perk: 3
+    date_created: 2017-10-16 11:28:16.558252+00:00
+    code: 2CQY
+- model: perks.transaction
+  pk: 6059
+  fields:
+    member: 1
+    perk: 3
+    date_created: 2017-10-16 11:29:05.400877+00:00
+    code: J3MU
+- model: perks.transaction
+  pk: 6060
+  fields:
+    member: 1
+    perk: 3
+    date_created: 2017-10-16 11:29:06.183725+00:00
+    code: JNNU
+- model: perks.transaction
+  pk: 6061
+  fields:
+    member: 2
+    perk: 3
+    date_created: 2017-10-16 11:30:08.107846+00:00
+    code: EE5P
+- model: perks.transaction
+  pk: 6062
+  fields:
+    member: 3
+    perk: 3
+    date_created: 2017-10-16 11:30:09.365915+00:00
+    code: ZCGM
+- model: perks.transaction
+  pk: 6063
+  fields:
+    member: 3
+    perk: 3
+    date_created: 2017-10-16 11:30:59.867603+00:00
+    code: EV7I
+- model: perks.transaction
+  pk: 6064
+  fields:
+    member: 1
+    perk: 3
+    date_created: 2017-10-16 11:31:00.825872+00:00
+    code: 5TWH
+- model: perks.transaction
+  pk: 6065
+  fields:
+    member: 4
+    perk: 3
+    date_created: 2017-10-16 11:31:15.615396+00:00
+    code: F9QZ
+- model: perks.transaction
+  pk: 6066
+  fields:
+    member: 3
+    perk: 3
+    date_created: 2017-10-16 11:31:16.545801+00:00
+    code: SR62
+- model: perks.transaction
+  pk: 6067
+  fields:
+    member: 1
+    perk: 3
+    date_created: 2017-10-16 11:33:55.894694+00:00
+    code: MILS
+- model: perks.transaction
+  pk: 6068
+  fields:
+    member: 1
+    perk: 3
+    date_created: 2017-10-16 11:33:56.807245+00:00
+    code: A2IZ
+- model: perks.transaction
+  pk: 6069
+  fields:
+    member: 1
+    perk: 3
+    date_created: 2017-10-16 11:33:58.130977+00:00
+    code: 0ENH
+- model: perks.transaction
+  pk: 6070
+  fields:
+    member: 1
+    perk: 3
+    date_created: 2017-10-16 11:33:58.697034+00:00
+    code: KXYS
+- model: perks.transaction
+  pk: 6071
+  fields:
+    member: 1
+    perk: 3
+    date_created: 2017-10-16 11:34:09.011610+00:00
+    code: X7UT
+- model: perks.transaction
+  pk: 6072
+  fields:
+    member: 1
+    perk: 3
+    date_created: 2017-10-16 11:34:09.734824+00:00
+    code: T0IF
+- model: perks.transaction
+  pk: 6073
+  fields:
+    member: 1
+    perk: 3
+    date_created: 2017-10-16 11:34:10.167439+00:00
+    code: WXFC
+- model: perks.transaction
+  pk: 6074
+  fields:
+    member: 1
+    perk: 3
+    date_created: 2017-10-16 11:34:55.142076+00:00
+    code: HVHC
+- model: perks.transaction
+  pk: 6075
+  fields:
+    member: 1
+    perk: 3
+    date_created: 2017-10-16 11:34:56.057091+00:00
+    code: FSRN
+- model: perks.transaction
+  pk: 6076
+  fields:
+    member: 1
+    perk: 3
+    date_created: 2017-10-16 11:35:11.080368+00:00
+    code: 2TXY
+- model: perks.transaction
+  pk: 6077
+  fields:
+    member: 1
+    perk: 3
+    date_created: 2017-10-16 11:35:11.873969+00:00
+    code: C3BB
+- model: perks.transaction
+  pk: 6078
+  fields:
+    member: 1
+    perk: 3
+    date_created: 2017-10-16 11:35:35.151491+00:00
+    code: 0X8K
+- model: perks.transaction
+  pk: 6079
+  fields:
+    member: 1
+    perk: 3
+    date_created: 2017-10-16 11:35:36.010597+00:00
+    code: 1MPT
+- model: perks.transaction
+  pk: 6080
+  fields:
+    member: 1
+    perk: 3
+    date_created: 2017-10-16 11:35:41.021117+00:00
+    code: DDY3
+- model: perks.transaction
+  pk: 6081
+  fields:
+    member: 1
+    perk: 3
+    date_created: 2017-10-16 11:35:41.610070+00:00
+    code: N5VK
+- model: perks.transaction
+  pk: 6082
+  fields:
+    member: 1
+    perk: 3
+    date_created: 2017-10-16 11:38:14.610585+00:00
+    code: 1MJT
+- model: perks.transaction
+  pk: 6083
+  fields:
+    member: 1
+    perk: 3
+    date_created: 2017-10-16 11:38:16.571636+00:00
+    code: DZ45
+- model: perks.transaction
+  pk: 6084
+  fields:
+    member: 1
+    perk: 3
+    date_created: 2017-10-16 11:38:23.326219+00:00
+    code: 4FYN
+- model: perks.transaction
+  pk: 6085
+  fields:
+    member: 1
+    perk: 3
+    date_created: 2017-10-16 11:38:23.977247+00:00
+    code: 58C9
+- model: perks.transaction
+  pk: 6086
+  fields:
+    member: 1
+    perk: 3
+    date_created: 2017-10-16 11:38:56.126621+00:00
+    code: A88A
+- model: perks.transaction
+  pk: 6087
+  fields:
+    member: 1
+    perk: 3
+    date_created: 2017-10-16 11:38:58.487953+00:00
+    code: L177
+- model: perks.transaction
+  pk: 6088
+  fields:
+    member: 1
+    perk: 3
+    date_created: 2017-10-16 11:39:27.110274+00:00
+    code: C9T7
+- model: perks.transaction
+  pk: 6089
+  fields:
+    member: 1
+    perk: 3
+    date_created: 2017-10-16 11:39:56.254032+00:00
+    code: 7QC0
+- model: perks.transaction
+  pk: 6090
+  fields:
+    member: 1
+    perk: 3
+    date_created: 2017-10-16 11:40:04.739267+00:00
+    code: 2BFP
+- model: perks.transaction
+  pk: 6091
+  fields:
+    member: 1
+    perk: 3
+    date_created: 2017-10-16 11:44:43.358807+00:00
+    code: D0EQ
+- model: perks.transaction
+  pk: 6092
+  fields:
+    member: 1
+    perk: 3
+    date_created: 2017-10-16 11:45:31.034191+00:00
+    code: GREX
+- model: perks.transaction
+  pk: 6093
+  fields:
+    member: 1
+    perk: 3
+    date_created: 2017-10-16 11:46:23.524884+00:00
+    code: EE7A
+- model: perks.transaction
+  pk: 6094
+  fields:
+    member: 1
+    perk: 3
+    date_created: 2017-10-16 11:47:52.235566+00:00
+    code: 2K51
+- model: perks.transaction
+  pk: 6095
+  fields:
+    member: 1
+    perk: 3
+    date_created: 2017-10-16 11:48:05.852192+00:00
+    code: WDDF
+- model: perks.transaction
+  pk: 6096
+  fields:
+    member: 1
+    perk: 3
+    date_created: 2017-10-16 11:48:07.997798+00:00
+    code: 819D
+- model: perks.transaction
+  pk: 6097
+  fields:
+    member: 1
+    perk: 3
+    date_created: 2017-10-16 11:48:08.614288+00:00
+    code: 6XXP
+- model: perks.transaction
+  pk: 6098
+  fields:
+    member: 1
+    perk: 3
+    date_created: 2017-10-16 11:48:34.510843+00:00
+    code: XMIH
+- model: perks.transaction
+  pk: 6099
+  fields:
+    member: 1
+    perk: 3
+    date_created: 2017-10-16 11:49:17.984668+00:00
+    code: GFIC
+- model: perks.transaction
+  pk: 6100
+  fields:
+    member: 1
+    perk: 3
+    date_created: 2017-10-16 11:49:22.365513+00:00
+    code: ERGG
+- model: perks.transaction
+  pk: 6101
+  fields:
+    member: 1
+    perk: 3
+    date_created: 2017-10-16 11:52:46.234286+00:00
+    code: 2E5P
+- model: perks.transaction
+  pk: 6102
+  fields:
+    member: 1
+    perk: 3
+    date_created: 2017-10-16 12:54:21.527184+00:00
+    code: M2WD
+- model: perks.transaction
+  pk: 6103
+  fields:
+    member: 1
+    perk: 3
+    date_created: 2017-10-16 13:08:11.988447+00:00
+    code: 16RN
+- model: perks.transaction
+  pk: 6104
+  fields:
+    member: 1
+    perk: 3
+    date_created: 2017-10-16 13:11:41.010471+00:00
+    code: QS7F
+- model: perks.transaction
+  pk: 6105
+  fields:
+    member: 1
+    perk: 3
+    date_created: 2017-10-16 17:10:24.880081+00:00
+    code: R43Z
+- model: perks.transaction
+  pk: 6106
+  fields:
+    member: 1
+    perk: 3
+    date_created: 2017-10-16 17:11:43.960155+00:00
+    code: J3MS
+- model: perks.transaction
+  pk: 6107
+  fields:
+    member: 1
+    perk: 3
+    date_created: 2017-10-21 09:49:16.350962+00:00
+    code: L32I
+- model: perks.transaction
+  pk: 6108
+  fields:
+    member: 1
+    perk: 3
+    date_created: 2017-10-21 09:51:56.863243+00:00
+    code: A8Q7
+- model: perks.transaction
+  pk: 6109
+  fields:
+    member: 1
+    perk: 3
+    date_created: 2017-10-21 09:51:57.495479+00:00
+    code: M319
+- model: perks.transaction
+  pk: 6110
+  fields:
+    member: 1
+    perk: 3
+    date_created: 2017-10-21 09:51:57.807969+00:00
+    code: JF9N
+- model: perks.transaction
+  pk: 6111
+  fields:
+    member: 1
+    perk: 3
+    date_created: 2017-10-21 09:51:58.222341+00:00
+    code: C4EH

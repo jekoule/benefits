@@ -1,0 +1,132 @@
+- model: core.user
+  pk: 1
+  fields:
+    password: pbkdf2_sha256$150000$Igoa8KXLzXoA$VzewDlsOZwfXEDW1avJ/ssx2Kn3IJaoZryz+0kERw48=
+    last_login: 2019-06-22 17:46:05.814673+00:00
+    is_superuser: true
+    email: o.arystanov@gmail.com
+    date_registered: 2017-09-25 14:13:51.027570+00:00
+    is_active: true
+    is_staff: true
+    groups: []
+    user_permissions: []
+- model: core.user
+  pk: 3
+  fields:
+    password: pbkdf2_sha256$36000$caYhDQLtvD7A$MGFko10p/ZORSoYOTaGXyqLItiT/k182oR0mIfcDV1k=
+    last_login: 2017-10-27 07:41:33.825780+00:00
+    is_superuser: false
+    email: berik@airastana.kz
+    date_registered: 2017-09-25 17:36:57.239353+00:00
+    is_active: true
+    is_staff: true
+    groups: []
+    user_permissions: []
+- model: core.user
+  pk: 27
+  fields:
+    password: pbkdf2_sha256$150000$6LrvUwfJugV8$6iNsWuJdwAjDn3MiK4ZmwSEPd63fRyFCRI/Rl12IFd0=
+    last_login: 2019-06-22 18:35:04.914169+00:00
+    is_superuser: false
+    email: vasya@airastana.com
+    date_registered: 2017-09-29 09:46:23.994128+00:00
+    is_active: true
+    is_staff: false
+    groups: []
+    user_permissions: []
+- model: core.user
+  pk: 32
+  fields:
+    password: pbkdf2_sha256$36000$CGaSHxSEIIS3$fTNFfTL6PR60QtNT0ygqDUocgr3eTbKllxCO07OOaUE=
+    last_login: 2017-10-27 22:41:27.469422+00:00
+    is_superuser: false
+    email: info@fidelity.kz
+    date_registered: 2017-10-02 20:27:43.288392+00:00
+    is_active: true
+    is_staff: false
+    groups: []
+    user_permissions: []
+- model: core.user
+  pk: 39
+  fields:
+    password: pbkdf2_sha256$36000$lBQVaQuWHUQU$KIz3WyEMl+tUfQFYhIKh+YaMrAuZVnWLhIRI5wm7qsA=
+    last_login: null
+    is_superuser: false
+    email: info@parmigiano.com
+    date_registered: 2017-10-16 18:52:41.833853+00:00
+    is_active: true
+    is_staff: false
+    groups: []
+    user_permissions: []
+- model: core.user
+  pk: 40
+  fields:
+    password: pbkdf2_sha256$36000$1a0WUxmye4uO$jpulQ0Zx+LdHxTFa5fXJda3Co47TcwfZJGb7yINLTCM=
+    last_login: null
+    is_superuser: false
+    email: info@interpress.kz
+    date_registered: 2017-10-16 22:14:40.941786+00:00
+    is_active: true
+    is_staff: false
+    groups: []
+    user_permissions: []
+- model: core.user
+  pk: 41
+  fields:
+    password: pbkdf2_sha256$36000$Binu8NcP1g36$aEgHu18mCvkMte2rOdWPodXpIu50VKpYt6s3iKXbAt8=
+    last_login: null
+    is_superuser: false
+    email: info@top.kz
+    date_registered: 2017-10-16 22:20:05.286078+00:00
+    is_active: true
+    is_staff: false
+    groups: []
+    user_permissions: []
+- model: core.user
+  pk: 42
+  fields:
+    password: pbkdf2_sha256$36000$BNwvH7Qe93Zm$pdEaRFsVsZARCDhS+bw+Y05CaDO+cD0FODjBCV/HrA8=
+    last_login: null
+    is_superuser: false
+    email: info@endurance.kz
+    date_registered: 2017-10-16 22:30:13.315632+00:00
+    is_active: true
+    is_staff: false
+    groups: []
+    user_permissions: []
+- model: core.user
+  pk: 43
+  fields:
+    password: pbkdf2_sha256$36000$Fs1FhWQmc3rv$lQsdArPXgJ5FXaDAHKIhjPmggGNS14hZ9CuahuR30Gk=
+    last_login: null
+    is_superuser: false
+    email: info@technodom.kz
+    date_registered: 2017-10-17 09:13:05.714235+00:00
+    is_active: true
+    is_staff: false
+    groups: []
+    user_permissions: []
+- model: core.user
+  pk: 95
+  fields:
+    password: pbkdf2_sha256$36000$d28SsV9uYacs$e+lMgrUD2RuO9g2qIBN4IwaqO7JJBACT4RkEquR8IWw=
+    last_login: 2018-04-17 11:52:26.052970+00:00
+    is_superuser: false
+    email: daniyar@airastana.com
+    date_registered: 2017-10-25 15:59:04.792907+00:00
+    is_active: true
+    is_staff: false
+    groups: []
+    user_permissions: []
+- model: core.user
+  pk: 249
+  fields:
+    password: pbkdf2_sha256$36000$T7ZutoZhBg5A$jb2YE5zHaoVxCw2y7lfYC9lk9bt4jj2IcOmUMZcyEwM=
+    last_login: null
+    is_superuser: false
+    email: mark@airastana.com
+    date_registered: 2017-10-26 19:37:28.438510+00:00
+    is_active: false
+    is_staff: false
+    groups: []
+    user_permissions: []

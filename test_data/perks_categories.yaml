@@ -1,0 +1,48 @@
+- model: perks.PerkCategory
+  pk: 1
+  fields:
+    name: Спорт 
+    slug: sports
+    icon: category_icons/sports.svg
+- model: perks.PerkCategory
+  pk: 2
+  fields:
+    name: Еда и напитки 
+    slug: food-and-beverages
+    icon: category_icons/food-and-beverages.svg
+- model: perks.PerkCategory
+  pk: 3
+  fields:
+    name: Развлечения 
+    slug: entertainment
+    icon: category_icons/entertainment.svg
+- model: perks.PerkCategory
+  pk: 4
+  fields:
+    name: Туризм 
+    slug: tourism 
+    icon: category_icons/tourism.svg
+- model: perks.PerkCategory
+  pk: 5
+  fields:
+    name: Образование
+    slug: education
+    icon: category_icons/education.svg
+- model: perks.PerkCategory
+  pk: 6
+  fields:
+    name: Финансы
+    slug: finance
+    icon: category_icons/finance.svg
+- model: perks.PerkCategory
+  pk: 7
+  fields:
+    name: Товары 
+    slug: goods
+    icon: category_icons/goods.svg
+- model: perks.PerkCategory
+  pk: 8
+  fields:
+    name: Здоровье 
+    slug: health
+    icon: category_icons/health.svg

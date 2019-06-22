@@ -1,0 +1,7 @@
+- model: customers.company
+  pk: 1
+  fields:
+    admin: 3
+    name: Air Astana
+    address: null
+    logo: customers/logos/Air_Astana_logo.svg_eKYT5Tv.png
